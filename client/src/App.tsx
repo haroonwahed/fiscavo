@@ -28,6 +28,8 @@ export const useAuth = () => useContext(AuthContext);
 function Router() {
   const { isAuthenticated } = useAuth();
   
+  console.log("Router rendering, isAuthenticated:", isAuthenticated);
+  
   return (
     <Switch>
       <Route path="/">
@@ -51,9 +53,17 @@ function Router() {
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  const setAuthenticatedWithLogging = (value: boolean) => {
+    console.log("App: setIsAuthenticated called with:", value);
+    setIsAuthenticated(value);
+    console.log("App: authentication state updated to:", value);
+  };
+
+  console.log("App rendering, isAuthenticated:", isAuthenticated);
+
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
+      <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated: setAuthenticatedWithLogging }}>
         <TooltipProvider>
           <Toaster />
           <Router />

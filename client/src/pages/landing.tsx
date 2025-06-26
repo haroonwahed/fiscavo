@@ -5,7 +5,9 @@ export default function Landing() {
   
   const handleGetStarted = () => {
     console.log("Button clicked - logging in user");
+    console.log("setIsAuthenticated function:", setIsAuthenticated);
     setIsAuthenticated(true);
+    console.log("Authentication set to true");
   };
 
   return (
