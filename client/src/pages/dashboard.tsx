@@ -73,9 +73,9 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Premium Header */}
-      <header className="bg-white/80 backdrop-blur-lg border-b border-blue-100 sticky top-0 z-40 shadow-sm">
+      <header className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border-b border-blue-100 dark:border-gray-700 sticky top-0 z-40 shadow-sm">
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
@@ -104,8 +104,8 @@ export default function Dashboard() {
                   <Users className="h-4 w-4 text-blue-600" />
                 </div>
                 <div className="text-sm mr-3">
-                  <p className="font-medium text-gray-900">Jan Ondernemer</p>
-                  <p className="text-gray-500 text-xs">Eenmanszaak</p>
+                  <p className="font-medium text-gray-900 dark:text-gray-100">Jan Ondernemer</p>
+                  <p className="text-gray-500 dark:text-gray-400 text-xs">Eenmanszaak</p>
                 </div>
                 <Button 
                   variant="outline" 
@@ -124,7 +124,7 @@ export default function Dashboard() {
         {/* TaxBuddy-style Sidebar */}
         <aside className={`${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        } lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-30 w-64 bg-white border-r border-gray-200 transition-transform duration-300 ease-in-out`}>
+        } lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-30 w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 transition-transform duration-300 ease-in-out`}>
           <div className="flex flex-col h-full pt-4">
             <nav className="flex-1 px-3 space-y-1">
               {menuItems.map((item) => {
@@ -181,7 +181,7 @@ export default function Dashboard() {
                     <h2 className="text-2xl font-bold">Welkom terug!</h2>
                     <p className="text-blue-100 text-sm">{getUserDisplayName()}</p>
                   </div>
-                  <p className="text-blue-100 mb-4">Hier is je belastingoverzicht voor dit kwartaal</p>
+                  <p className="text-blue-100 dark:text-blue-200 mb-4">Hier is je belastingoverzicht voor dit kwartaal</p>
                   
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                     <div className="bg-white/10 rounded-lg p-4">
