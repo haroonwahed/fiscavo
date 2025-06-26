@@ -22,7 +22,8 @@ import {
   Users,
   TrendingUp,
   DollarSign,
-  Clock
+  Clock,
+  ArrowRight
 } from "lucide-react";
 import { WelcomeSection } from "@/components/welcome-section";
 import { QuickActions } from "@/components/quick-actions";
@@ -59,16 +60,16 @@ export default function Dashboard() {
   };
 
   const menuItems = [
-    { id: "dashboard", label: "Dashboard", icon: Home },
-    { id: "transactions", label: "Transacties", icon: CreditCard },
-    { id: "btw", label: "BTW Aangifte", icon: FileText },
-    { id: "mileage", label: "Kilometerstaten", icon: Car },
-    { id: "calculator", label: "Belastingcalculator", icon: Calculator },
-    { id: "deductions", label: "Aftrekposten", icon: Receipt },
-    { id: "deadlines", label: "Deadlines", icon: Calendar },
-    { id: "assistant", label: "AI Assistent", icon: MessageSquare },
-    { id: "analytics", label: "Analytics", icon: BarChart3 },
-    { id: "ai-categorization", label: "AI Categorisering", icon: TrendingUp },
+    { id: "dashboard", label: "Dashboard", icon: Home, gradient: "from-blue-500 to-blue-600" },
+    { id: "transactions", label: "Transacties", icon: CreditCard, gradient: "from-emerald-500 to-emerald-600" },
+    { id: "btw", label: "BTW Aangifte", icon: FileText, gradient: "from-purple-500 to-purple-600" },
+    { id: "mileage", label: "Kilometerstaten", icon: Car, gradient: "from-orange-500 to-orange-600" },
+    { id: "calculator", label: "Belastingcalculator", icon: Calculator, gradient: "from-cyan-500 to-cyan-600" },
+    { id: "deductions", label: "Aftrekposten", icon: Receipt, gradient: "from-pink-500 to-pink-600" },
+    { id: "deadlines", label: "Deadlines", icon: Clock, gradient: "from-red-500 to-red-600" },
+    { id: "assistant", label: "AI Assistent", icon: MessageSquare, gradient: "from-indigo-500 to-indigo-600" },
+    { id: "analytics", label: "Analytics", icon: BarChart3, gradient: "from-teal-500 to-teal-600" },
+    { id: "ai-categorization", label: "AI Categorisering", icon: TrendingUp, gradient: "from-violet-500 to-violet-600" },
   ];
 
   return (
