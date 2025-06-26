@@ -49,7 +49,7 @@ export default function Security() {
                 </div>
               </div>
               <p className="text-gray-600">
-                Taxenzo gebruikt enterprise-grade beveiligingsstandaarden om uw financiële gegevens te beschermen. 
+                Fiscavo gebruikt enterprise-grade beveiligingsstandaarden om uw financiële gegevens te beschermen. 
                 Onze systemen voldoen aan de strengste Nederlandse en Europese beveiligingseisen voor financiële dienstverlening.
               </p>
             </CardContent>

@@ -125,7 +125,7 @@ export default function Cookies() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Specifieke Cookies in Taxenzo</CardTitle>
+              <CardTitle>Specifieke Cookies in Fiscavo</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
@@ -140,7 +140,7 @@ export default function Cookies() {
                   </thead>
                   <tbody className="text-gray-600">
                     <tr className="border-b">
-                      <td className="py-2 px-3 font-mono text-xs">taxenzo_session</td>
+                      <td className="py-2 px-3 font-mono text-xs">fiscavo_session</td>
                       <td className="py-2 px-3">Gebruiker authenticatie</td>
                       <td className="py-2 px-3">7 dagen</td>
                       <td className="py-2 px-3"><Badge variant="secondary" className="bg-green-100 text-green-800">Noodzakelijk</Badge></td>

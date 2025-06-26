@@ -134,7 +134,7 @@ export default function GDPR() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Gegevensverwerking bij Taxenzo</CardTitle>
+              <CardTitle>Gegevensverwerking bij Fiscavo</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="overflow-x-auto">
