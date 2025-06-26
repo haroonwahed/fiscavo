@@ -1,4 +1,5 @@
 import { useState } from "react";
+import dashboardLogo from "@assets/fiscavo_dashboard_1750941797487.png";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -44,7 +45,18 @@ import { useAuth } from "../contexts/AuthContext";
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const { setIsAuthenticated } = useAuth();
+  const { user, setIsAuthenticated } = useAuth();
+  
+  const getUserDisplayName = () => {
+    if (!user) return "Gebruiker";
+    if (user.firstName) {
+      return user.lastName ? `${user.firstName} ${user.lastName}` : user.firstName;
+    }
+    if (user.email) {
+      return user.email.split('@')[0];
+    }
+    return "Gebruiker";
+  };
 
   const menuItems = [
     { id: "dashboard", label: "Dashboard", icon: Home },
