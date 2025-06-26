@@ -4,6 +4,16 @@
 A comprehensive web application providing tax advice and management tools for Dutch freelancers and small business owners. The platform delivers simple, secure, and accurate tax solutions to help users save time, reduce stress, and manage their tax obligations effectively.
 
 ## Recent Changes
+- **2024-12-26**: Redesigned landing page with professional styling and app insights
+  - Created comprehensive landing page showcasing all 6 core features without login requirement
+  - Added professional header, hero section with gradient background
+  - Implemented statistics section (15 hours saved, 99.8% accuracy, 12,000+ users)
+  - Added detailed features grid with colored icons and descriptions
+  - Created complete footer with contact information and legal details
+  - Fixed color consistency throughout dashboard using blue theme (#368DD9 -> blue-600)
+  - Updated all dashboard components to use consistent blue color scheme
+  - Removed outdated Fiscatax custom color variables in favor of Tailwind classes
+
 - **2024-12-26**: Added complete tax functionality as individual accessible pages
   - Created separate pages for all 6 core tax management tools
   - BTW Calculator (/btw-calculator) - Quarterly BTW return generation

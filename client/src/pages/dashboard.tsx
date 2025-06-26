@@ -70,12 +70,12 @@ export default function Dashboard() {
                 {sidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </Button>
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-fiscatax-primary rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
                   <Calculator className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold text-fiscatax-text">Fiscatax</h1>
-                  <p className="text-xs text-fiscatax-primary font-medium">Simpel | Veilig | Accuraat</p>
+                  <h1 className="text-xl font-bold text-gray-900">Fiscatax</h1>
+                  <p className="text-xs text-blue-600 font-medium">Simpel | Veilig | Accuraat</p>
                 </div>
               </div>
             </div>
@@ -88,11 +88,11 @@ export default function Dashboard() {
               
               {/* User Profile with Logout */}
               <div className="hidden sm:flex items-center space-x-2">
-                <div className="w-8 h-8 bg-fiscatax-background rounded-full flex items-center justify-center">
-                  <Users className="h-4 w-4 text-fiscatax-primary" />
+                <div className="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center">
+                  <Users className="h-4 w-4 text-blue-600" />
                 </div>
                 <div className="text-sm mr-3">
-                  <p className="font-medium text-fiscatax-text">Jan Ondernemer</p>
+                  <p className="font-medium text-gray-900">Jan Ondernemer</p>
                   <p className="text-gray-500 text-xs">Eenmanszaak</p>
                 </div>
                 <Button 
@@ -126,12 +126,12 @@ export default function Dashboard() {
                     }}
                     className={`w-full flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-colors ${
                       activeTab === item.id
-                        ? 'bg-fiscatax-background text-fiscatax-primary border-r-2 border-fiscatax-primary'
-                        : 'text-fiscatax-text hover:bg-gray-50 hover:text-fiscatax-text'
+                        ? 'bg-blue-50 text-blue-600 border-r-2 border-blue-600'
+                        : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
                     }`}
                   >
                     <Icon className={`mr-3 h-5 w-5 ${
-                      activeTab === item.id ? 'text-emerald-500' : 'text-gray-400'
+                      activeTab === item.id ? 'text-blue-600' : 'text-gray-400'
                     }`} />
                     {item.label}
                   </button>
@@ -141,16 +141,16 @@ export default function Dashboard() {
             
             {/* TaxBuddy-style Quick Stats */}
             <div className="p-3 border-t border-gray-200">
-              <div className="bg-emerald-50 rounded-lg p-3">
-                <h3 className="text-sm font-medium text-emerald-800 mb-2">Huidige periode</h3>
+              <div className="bg-blue-50 rounded-lg p-3">
+                <h3 className="text-sm font-medium text-blue-800 mb-2">Huidige periode</h3>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
-                    <span className="text-xs text-emerald-600">Omzet</span>
-                    <span className="text-sm font-semibold text-emerald-800">€45.230</span>
+                    <span className="text-xs text-blue-600">Omzet</span>
+                    <span className="text-sm font-semibold text-blue-800">€45.230</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-xs text-emerald-600">BTW schuld</span>
-                    <span className="text-sm font-semibold text-emerald-800">€9.498</span>
+                    <span className="text-xs text-blue-600">BTW schuld</span>
+                    <span className="text-sm font-semibold text-blue-800">€9.498</span>
                   </div>
                 </div>
               </div>
@@ -163,37 +163,37 @@ export default function Dashboard() {
           <div className="p-6 pb-0">
             {activeTab === "dashboard" && (
               <div className="space-y-6">
-                {/* TaxBuddy-style Dashboard Header */}
-                <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-xl p-6 text-white">
+                {/* Dashboard Header with Blue Theme */}
+                <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl p-6 text-white">
                   <h2 className="text-2xl font-bold mb-2">Welkom terug, Jan!</h2>
-                  <p className="text-emerald-100 mb-4">Hier is je belastingoverzicht voor dit kwartaal</p>
+                  <p className="text-blue-100 mb-4">Hier is je belastingoverzicht voor dit kwartaal</p>
                   
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                     <div className="bg-white/10 rounded-lg p-4">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-emerald-100 text-sm">BTW te betalen</p>
+                          <p className="text-blue-100 text-sm">BTW te betalen</p>
                           <p className="text-2xl font-bold">€9.498</p>
                         </div>
-                        <TrendingUp className="h-8 w-8 text-emerald-200" />
+                        <TrendingUp className="h-8 w-8 text-blue-200" />
                       </div>
                     </div>
                     <div className="bg-white/10 rounded-lg p-4">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-emerald-100 text-sm">Openstaande facturen</p>
+                          <p className="text-blue-100 text-sm">Openstaande facturen</p>
                           <p className="text-2xl font-bold">€12.450</p>
                         </div>
-                        <DollarSign className="h-8 w-8 text-emerald-200" />
+                        <DollarSign className="h-8 w-8 text-blue-200" />
                       </div>
                     </div>
                     <div className="bg-white/10 rounded-lg p-4">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-emerald-100 text-sm">Dagen tot deadline</p>
+                          <p className="text-blue-100 text-sm">Dagen tot deadline</p>
                           <p className="text-2xl font-bold">12</p>
                         </div>
-                        <Clock className="h-8 w-8 text-emerald-200" />
+                        <Clock className="h-8 w-8 text-blue-200" />
                       </div>
                     </div>
                   </div>
