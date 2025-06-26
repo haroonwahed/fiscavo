@@ -38,6 +38,18 @@ export default function Landing() {
     window.location.href = '/api/login';
   };
 
+  const getFeatureUrl = (title: string): string => {
+    switch (title) {
+      case 'BTW Aangifte Generator': return '/btw-calculator';
+      case 'Transactiebeheer': return '/transactions';
+      case 'Kilometerregistratie': return '/mileage';
+      case 'Belastingcalculator': return '/tax-calculator';
+      case 'AI Belastingadvies': return '/chat';
+      case 'Aftrekposten Checker': return '/deductions';
+      default: return '/';
+    }
+  };
+
   const features = [
     {
       icon: Calculator,
@@ -133,7 +145,7 @@ export default function Landing() {
             
             <h1 className="text-5xl lg:text-7xl font-bold mb-8 tracking-tight animate-slide-up">
               Nederlandse belastingen
-              <span className="block text-gradient bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+              <span className="block text-white font-black drop-shadow-lg">
                 eindelijk simpel
               </span>
             </h1>
@@ -310,9 +322,7 @@ export default function Landing() {
                   className="card-premium cursor-pointer hover:scale-105 hover:shadow-xl group border-0 bg-white"
                   onClick={() => {
                     const url = getFeatureUrl(feature.title);
-                    if (url !== '/') {
-                      window.location.href = url;
-                    }
+                    window.location.href = url;
                   }}
                 >
                   <CardHeader className="pb-4">
@@ -333,9 +343,7 @@ export default function Landing() {
                       onClick={(e) => {
                         e.stopPropagation();
                         const url = getFeatureUrl(feature.title);
-                        if (url !== '/') {
-                          window.location.href = url;
-                        }
+                        window.location.href = url;
                       }}
                     >
                       Probeer nu
@@ -355,8 +363,11 @@ export default function Landing() {
       {/* CTA Section */}
       <section className="py-20 bg-blue-600">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Klaar om je belastingstress te verminderen?
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6 tracking-tight">
+            <span className="text-white">Klaar om je belastingstress</span>
+            <span className="block text-white font-black drop-shadow-lg">
+              te verminderen?
+            </span>
           </h2>
           <p className="text-xl mb-8 text-blue-100">
             Sluit je aan bij duizenden ondernemers die al profiteren van geautomatiseerde belastingadministratie.
