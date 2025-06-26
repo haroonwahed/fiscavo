@@ -4,6 +4,14 @@
 A comprehensive web application providing tax advice and management tools for Dutch freelancers (ZZP'ers) and small business owners (BV's). The platform helps users save time, reduce stress, and manage their tax obligations effectively.
 
 ## Recent Changes
+- **2024-12-26**: Implemented comprehensive tax management platform
+  - Added transaction management with bank account integration
+  - Built automated BTW return generator with quarterly calculations
+  - Implemented mileage tracking with €0.23/km Dutch rate
+  - Created real-time tax calculator with Dutch tax brackets
+  - Added receipt management and expense categorization
+  - All features integrated with PostgreSQL for persistent storage
+
 - **2024-12-25**: Added PostgreSQL database with Drizzle ORM
   - Migrated from in-memory storage to persistent database
   - Created database tables for all entities
@@ -20,12 +28,17 @@ A comprehensive web application providing tax advice and management tools for Du
 - **Routing**: Wouter (frontend)
 - **State Management**: TanStack Query
 
-### Key Features
+### Core Features
 1. **Interactive Chat Assistant**: AI-powered tax advice in Dutch
-2. **Deadline Management**: Tracks upcoming tax obligations with urgency indicators
-3. **Deduction Checker**: Helps identify eligible business expense deductions
-4. **Todo Generator**: Creates personalized tax compliance checklists
-5. **FAQ System**: Comprehensive answers to common tax questions
+2. **Transaction Management**: Bank integration, categorization, BTW tracking
+3. **BTW Return Generator**: Automated quarterly BTW calculations and filing
+4. **Mileage Tracking**: GPS-based business travel deduction (€0.23/km)
+5. **Tax Calculator**: Real-time income tax and social contribution calculations
+6. **Receipt Management**: OCR processing and automatic categorization
+7. **Deadline Management**: Tracks upcoming tax obligations with urgency indicators
+8. **Deduction Checker**: Helps identify eligible business expense deductions
+9. **Todo Generator**: Creates personalized tax compliance checklists
+10. **FAQ System**: Comprehensive answers to common tax questions
 
 ### Database Schema
 - `chat_messages`: User conversations and responses

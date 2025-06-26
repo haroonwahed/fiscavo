@@ -3,6 +3,11 @@ import { ChatAssistant } from "@/components/chat-assistant";
 import { UpcomingDeadlines } from "@/components/upcoming-deadlines";
 import { ToolsSection } from "@/components/tools-section";
 import { FaqSection } from "@/components/faq-section";
+import { TransactionManager } from "@/components/transaction-manager";
+import { BtwGenerator } from "@/components/btw-generator";
+import { MileageTracker } from "@/components/mileage-tracker";
+import { TaxCalculator } from "@/components/tax-calculator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Dashboard() {
   return (
@@ -11,19 +16,61 @@ export default function Dashboard() {
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <WelcomeSection />
-        <QuickActions />
         
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8" data-chat-section>
-          <div className="lg:col-span-2">
-            <ChatAssistant />
-          </div>
-          <div className="space-y-6">
-            <UpcomingDeadlines />
-          </div>
-        </div>
+        <Tabs defaultValue="overview" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-6">
+            <TabsTrigger value="overview">Overzicht</TabsTrigger>
+            <TabsTrigger value="transactions">Transacties</TabsTrigger>
+            <TabsTrigger value="btw">BTW Aangifte</TabsTrigger>
+            <TabsTrigger value="mileage">Kilometers</TabsTrigger>
+            <TabsTrigger value="calculator">Belasting</TabsTrigger>
+            <TabsTrigger value="assistant">Assistent</TabsTrigger>
+          </TabsList>
 
-        <ToolsSection />
-        <FaqSection />
+          <TabsContent value="overview" className="space-y-6">
+            <QuickActions />
+            
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="lg:col-span-2">
+                <ChatAssistant />
+              </div>
+              <div className="space-y-6">
+                <UpcomingDeadlines />
+              </div>
+            </div>
+
+            <ToolsSection />
+            <FaqSection />
+          </TabsContent>
+
+          <TabsContent value="transactions">
+            <TransactionManager />
+          </TabsContent>
+
+          <TabsContent value="btw">
+            <BtwGenerator />
+          </TabsContent>
+
+          <TabsContent value="mileage">
+            <MileageTracker />
+          </TabsContent>
+
+          <TabsContent value="calculator">
+            <TaxCalculator />
+          </TabsContent>
+
+          <TabsContent value="assistant">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="lg:col-span-2">
+                <ChatAssistant />
+              </div>
+              <div className="space-y-6">
+                <UpcomingDeadlines />
+                <FaqSection />
+              </div>
+            </div>
+          </TabsContent>
+        </Tabs>
       </main>
       
       <Footer />
