@@ -1,34 +1,9 @@
 import { Logo } from "@/components/ui/logo";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { MapPin, Phone, Mail, ArrowRight, ExternalLink } from "lucide-react";
+import { MapPin, Phone, Mail, ArrowRight } from "lucide-react";
 
 export function Footer() {
-  const handleLegalModal = (title: string, content: string) => {
-    const modal = document.createElement('div');
-    modal.className = 'fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4';
-    modal.innerHTML = `
-      <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-auto shadow-2xl">
-        <div class="p-8">
-          <div class="flex items-center justify-between mb-6">
-            <h3 class="text-2xl font-bold text-gray-900">${title}</h3>
-            <button onclick="this.closest('.fixed').remove()" class="w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors">
-              <span class="text-gray-500 text-xl">&times;</span>
-            </button>
-          </div>
-          <div class="prose prose-blue max-w-none">
-            <p class="text-gray-600 leading-relaxed">${content}</p>
-          </div>
-          <div class="mt-8 flex justify-end">
-            <button onclick="this.closest('.fixed').remove()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors">
-              Sluiten
-            </button>
-          </div>
-        </div>
-      </div>
-    `;
-    document.body.appendChild(modal);
-  };
 
   return (
     <footer className="bg-gradient-to-br from-gray-50 to-blue-50 mt-20">
@@ -134,39 +109,30 @@ export function Footer() {
                 <Button 
                   variant="ghost" 
                   className="text-gray-600 hover:text-blue-600 hover:bg-blue-50 p-0 h-auto font-medium justify-start"
-                  onClick={() => handleLegalModal(
-                    'Privacybeleid',
-                    'Fiscavo respecteert uw privacy en handelt in overeenstemming met de Algemene Verordening Gegevensbescherming (AVG). Wij verzamelen alleen de gegevens die noodzakelijk zijn voor het verlenen van onze diensten en delen deze nooit met derden zonder uw toestemming. Uw belastinggegevens worden veilig opgeslagen met 256-bit SSL-encryptie.'
-                  )}
+                  onClick={() => window.location.href = '/privacy'}
                 >
                   Privacybeleid
-                  <ExternalLink className="ml-2 h-4 w-4" />
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </li>
               <li>
                 <Button 
                   variant="ghost" 
                   className="text-gray-600 hover:text-blue-600 hover:bg-blue-50 p-0 h-auto font-medium justify-start"
-                  onClick={() => handleLegalModal(
-                    'Algemene Voorwaarden',
-                    'Door gebruik te maken van Fiscavo gaat u akkoord met onze algemene voorwaarden. Deze voorwaarden beschrijven de rechten en verplichtingen tussen u en Fiscavo. Onze diensten zijn bedoeld voor Nederlandse belastingplichtigen en voldoen aan alle relevante Nederlandse en Europese wetgeving.'
-                  )}
+                  onClick={() => window.location.href = '/terms'}
                 >
                   Algemene voorwaarden
-                  <ExternalLink className="ml-2 h-4 w-4" />
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </li>
               <li>
                 <Button 
                   variant="ghost" 
                   className="text-gray-600 hover:text-blue-600 hover:bg-blue-50 p-0 h-auto font-medium justify-start"
-                  onClick={() => handleLegalModal(
-                    'Cookie Beleid',
-                    'We gebruiken cookies om uw ervaring te verbeteren en voor analytische doeleinden. Essentiële cookies zijn nodig voor de werking van de website. Analytische cookies helpen ons begrijpen hoe u onze website gebruikt. U kunt uw cookie-voorkeuren altijd aanpassen in uw browserinstellingen.'
-                  )}
+                  onClick={() => window.location.href = '/cookies'}
                 >
                   Cookie beleid
-                  <ExternalLink className="ml-2 h-4 w-4" />
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </li>
               <li>
@@ -176,6 +142,16 @@ export function Footer() {
                   onClick={() => window.location.href = '/security'}
                 >
                   Beveiliging
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </li>
+              <li>
+                <Button 
+                  variant="ghost" 
+                  className="text-gray-600 hover:text-blue-600 hover:bg-blue-50 p-0 h-auto font-medium justify-start"
+                  onClick={() => window.location.href = '/gdpr'}
+                >
+                  AVG/GDPR Rechten
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </li>
