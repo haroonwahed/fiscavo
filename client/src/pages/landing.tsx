@@ -12,7 +12,7 @@ export default function Landing() {
   const [showDemo, setShowDemo] = useState(false);
 
   const handleGetStarted = () => {
-    window.location.href = '/api/login';
+    window.location.href = '/auth';
   };
 
   const features = [

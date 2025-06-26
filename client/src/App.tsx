@@ -4,9 +4,10 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/ui/theme-provider";
-import { useAuth } from "@/hooks/useAuth";
+import { AuthProvider } from "@/hooks/useAuth";
 import Dashboard from "@/pages/dashboard";
 import Landing from "@/pages/landing";
+import AuthPage from "@/pages/auth-page";
 import NotFound from "@/pages/not-found";
 import BtwCalculator from "@/pages/btw-calculator";
 import Transactions from "@/pages/transactions";
@@ -25,42 +26,33 @@ import AIFeatures from "@/pages/ai-features";
 
 
 function Router() {
-  const { isAuthenticated, isLoading } = useAuth();
-  
-  console.log("Router rendering, isAuthenticated:", isAuthenticated);
-  
+  return (
+    <AuthProvider>
+      <InnerRouter />
+    </AuthProvider>
+  );
+}
+
+function InnerRouter() {
   return (
     <Switch>
-      {isLoading || !isAuthenticated ? (
-        <>
-          <Route path="/" component={Landing} />
-          <Route path="/privacy" component={Privacy} />
-          <Route path="/terms" component={Terms} />
-          <Route path="/cookies" component={Cookies} />
-          <Route path="/gdpr" component={GDPR} />
-          <Route path="/security" component={Security} />
-          <Route path="/about" component={About} />
-          <Route path="/support" component={Support} />
-        </>
-      ) : (
-        <>
-          <Route path="/" component={Dashboard} />
-          <Route path="/btw-calculator" component={BtwCalculator} />
-          <Route path="/transactions" component={Transactions} />
-          <Route path="/mileage" component={Mileage} />
-          <Route path="/tax-calculator" component={TaxCalculatorPage} />
-          <Route path="/chat" component={Chat} />
-          <Route path="/deductions" component={Deductions} />
-          <Route path="/ai-features" component={AIFeatures} />
-          <Route path="/privacy" component={Privacy} />
-          <Route path="/terms" component={Terms} />
-          <Route path="/cookies" component={Cookies} />
-          <Route path="/gdpr" component={GDPR} />
-          <Route path="/security" component={Security} />
-          <Route path="/about" component={About} />
-          <Route path="/support" component={Support} />
-        </>
-      )}
+      <Route path="/" component={Landing} />
+      <Route path="/auth" component={AuthPage} />
+      <Route path="/dashboard" component={Dashboard} />
+      <Route path="/btw-calculator" component={BtwCalculator} />
+      <Route path="/transactions" component={Transactions} />
+      <Route path="/mileage" component={Mileage} />
+      <Route path="/tax-calculator" component={TaxCalculatorPage} />
+      <Route path="/chat" component={Chat} />
+      <Route path="/deductions" component={Deductions} />
+      <Route path="/ai-features" component={AIFeatures} />
+      <Route path="/privacy" component={Privacy} />
+      <Route path="/terms" component={Terms} />
+      <Route path="/cookies" component={Cookies} />
+      <Route path="/gdpr" component={GDPR} />
+      <Route path="/security" component={Security} />
+      <Route path="/about" component={About} />
+      <Route path="/support" component={Support} />
       <Route component={NotFound} />
     </Switch>
   );
