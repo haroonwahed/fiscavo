@@ -52,7 +52,7 @@ export function FloatingChatButton({ className }: FloatingChatButtonProps) {
         <div className="bg-gray-900 text-white px-4 py-2 rounded-xl shadow-lg text-sm font-medium whitespace-nowrap">
           <div className="flex items-center space-x-2">
             <Zap className="h-4 w-4 text-yellow-400" />
-            <span>Chat met AI Belastingassistent</span>
+            <span>Chat met Fiscavo AI</span>
           </div>
           {/* Arrow */}
           <div className="absolute top-full right-6 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-gray-900"></div>

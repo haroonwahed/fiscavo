@@ -53,8 +53,8 @@ export function Footer() {
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">Email ons</p>
-                      <a href="mailto:info@taxenzo.com" className="font-semibold text-blue-600 hover:text-blue-700 transition-colors">
-                        info@taxenzo.com
+                      <a href="mailto:info@fiscavo.com" className="font-semibold text-blue-600 hover:text-blue-700 transition-colors">
+                        info@fiscavo.com
                       </a>
                     </div>
                   </div>
@@ -136,7 +136,7 @@ export function Footer() {
                   className="text-gray-600 hover:text-blue-600 hover:bg-blue-50 p-0 h-auto font-medium justify-start"
                   onClick={() => handleLegalModal(
                     'Privacybeleid',
-                    'Taxenzo respecteert uw privacy en handelt in overeenstemming met de Algemene Verordening Gegevensbescherming (AVG). Wij verzamelen alleen de gegevens die noodzakelijk zijn voor het verlenen van onze diensten en delen deze nooit met derden zonder uw toestemming. Uw belastinggegevens worden veilig opgeslagen met 256-bit SSL-encryptie.'
+                    'Fiscavo respecteert uw privacy en handelt in overeenstemming met de Algemene Verordening Gegevensbescherming (AVG). Wij verzamelen alleen de gegevens die noodzakelijk zijn voor het verlenen van onze diensten en delen deze nooit met derden zonder uw toestemming. Uw belastinggegevens worden veilig opgeslagen met 256-bit SSL-encryptie.'
                   )}
                 >
                   Privacybeleid
@@ -149,7 +149,7 @@ export function Footer() {
                   className="text-gray-600 hover:text-blue-600 hover:bg-blue-50 p-0 h-auto font-medium justify-start"
                   onClick={() => handleLegalModal(
                     'Algemene Voorwaarden',
-                    'Door gebruik te maken van Taxenzo gaat u akkoord met onze algemene voorwaarden. Deze voorwaarden beschrijven de rechten en verplichtingen tussen u en Taxenzo. Onze diensten zijn bedoeld voor Nederlandse belastingplichtigen en voldoen aan alle relevante Nederlandse en Europese wetgeving.'
+                    'Door gebruik te maken van Fiscavo gaat u akkoord met onze algemene voorwaarden. Deze voorwaarden beschrijven de rechten en verplichtingen tussen u en Fiscavo. Onze diensten zijn bedoeld voor Nederlandse belastingplichtigen en voldoen aan alle relevante Nederlandse en Europese wetgeving.'
                   )}
                 >
                   Algemene voorwaarden
@@ -188,7 +188,7 @@ export function Footer() {
           <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
             <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6">
               <p className="text-gray-600 font-medium">
-                © 2024 Taxenzo. Alle rechten voorbehouden.
+                © 2024 Fiscavo. Alle rechten voorbehouden.
               </p>
               <div className="flex items-center space-x-4 text-sm text-gray-500">
                 <span>KvK: 87654321</span>

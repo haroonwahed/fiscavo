@@ -28,6 +28,7 @@ import { QuickActions } from "@/components/quick-actions";
 import { UpcomingDeadlines } from "@/components/upcoming-deadlines";
 import { ToolsSection } from "@/components/tools-section";
 import { FaqSection } from "@/components/faq-section";
+import { FloatingChatButton } from "@/components/ui/floating-chat-button";
 import { ChatAssistant } from "@/components/chat-assistant";
 import { TransactionManager } from "@/components/transaction-manager";
 import { BtwGenerator } from "@/components/btw-generator";
