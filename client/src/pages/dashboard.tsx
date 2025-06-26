@@ -35,10 +35,12 @@ import { MileageTracker } from "@/components/mileage-tracker";
 import { TaxCalculator } from "@/components/tax-calculator";
 import { DeductionChecker } from "@/components/deduction-checker";
 import { TodoGenerator } from "@/components/todo-generator";
+import { useAuth } from "../App";
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { setIsAuthenticated } = useAuth();
 
   const menuItems = [
     { id: "dashboard", label: "Dashboard", icon: Home },
@@ -83,14 +85,23 @@ export default function Dashboard() {
                 <Bell className="h-5 w-5" />
                 <Badge className="absolute -top-1 -right-1 h-5 w-5 p-0 text-xs bg-red-500">3</Badge>
               </Button>
+              
+              {/* User Profile with Logout */}
               <div className="hidden sm:flex items-center space-x-2">
                 <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
                   <Users className="h-4 w-4 text-emerald-600" />
                 </div>
-                <div className="text-sm">
+                <div className="text-sm mr-3">
                   <p className="font-medium text-gray-900">Jan Ondernemer</p>
                   <p className="text-gray-500 text-xs">Eenmanszaak</p>
                 </div>
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => setIsAuthenticated(false)}
+                >
+                  Uitloggen
+                </Button>
               </div>
             </div>
           </div>
@@ -149,7 +160,7 @@ export default function Dashboard() {
 
         {/* Main Content Area */}
         <main className="flex-1 overflow-auto">
-          <div className="p-6">
+          <div className="p-6 pb-0">
             {activeTab === "dashboard" && (
               <div className="space-y-6">
                 {/* TaxBuddy-style Dashboard Header */}
@@ -305,6 +316,92 @@ export default function Dashboard() {
               </div>
             )}
           </div>
+          
+          {/* Professional Footer */}
+          <footer className="bg-white border-t border-gray-200 mt-12">
+            <div className="max-w-7xl mx-auto px-6 py-8">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                {/* Company Info */}
+                <div className="col-span-1">
+                  <div className="flex items-center space-x-2 mb-4">
+                    <div className="w-6 h-6 bg-emerald-500 rounded flex items-center justify-center">
+                      <Calculator className="h-4 w-4 text-white" />
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900">Fiscatax</h3>
+                  </div>
+                  <p className="text-sm text-gray-600 mb-4">
+                    Simpel | Veilig | Accuraat belastingadvies voor Nederlandse ondernemers
+                  </p>
+                  <div className="text-xs text-gray-500">
+                    <p>BTW nr: NL123456789B01</p>
+                    <p>KvK nr: 12345678</p>
+                  </div>
+                </div>
+
+                {/* Services */}
+                <div className="col-span-1">
+                  <h4 className="text-sm font-semibold text-gray-900 mb-3">Diensten</h4>
+                  <ul className="space-y-2 text-sm text-gray-600">
+                    <li><a href="#" className="hover:text-emerald-600">BTW Aangifte</a></li>
+                    <li><a href="#" className="hover:text-emerald-600">Inkomstenbelasting</a></li>
+                    <li><a href="#" className="hover:text-emerald-600">Boekhouden</a></li>
+                    <li><a href="#" className="hover:text-emerald-600">Belastingadvies</a></li>
+                    <li><a href="#" className="hover:text-emerald-600">Administratie</a></li>
+                  </ul>
+                </div>
+
+                {/* Support */}
+                <div className="col-span-1">
+                  <h4 className="text-sm font-semibold text-gray-900 mb-3">Ondersteuning</h4>
+                  <ul className="space-y-2 text-sm text-gray-600">
+                    <li><a href="#" className="hover:text-emerald-600">Help centrum</a></li>
+                    <li><a href="#" className="hover:text-emerald-600">Contact</a></li>
+                    <li><a href="#" className="hover:text-emerald-600">FAQ</a></li>
+                    <li><a href="#" className="hover:text-emerald-600">Live chat</a></li>
+                    <li><a href="#" className="hover:text-emerald-600">Telefoon support</a></li>
+                  </ul>
+                </div>
+
+                {/* Legal */}
+                <div className="col-span-1">
+                  <h4 className="text-sm font-semibold text-gray-900 mb-3">Juridisch</h4>
+                  <ul className="space-y-2 text-sm text-gray-600">
+                    <li><a href="#" className="hover:text-emerald-600">Privacyverklaring</a></li>
+                    <li><a href="#" className="hover:text-emerald-600">Algemene voorwaarden</a></li>
+                    <li><a href="#" className="hover:text-emerald-600">Cookie beleid</a></li>
+                    <li><a href="#" className="hover:text-emerald-600">Disclaimer</a></li>
+                    <li><a href="#" className="hover:text-emerald-600">Klachtenregeling</a></li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Bottom Section */}
+              <div className="border-t border-gray-200 mt-8 pt-6">
+                <div className="flex flex-col md:flex-row justify-between items-center">
+                  <div className="text-sm text-gray-500 mb-4 md:mb-0">
+                    © 2024 Fiscatax B.V. Alle rechten voorbehouden. 
+                    Geregistreerd bij de Nederlandse Orde van Belastingadviseurs (NOB).
+                  </div>
+                  <div className="flex space-x-6 text-sm text-gray-500">
+                    <span>🔒 SSL Beveiligd</span>
+                    <span>🇳🇱 Nederlandse wet</span>
+                    <span>✅ GDPR Compliant</span>
+                  </div>
+                </div>
+                
+                {/* Compliance Notice */}
+                <div className="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-600">
+                  <p className="mb-1">
+                    <strong>Belangrijke informatie:</strong> Fiscatax is een geregistreerd belastingadviesbureau. 
+                    Alle adviezen worden gegeven conform de Nederlandse belastingwetgeving en onder toezicht van gekwalificeerde belastingadviseurs.
+                  </p>
+                  <p>
+                    Voor vragen over privacy en gegevensbescherming kunt u contact opnemen via privacy@fiscatax.nl
+                  </p>
+                </div>
+              </div>
+            </div>
+          </footer>
         </main>
       </div>
 
