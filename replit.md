@@ -114,7 +114,7 @@ A comprehensive web application providing tax advice and management tools for Du
   - Updated application name from "BelastingAssistent" to "Fiscatax", then to "Taxenzo", and finally to "Fiscavo"
   - Removed all remaining "Taxenzo" references throughout the application
   - Integrated custom Fiscavo logo image throughout the application
-  - Updated to latest Fiscavo logo with refined blue design (fiscavo (1)_1750940637348.png)
+  - Updated to final Fiscavo logo with professional design (fiscavo_1750940880782.png)
   - Added new positioning: "Simpel | Veilig | Accuraat"
   - Enhanced FAQ section with comprehensive Dutch tax questions (15 total)
   - Added application-specific support questions covering all features

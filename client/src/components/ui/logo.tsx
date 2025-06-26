@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import fiscavoLogo from "@assets/fiscavo (1)_1750940637348.png";
+import fiscavoLogo from "@assets/fiscavo_1750940880782.png";
 
 interface LogoProps {
   className?: string;
