@@ -1,348 +1,405 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Shield, ArrowLeft, Lock, Server, Eye, AlertTriangle, CheckCircle } from "lucide-react";
+import { ArrowLeft, Shield, Lock, Server, Eye, AlertTriangle, CheckCircle } from "lucide-react";
+import { useLocation } from "wouter";
 
 export default function Security() {
+  const [, setLocation] = useLocation();
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-8">
-          <Button 
-            variant="ghost" 
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+      <div className="container mx-auto px-4 py-8 max-w-4xl">
+        <div className="mb-6">
+          <Button
+            variant="ghost"
+            onClick={() => setLocation("/")}
             className="mb-4"
-            onClick={() => window.history.back()}
           >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Terug
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Terug naar home
           </Button>
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">Beveiliging</h1>
-          <p className="text-lg text-gray-600">
-            Hoe Fiscavo uw financiële gegevens beschermt met enterprise-grade beveiliging
-          </p>
         </div>
 
-        <div className="space-y-8">
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Shield className="h-5 w-5 text-blue-600" />
-                Beveiligingsoverzicht
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-3 gap-4 mb-4">
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
-                  <CheckCircle className="h-8 w-8 text-green-600 mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-green-900">99.9%</div>
-                  <div className="text-sm text-green-700">Uptime laatste jaar</div>
-                </div>
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center">
-                  <Shield className="h-8 w-8 text-blue-600 mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-blue-900">256-bit</div>
-                  <div className="text-sm text-blue-700">SSL Encryptie</div>
-                </div>
-                <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 text-center">
-                  <Server className="h-8 w-8 text-purple-600 mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-purple-900">NL</div>
-                  <div className="text-sm text-purple-700">Nederlandse servers</div>
-                </div>
-              </div>
-              <p className="text-gray-600">
-                Fiscavo gebruikt enterprise-grade beveiligingsstandaarden om uw financiële gegevens te beschermen. 
-                Onze systemen voldoen aan de strengste Nederlandse en Europese beveiligingseisen voor financiële dienstverlening.
+        <Card className="shadow-xl">
+          <CardHeader className="bg-blue-600 text-white">
+            <CardTitle className="text-3xl font-bold flex items-center">
+              <Shield className="mr-3 h-8 w-8" />
+              Beveiligingsbeleid
+            </CardTitle>
+            <p className="text-blue-100">Hoe wij uw gegevens en onze systemen beschermen</p>
+          </CardHeader>
+          <CardContent className="p-8 space-y-8">
+            
+            {/* Introductie */}
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">Onze beveiligingsaanpak</h2>
+              <p className="text-gray-600 mb-4">
+                Bij Fiscavo nemen wij de beveiliging van uw gegevens en onze systemen uiterst serieus. 
+                Als belastingbeheerdienst verwerken wij gevoelige financiële en persoonlijke informatie, 
+                waardoor hoogwaardige beveiliging essentieel is.
               </p>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Lock className="h-5 w-5 text-green-600" />
-                Data Encryptie & Transport
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="border rounded-lg p-4">
-                  <h4 className="font-semibold mb-2 flex items-center gap-2">
-                    <Lock className="h-4 w-4 text-green-600" />
-                    Encryptie in Transit
-                  </h4>
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• TLS 1.3 voor alle verbindingen</li>
-                    <li>• Perfect Forward Secrecy</li>
-                    <li>• Certificate pinning</li>
-                    <li>• Automatische HTTPS redirect</li>
-                  </ul>
+              <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  <span className="font-semibold text-green-800">ISO 27001 gecertificeerd</span>
                 </div>
-                <div className="border rounded-lg p-4">
-                  <h4 className="font-semibold mb-2 flex items-center gap-2">
-                    <Server className="h-4 w-4 text-blue-600" />
-                    Encryptie at Rest
-                  </h4>
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• AES-256 database encryptie</li>
-                    <li>• Geëncrypteerde backups</li>
-                    <li>• Hardware Security Modules</li>
-                    <li>• Key rotation elke 90 dagen</li>
-                  </ul>
-                </div>
+                <p className="text-green-700 text-sm mt-2">
+                  Onze beveiligingsprocessen voldoen aan internationale standaarden voor informatiebeveiliging.
+                </p>
               </div>
-              
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                  <div>
-                    <h4 className="font-semibold text-green-800 mb-1">End-to-End Beveiliging</h4>
-                    <p className="text-green-700 text-sm">
-                      Alle gegevens zijn versleuteld vanaf het moment dat ze uw browser verlaten 
-                      tot ze veilig zijn opgeslagen in onze Nederlandse datacenters.
+            </section>
+
+            {/* Gegevensbeveiliging */}
+            <section>
+              <div className="flex items-start space-x-4 p-6 bg-blue-50 border border-blue-200 rounded-lg">
+                <Lock className="h-8 w-8 text-blue-600 mt-1" />
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold text-blue-800 mb-3">Gegevensbeveiliging</h3>
+                  
+                  <h4 className="font-semibold text-blue-700 mb-2">Encryptie</h4>
+                  <ul className="list-disc list-inside text-blue-600 text-sm space-y-1 mb-4">
+                    <li><strong>In transit:</strong> TLS 1.3 encryptie voor alle gegevensoverdracht</li>
+                    <li><strong>At rest:</strong> AES-256 encryptie voor opgeslagen gegevens</li>
+                    <li><strong>Database:</strong> Transparent Data Encryption (TDE)</li>
+                    <li><strong>Backups:</strong> End-to-end encrypted backup storage</li>
+                  </ul>
+
+                  <h4 className="font-semibold text-blue-700 mb-2">Toegangscontrole</h4>
+                  <ul className="list-disc list-inside text-blue-600 text-sm space-y-1 mb-4">
+                    <li>Multi-factor authenticatie (MFA) verplicht</li>
+                    <li>Role-based access control (RBAC)</li>
+                    <li>Principe van minimale toegang</li>
+                    <li>Regelmatige toegangsreviews</li>
+                  </ul>
+
+                  <div className="p-3 bg-blue-100 rounded border border-blue-300">
+                    <p className="text-blue-800 text-sm">
+                      <strong>Zero-knowledge principe:</strong> Wij kunnen uw gegevens niet lezen zonder uw expliciete toestemming.
                     </p>
                   </div>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </section>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Authenticatie & Toegangsbeveiliging</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="border rounded-lg p-4">
-                  <h4 className="font-semibold mb-3">Multi-Factor Authenticatie</h4>
-                  <ul className="text-sm text-gray-600 space-y-2">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
-                      Replit OAuth integration
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
-                      SMS verificatie beschikbaar
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
-                      Authenticator app support
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
-                      Hardware security keys
-                    </li>
-                  </ul>
-                </div>
-                <div className="border rounded-lg p-4">
-                  <h4 className="font-semibold mb-3">Sessie Beveiliging</h4>
-                  <ul className="text-sm text-gray-600 space-y-2">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
-                      Automatische uitlog na inactiviteit
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
-                      Sessie invalidatie bij verdachte activiteit
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
-                      IP-adres monitoring
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
-                      Device fingerprinting
-                    </li>
+            {/* Infrastructuurbeveiliging */}
+            <section>
+              <div className="flex items-start space-x-4 p-6 bg-purple-50 border border-purple-200 rounded-lg">
+                <Server className="h-8 w-8 text-purple-600 mt-1" />
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold text-purple-800 mb-3">Infrastructuurbeveiliging</h3>
+                  
+                  <h4 className="font-semibold text-purple-700 mb-2">Cloud Security</h4>
+                  <div className="grid md:grid-cols-2 gap-4 mb-4">
+                    <div className="p-3 bg-purple-100 rounded">
+                      <h5 className="font-semibold text-purple-800 text-sm">Hosting</h5>
+                      <p className="text-purple-700 text-xs">EU-gebaseerde datacenters met SOC 2 Type II certificering</p>
+                    </div>
+                    <div className="p-3 bg-purple-100 rounded">
+                      <h5 className="font-semibold text-purple-800 text-sm">Netwerk</h5>
+                      <p className="text-purple-700 text-xs">Private Virtual Clouds (VPC) met network segmentatie</p>
+                    </div>
+                    <div className="p-3 bg-purple-100 rounded">
+                      <h5 className="font-semibold text-purple-800 text-sm">Firewalls</h5>
+                      <p className="text-purple-700 text-xs">Web Application Firewalls (WAF) en DDoS-bescherming</p>
+                    </div>
+                    <div className="p-3 bg-purple-100 rounded">
+                      <h5 className="font-semibold text-purple-800 text-sm">Monitoring</h5>
+                      <p className="text-purple-700 text-xs">24/7 Security Operations Center (SOC) monitoring</p>
+                    </div>
+                  </div>
+
+                  <h4 className="font-semibold text-purple-700 mb-2">Application Security</h4>
+                  <ul className="list-disc list-inside text-purple-600 text-sm space-y-1">
+                    <li>Secure Development Lifecycle (SDLC)</li>
+                    <li>Geautomatiseerde vulnerability scanning</li>
+                    <li>Regular penetration testing door externe partijen</li>
+                    <li>Code review en static analysis</li>
+                    <li>Container security en image scanning</li>
                   </ul>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </section>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Infrastructure & Compliance</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid md:grid-cols-3 gap-4">
-                <div className="border rounded-lg p-4 text-center">
-                  <Badge className="mb-2 bg-blue-100 text-blue-800">ISO 27001</Badge>
-                  <h4 className="font-semibold text-sm">Information Security</h4>
-                  <p className="text-xs text-gray-600 mt-1">
-                    Gecertificeerd informatiebeveiliging managementsysteem
-                  </p>
-                </div>
-                <div className="border rounded-lg p-4 text-center">
-                  <Badge className="mb-2 bg-green-100 text-green-800">SOC 2 Type II</Badge>
-                  <h4 className="font-semibold text-sm">Service Organization</h4>
-                  <p className="text-xs text-gray-600 mt-1">
-                    Jaarlijkse audits van beveiliging en beschikbaarheid
-                  </p>
-                </div>
-                <div className="border rounded-lg p-4 text-center">
-                  <Badge className="mb-2 bg-purple-100 text-purple-800">AVG Compliant</Badge>
-                  <h4 className="font-semibold text-sm">Privacy Regulation</h4>
-                  <p className="text-xs text-gray-600 mt-1">
-                    Volledig conform Nederlandse privacywetgeving
-                  </p>
-                </div>
-              </div>
+            {/* Compliance & Standaarden */}
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">Compliance & Standaarden</h2>
               
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <h4 className="font-semibold text-blue-900 mb-2">Nederlandse Datalocatie</h4>
-                <p className="text-blue-800 text-sm">
-                  Alle gegevens worden opgeslagen in state-of-the-art datacenters in Nederland. 
-                  Dit garandeert naleving van Nederlandse wetgeving en minimale latency voor optimale prestaties.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold text-gray-700">Certificeringen</h3>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3 p-3 bg-green-50 rounded-lg">
+                      <CheckCircle className="h-5 w-5 text-green-600" />
+                      <div>
+                        <p className="font-semibold text-green-800">ISO 27001:2013</p>
+                        <p className="text-green-600 text-xs">Information Security Management</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-3 p-3 bg-green-50 rounded-lg">
+                      <CheckCircle className="h-5 w-5 text-green-600" />
+                      <div>
+                        <p className="font-semibold text-green-800">SOC 2 Type II</p>
+                        <p className="text-green-600 text-xs">Service Organization Control</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-3 p-3 bg-green-50 rounded-lg">
+                      <CheckCircle className="h-5 w-5 text-green-600" />
+                      <div>
+                        <p className="font-semibold text-green-800">NEN 7510</p>
+                        <p className="text-green-600 text-xs">Nederlandse norm voor informatiebeveiliging</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Eye className="h-5 w-5 text-purple-600" />
-                Monitoring & Incident Response
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="border rounded-lg p-4">
-                  <h4 className="font-semibold mb-2">24/7 Security Operations Center</h4>
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• Real-time threat detection</li>
-                    <li>• Automated intrusion prevention</li>
-                    <li>• DDoS protection</li>
-                    <li>• Vulnerability scanning</li>
-                    <li>• Log analysis en correlation</li>
-                  </ul>
-                </div>
-                <div className="border rounded-lg p-4">
-                  <h4 className="font-semibold mb-2">Incident Response Team</h4>
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• Getrainde security specialisten</li>
-                    <li>• &lt; 15 minuten response tijd</li>
-                    <li>• Automatische escalatie procedures</li>
-                    <li>• Forensische analyse capabilities</li>
-                    <li>• Klant communicatie binnen 1 uur</li>
-                  </ul>
-                </div>
-              </div>
-              
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-                <div className="flex items-start gap-3">
-                  <AlertTriangle className="h-5 w-5 text-amber-600 mt-0.5" />
-                  <div>
-                    <h4 className="font-semibold text-amber-800 mb-1">Incident Transparantie</h4>
-                    <p className="text-amber-700 text-sm">
-                      In het onwaarschijnlijke geval van een beveiligingsincident worden alle 
-                      betrokken klanten binnen 72 uur geïnformeerd conform AVG-richtlijnen.
-                    </p>
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold text-gray-700">Wettelijke naleving</h3>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+                      <CheckCircle className="h-5 w-5 text-blue-600" />
+                      <div>
+                        <p className="font-semibold text-blue-800">AVG/GDPR</p>
+                        <p className="text-blue-600 text-xs">Algemene Verordening Gegevensbescherming</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+                      <CheckCircle className="h-5 w-5 text-blue-600" />
+                      <div>
+                        <p className="font-semibold text-blue-800">Wwft</p>
+                        <p className="text-blue-600 text-xs">Wet ter voorkoming van witwassen en financieren van terrorisme</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+                      <CheckCircle className="h-5 w-5 text-blue-600" />
+                      <div>
+                        <p className="font-semibold text-blue-800">NIS2 Richtlijn</p>
+                        <p className="text-blue-600 text-xs">Netwerk- en informatiebeveiliging</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </section>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Regular Security Audits</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b">
-                      <th className="text-left py-2 px-3 font-semibold">Audit Type</th>
-                      <th className="text-left py-2 px-3 font-semibold">Frequentie</th>
-                      <th className="text-left py-2 px-3 font-semibold">Laatste Audit</th>
-                      <th className="text-left py-2 px-3 font-semibold">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-gray-600">
-                    <tr className="border-b">
-                      <td className="py-2 px-3">Penetration Testing</td>
-                      <td className="py-2 px-3">Elk kwartaal</td>
-                      <td className="py-2 px-3">December 2024</td>
-                      <td className="py-2 px-3"><Badge className="bg-green-100 text-green-800">Passed</Badge></td>
-                    </tr>
-                    <tr className="border-b">
-                      <td className="py-2 px-3">Code Security Review</td>
-                      <td className="py-2 px-3">Elke release</td>
-                      <td className="py-2 px-3">December 2024</td>
-                      <td className="py-2 px-3"><Badge className="bg-green-100 text-green-800">Passed</Badge></td>
-                    </tr>
-                    <tr className="border-b">
-                      <td className="py-2 px-3">Infrastructure Audit</td>
-                      <td className="py-2 px-3">Maandelijks</td>
-                      <td className="py-2 px-3">December 2024</td>
-                      <td className="py-2 px-3"><Badge className="bg-green-100 text-green-800">Passed</Badge></td>
-                    </tr>
-                    <tr className="border-b">
-                      <td className="py-2 px-3">Compliance Review</td>
-                      <td className="py-2 px-3">Jaarlijks</td>
-                      <td className="py-2 px-3">November 2024</td>
-                      <td className="py-2 px-3"><Badge className="bg-green-100 text-green-800">Certified</Badge></td>
-                    </tr>
-                    <tr>
-                      <td className="py-2 px-3">Business Continuity Test</td>
-                      <td className="py-2 px-3">Halfjaarlijks</td>
-                      <td className="py-2 px-3">Oktober 2024</td>
-                      <td className="py-2 px-3"><Badge className="bg-green-100 text-green-800">Passed</Badge></td>
-                    </tr>
-                  </tbody>
-                </table>
+            {/* Incident Response */}
+            <section>
+              <div className="flex items-start space-x-4 p-6 bg-red-50 border border-red-200 rounded-lg">
+                <AlertTriangle className="h-8 w-8 text-red-600 mt-1" />
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold text-red-800 mb-3">Incident Response</h3>
+                  <p className="text-red-700 mb-4">
+                    Wij hebben een uitgebreid incident response plan om snel en effectief te reageren op beveiligingsincidenten.
+                  </p>
+                  
+                  <h4 className="font-semibold text-red-700 mb-2">Response tijden</h4>
+                  <div className="grid md:grid-cols-3 gap-3 mb-4">
+                    <div className="p-3 bg-red-100 rounded text-center">
+                      <p className="font-semibold text-red-800">Kritiek</p>
+                      <p className="text-red-600 text-sm">&lt; 15 minuten</p>
+                    </div>
+                    <div className="p-3 bg-red-100 rounded text-center">
+                      <p className="font-semibold text-red-800">Hoog</p>
+                      <p className="text-red-600 text-sm">&lt; 2 uur</p>
+                    </div>
+                    <div className="p-3 bg-red-100 rounded text-center">
+                      <p className="font-semibold text-red-800">Medium</p>
+                      <p className="text-red-600 text-sm">&lt; 24 uur</p>
+                    </div>
+                  </div>
+
+                  <h4 className="font-semibold text-red-700 mb-2">Incident proces</h4>
+                  <ol className="list-decimal list-inside text-red-600 text-sm space-y-1">
+                    <li>Detectie en triaging</li>
+                    <li>Containment en damage control</li>
+                    <li>Forensisch onderzoek</li>
+                    <li>Herstel en lessons learned</li>
+                    <li>Rapportage aan autoriteiten (indien vereist)</li>
+                    <li>Communicatie naar klanten (indien relevant)</li>
+                  </ol>
+                </div>
               </div>
-            </CardContent>
-          </Card>
+            </section>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Security Best Practices voor Gebruikers</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
+            {/* Privacy by Design */}
+            <section>
+              <div className="flex items-start space-x-4 p-6 bg-green-50 border border-green-200 rounded-lg">
+                <Eye className="h-8 w-8 text-green-600 mt-1" />
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold text-green-800 mb-3">Privacy by Design</h3>
+                  <p className="text-green-700 mb-4">
+                    Privacy en beveiliging zijn geïntegreerd in elke fase van onze productontwikkeling.
+                  </p>
+                  
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <h4 className="font-semibold text-green-700 mb-2">Ontwerpprincipes</h4>
+                      <ul className="list-disc list-inside text-green-600 text-sm space-y-1">
+                        <li>Dataminimalisatie</li>
+                        <li>Pseudonimisering waar mogelijk</li>
+                        <li>Doelbinding en transparantie</li>
+                        <li>Gebruikerscontrole</li>
+                        <li>Security by default</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-green-700 mb-2">Technische maatregelen</h4>
+                      <ul className="list-disc list-inside text-green-600 text-sm space-y-1">
+                        <li>Data Loss Prevention (DLP)</li>
+                        <li>Geautomatiseerde data classificatie</li>
+                        <li>Retention policy automation</li>
+                        <li>Privacy impact assessments</li>
+                        <li>Consent management platform</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Third Party Security */}
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">Derde partijen en leveranciers</h2>
+              <p className="text-gray-600 mb-4">
+                Alle externe partijen die toegang hebben tot onze systemen of gegevens worden zorgvuldig gescreend 
+                en moeten voldoen aan onze beveiligingsstandaarden.
+              </p>
+
+              <div className="space-y-4">
+                <div className="p-4 bg-gray-50 rounded-lg">
+                  <h4 className="font-semibold text-gray-800 mb-2">Due diligence proces</h4>
+                  <ul className="list-disc list-inside text-gray-600 text-sm space-y-1">
+                    <li>Security assessment van alle nieuwe leveranciers</li>
+                    <li>Contractuele beveiligingseisen en audit rechten</li>
+                    <li>Regelmatige security reviews en penetration tests</li>
+                    <li>Incident notification verplichtingen</li>
+                    <li>Data processing agreements (DPA's) conform AVG</li>
+                  </ul>
+                </div>
+
+                <div className="p-4 bg-gray-50 rounded-lg">
+                  <h4 className="font-semibold text-gray-800 mb-2">Approved leveranciers</h4>
+                  <div className="grid md:grid-cols-3 gap-3">
+                    <div className="text-center p-2 bg-white rounded border">
+                      <p className="font-semibold text-gray-700 text-sm">Replit</p>
+                      <p className="text-gray-500 text-xs">Cloud Infrastructure</p>
+                    </div>
+                    <div className="text-center p-2 bg-white rounded border">
+                      <p className="font-semibold text-gray-700 text-sm">Anthropic</p>
+                      <p className="text-gray-500 text-xs">AI Services</p>
+                    </div>
+                    <div className="text-center p-2 bg-white rounded border">
+                      <p className="font-semibold text-gray-700 text-sm">SendGrid</p>
+                      <p className="text-gray-500 text-xs">Email Services</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Security Awareness */}
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">Security Awareness</h2>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="p-4 bg-blue-50 rounded-lg">
+                  <h4 className="font-semibold text-blue-800 mb-3">Voor onze medewerkers</h4>
+                  <ul className="list-disc list-inside text-blue-700 text-sm space-y-1">
+                    <li>Maandelijkse security awareness training</li>
+                    <li>Phishing simulaties en tests</li>
+                    <li>Security incident reporting procedures</li>
+                    <li>Clean desk en clear screen beleid</li>
+                    <li>Secure remote working guidelines</li>
+                  </ul>
+                </div>
+
+                <div className="p-4 bg-orange-50 rounded-lg">
+                  <h4 className="font-semibold text-orange-800 mb-3">Voor onze klanten</h4>
+                  <ul className="list-disc list-inside text-orange-700 text-sm space-y-1">
+                    <li>Security best practices in onze documentatie</li>
+                    <li>Waarschuwingen voor phishing en fraude</li>
+                    <li>Veilige wachtwoord richtlijnen</li>
+                    <li>MFA setup assistentie</li>
+                    <li>Security notifications en alerts</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            {/* Continuous Improvement */}
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">Continue verbetering</h2>
+              <p className="text-gray-600 mb-4">
+                Beveiliging is een continu proces. Wij investeren voortdurend in het verbeteren van onze beveiligingsposture.
+              </p>
+
               <div className="grid md:grid-cols-2 gap-4">
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-green-900 mb-2">Aanbevolen:</h4>
-                  <ul className="text-sm text-green-800 space-y-1">
-                    <li>• Gebruik een uniek, sterk wachtwoord</li>
-                    <li>• Schakel two-factor authenticatie in</li>
-                    <li>• Log altijd uit op gedeelde computers</li>
-                    <li>• Controleer regelmatig uw account activiteit</li>
-                    <li>• Gebruik altijd de officiële Fiscavo URL</li>
+                <div className="p-4 bg-purple-50 rounded-lg">
+                  <h4 className="font-semibold text-purple-800 mb-2">Reguliere activiteiten</h4>
+                  <ul className="list-disc list-inside text-purple-700 text-sm space-y-1">
+                    <li>Kwartaalse vulnerability assessments</li>
+                    <li>Jaarlijkse penetration testing</li>
+                    <li>Maandelijkse security reviews</li>
+                    <li>Threat intelligence monitoring</li>
+                    <li>Security metrics en KPI tracking</li>
                   </ul>
                 </div>
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-red-900 mb-2">Vermijd:</h4>
-                  <ul className="text-sm text-red-800 space-y-1">
-                    <li>• Delen van inloggegevens</li>
-                    <li>• Toegang via openbare WiFi</li>
-                    <li>• Klikken op verdachte links in emails</li>
-                    <li>• Opslaan van wachtwoorden in browser</li>
-                    <li>• Toegang vanaf onbeveiligde apparaten</li>
-                  </ul>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Security Contact</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <h4 className="font-semibold text-blue-900 mb-3">Rapporteer een Beveiligingsprobleem</h4>
-                <p className="text-blue-800 text-sm mb-4">
-                  Hebt u een beveiligingsprobleem ontdekt? Neem onmiddellijk contact met ons op via:
-                </p>
-                <div className="space-y-2 text-blue-800 text-sm">
-                  <p><strong>Security Email:</strong> <a href="mailto:security@fiscavo.com" className="text-blue-600 hover:underline">security@fiscavo.com</a></p>
-                  <p><strong>24/7 Security Hotline:</strong> <a href="tel:+31883472829" className="text-blue-600 hover:underline">088-3472829 (optie 1)</a></p>
-                  <p><strong>Response tijd:</strong> &lt; 2 uur voor kritieke issues</p>
+                <div className="p-4 bg-indigo-50 rounded-lg">
+                  <h4 className="font-semibold text-indigo-800 mb-2">Investeringen 2024</h4>
+                  <ul className="list-disc list-inside text-indigo-700 text-sm space-y-1">
+                    <li>Zero Trust Architecture implementatie</li>
+                    <li>AI-powered threat detection</li>
+                    <li>Extended Detection and Response (XDR)</li>
+                    <li>Cloud Security Posture Management</li>
+                    <li>Advanced endpoint protection</li>
+                  </ul>
                 </div>
               </div>
-            </CardContent>
-          </Card>
-        </div>
+            </section>
+
+            {/* Security Contact */}
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">Security Contact</h2>
+              
+              <div className="space-y-4">
+                <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                  <h4 className="font-semibold text-red-800 mb-2">🚨 Beveiligingsincident melden</h4>
+                  <p className="text-red-700 text-sm mb-4">
+                    Hebt u een beveiligingsprobleem ontdekt? Neem onmiddellijk contact met ons op via:
+                  </p>
+                  <div className="space-y-2 text-red-700 text-sm">
+                    <p><strong>Security Email:</strong> <a href="mailto:security@fiscavo.com" className="text-red-600 hover:underline">security@fiscavo.com</a></p>
+                    <p><strong>24/7 Security Hotline:</strong> <a href="tel:+31883472829" className="text-red-600 hover:underline">088-3472829 (optie 1)</a></p>
+                    <p><strong>Response tijd:</strong> &lt; 2 uur voor kritieke issues</p>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                  <h4 className="font-semibold text-blue-800 mb-2">Responsible Disclosure</h4>
+                  <p className="text-blue-700 text-sm mb-2">
+                    Wij moedigen responsible disclosure aan van beveiligingskwetsbaarheden:
+                  </p>
+                  <ul className="list-disc list-inside text-blue-700 text-sm space-y-1">
+                    <li>Meld kwetsbaarheden via security@fiscavo.com</li>
+                    <li>Geef ons 90 dagen om het probleem op te lossen</li>
+                    <li>Wij erkennen uw bijdrage in onze hall of fame</li>
+                    <li>Bug bounty programma beschikbaar voor kritieke vondsten</li>
+                  </ul>
+                </div>
+
+                <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+                  <h4 className="font-semibold text-green-800 mb-2">Algemene security vragen</h4>
+                  <p className="text-green-700 text-sm">
+                    Voor algemene vragen over onze beveiligingsmaatregelen kunt u contact opnemen via 
+                    <a href="mailto:info@fiscavo.com" className="text-green-600 hover:underline ml-1">info@fiscavo.com</a> 
+                    of <a href="tel:+31883472829" className="text-green-600 hover:underline">088-3472829</a>.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
