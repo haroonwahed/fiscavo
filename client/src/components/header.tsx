@@ -26,7 +26,7 @@ export function Header() {
           <div className="flex items-center">
             <Link href="/">
               <div className="flex-shrink-0 cursor-pointer">
-                <Logo size="md" variant="default" />
+                <Logo size="xl" variant="default" />
               </div>
             </Link>
           </div>
