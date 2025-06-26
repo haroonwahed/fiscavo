@@ -74,7 +74,7 @@ export function FaqSection() {
           </Badge>
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
             Alles wat je moet weten<br />
-            <span className="text-gradient">over Taxenzo</span>
+            <span className="text-gradient">over Fiscavo</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Krijg antwoorden op de meest gestelde vragen over belastingbeheer voor Nederlandse ondernemers

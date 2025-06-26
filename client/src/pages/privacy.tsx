@@ -31,7 +31,7 @@ export default function Privacy() {
             </CardHeader>
             <CardContent className="prose max-w-none">
               <p>
-                Taxenzo B.V. respecteert uw privacy en is toegewijd aan het beschermen van uw persoonlijke gegevens. 
+                Fiscavo B.V. respecteert uw privacy en is toegewijd aan het beschermen van uw persoonlijke gegevens. 
                 Dit privacybeleid legt uit hoe wij uw informatie verzamelen, gebruiken en beschermen wanneer u onze 
                 belastingbeheersoftware gebruikt.
               </p>
@@ -143,7 +143,7 @@ export default function Privacy() {
               <div className="space-y-2 text-gray-600">
                 <p><strong>Email:</strong> <a href="mailto:privacy@taxenzo.com" className="text-blue-600 hover:underline">privacy@taxenzo.com</a></p>
                 <p><strong>Telefoon:</strong> <a href="tel:+31883472829" className="text-blue-600 hover:underline">088-3472829</a></p>
-                <p><strong>Adres:</strong> Taxenzo B.V., Amsterdam, Nederland</p>
+                <p><strong>Adres:</strong> Fiscavo B.V., Amsterdam, Nederland</p>
               </div>
             </CardContent>
           </Card>

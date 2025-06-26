@@ -18,7 +18,7 @@ export default function Security() {
           </Button>
           <h1 className="text-3xl font-bold text-gray-900 mb-4">Beveiliging</h1>
           <p className="text-lg text-gray-600">
-            Hoe Taxenzo uw financiële gegevens beschermt met enterprise-grade beveiliging
+            Hoe Fiscavo uw financiële gegevens beschermt met enterprise-grade beveiliging
           </p>
         </div>
 
@@ -307,7 +307,7 @@ export default function Security() {
                     <li>• Schakel two-factor authenticatie in</li>
                     <li>• Log altijd uit op gedeelde computers</li>
                     <li>• Controleer regelmatig uw account activiteit</li>
-                    <li>• Gebruik altijd de officiële Taxenzo URL</li>
+                    <li>• Gebruik altijd de officiële Fiscavo URL</li>
                   </ul>
                 </div>
                 <div className="bg-red-50 border border-red-200 rounded-lg p-4">

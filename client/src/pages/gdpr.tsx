@@ -18,7 +18,7 @@ export default function GDPR() {
           </Button>
           <h1 className="text-3xl font-bold text-gray-900 mb-4">AVG Compliance</h1>
           <p className="text-lg text-gray-600">
-            Hoe Taxenzo voldoet aan de Algemene Verordening Gegevensbescherming
+            Hoe Fiscavo voldoet aan de Algemene Verordening Gegevensbescherming
           </p>
         </div>
 
@@ -36,13 +36,13 @@ export default function GDPR() {
                   <Badge className="bg-green-100 text-green-800">✓ Volledig Compliant</Badge>
                 </div>
                 <p className="text-green-800 text-sm">
-                  Taxenzo voldoet volledig aan de AVG-wetgeving en respecteert alle rechten van betrokkenen. 
+                  Fiscavo voldoet volledig aan de AVG-wetgeving en respecteert alle rechten van betrokkenen. 
                   Onze systemen zijn ontworpen met privacy-by-design principes.
                 </p>
               </div>
               <p className="text-gray-600">
                 De Algemene Verordening Gegevensbescherming (AVG) geeft u controle over uw persoonlijke gegevens. 
-                Hier vindt u informatie over hoe Taxenzo deze rechten respecteert en faciliteert.
+                Hier vindt u informatie over hoe Fiscavo deze rechten respecteert en faciliteert.
               </p>
             </CardContent>
           </Card>
@@ -269,7 +269,7 @@ export default function GDPR() {
                 <div className="space-y-2 text-blue-800 text-sm">
                   <p><strong>Email:</strong> <a href="mailto:dpo@taxenzo.com" className="text-blue-600 hover:underline">dpo@taxenzo.com</a></p>
                   <p><strong>Telefoon:</strong> <a href="tel:+31883472829" className="text-blue-600 hover:underline">088-3472829 (optie 3)</a></p>
-                  <p><strong>Post:</strong> Taxenzo B.V., t.a.v. DPO, Amsterdam, Nederland</p>
+                  <p><strong>Post:</strong> Fiscavo B.V., t.a.v. DPO, Amsterdam, Nederland</p>
                 </div>
               </div>
               

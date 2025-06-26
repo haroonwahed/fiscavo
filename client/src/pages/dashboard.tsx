@@ -79,7 +79,7 @@ export default function Dashboard() {
                   <Calculator className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold text-gray-900">Taxenzo</h1>
+                  <h1 className="text-xl font-bold text-gray-900">Fiscavo</h1>
                   <p className="text-xs text-blue-600 font-medium">Simpel | Veilig | Accuraat</p>
                 </div>
               </div>

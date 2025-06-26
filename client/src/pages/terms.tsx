@@ -32,7 +32,7 @@ export default function Terms() {
             </CardHeader>
             <CardContent>
               <p className="text-gray-600">
-                Deze algemene voorwaarden zijn van toepassing op alle diensten geleverd door Taxenzo B.V. 
+                Deze algemene voorwaarden zijn van toepassing op alle diensten geleverd door Fiscavo B.V. 
                 Door gebruik te maken van onze software gaat u akkoord met deze voorwaarden.
               </p>
             </CardContent>
@@ -44,7 +44,7 @@ export default function Terms() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h4 className="font-semibold mb-2">Taxenzo biedt:</h4>
+                <h4 className="font-semibold mb-2">Fiscavo biedt:</h4>
                 <ul className="list-disc pl-5 space-y-1 text-gray-600">
                   <li>Geautomatiseerde BTW-berekeningen en aangiftes</li>
                   <li>Transactiebeheer en uitgavenregistratie</li>
@@ -123,7 +123,7 @@ export default function Terms() {
                   <div>
                     <h4 className="font-semibold text-red-800 mb-2">Beperkte aansprakelijkheid</h4>
                     <div className="text-red-700 text-sm space-y-2">
-                      <p>Taxenzo is niet aansprakelijk voor:</p>
+                      <p>Fiscavo is niet aansprakelijk voor:</p>
                       <ul className="list-disc pl-5 space-y-1">
                         <li>Fouten in belastingaangiftes door onjuiste invoer</li>
                         <li>Vertraagde indiening door technische problemen</li>

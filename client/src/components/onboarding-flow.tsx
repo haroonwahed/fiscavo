@@ -19,7 +19,7 @@ interface OnboardingStep {
 const onboardingSteps: OnboardingStep[] = [
   {
     id: 1,
-    title: "Welkom bij Taxenzo",
+    title: "Welkom bij Fiscavo",
     description: "De slimste manier om je Nederlandse belastingen te beheren. Bespaar tijd en geld met onze geautomatiseerde tools.",
     icon: <TrendingUp className="h-8 w-8 text-blue-600" />,
     action: "Start je reis",

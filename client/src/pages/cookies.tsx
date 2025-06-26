@@ -215,7 +215,7 @@ export default function Cookies() {
             <CardContent>
               <div className="space-y-4">
                 <p className="text-gray-600">
-                  Taxenzo integreert met de volgende externe services die mogelijk hun eigen cookies plaatsen:
+                  Fiscavo integreert met de volgende externe services die mogelijk hun eigen cookies plaatsen:
                 </p>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="border rounded-lg p-3">

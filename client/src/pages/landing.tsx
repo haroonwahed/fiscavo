@@ -212,7 +212,7 @@ export default function Landing() {
         <div className="container-premium">
           <div className="text-center mb-20">
             <Badge className="mb-4 bg-blue-50 text-blue-700 border-blue-200">
-              Waarom Taxenzo
+              Waarom Fiscavo
             </Badge>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
               Vertrouwd door 12.000+<br />
