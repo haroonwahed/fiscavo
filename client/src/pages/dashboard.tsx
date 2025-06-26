@@ -110,7 +110,7 @@ export default function Dashboard() {
                 <Button 
                   variant="outline" 
                   size="sm"
-                  onClick={() => setIsAuthenticated(false)}
+                  onClick={() => window.location.href = '/api/logout'}
                 >
                   Uitloggen
                 </Button>
