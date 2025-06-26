@@ -1,8 +1,12 @@
 import { Link, useLocation } from "wouter";
-import { Calculator, FileText, Car, MessageSquare, CheckSquare, BarChart3, Home } from "lucide-react";
+import { Calculator, FileText, Car, MessageSquare, CheckSquare, BarChart3, Home, User, LogOut } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { Button } from "@/components/ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 export function Header() {
   const [location] = useLocation();
+  const { user, isAuthenticated, isLoading } = useAuth();
 
   const navigationItems = [
     { href: "/", label: "Dashboard", icon: Home },
@@ -50,6 +54,45 @@ export function Header() {
               })}
             </div>
           </nav>
+
+          {/* User Authentication Controls */}
+          <div className="flex items-center space-x-4">
+            {isLoading ? (
+              <div className="w-8 h-8 rounded-full bg-gray-200 animate-pulse"></div>
+            ) : isAuthenticated && user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="flex items-center space-x-2 h-8">
+                    {(user as any)?.profileImageUrl ? (
+                      <img 
+                        src={(user as any).profileImageUrl} 
+                        alt="Profile" 
+                        className="w-6 h-6 rounded-full object-cover"
+                      />
+                    ) : (
+                      <User className="w-4 h-4" />
+                    )}
+                    <span className="text-sm font-medium">
+                      {(user as any)?.firstName || (user as any)?.email || 'Gebruiker'}
+                    </span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuItem onClick={() => window.location.href = '/api/logout'}>
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Uitloggen
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button 
+                onClick={() => window.location.href = '/api/login'}
+                className="bg-blue-600 hover:bg-blue-700 text-white"
+              >
+                Inloggen
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </header>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "@/hooks/useAuth";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -25,11 +25,10 @@ import {
 } from "lucide-react";
 
 export default function Landing() {
-  const { setIsAuthenticated } = useAuth();
   const [showDemo, setShowDemo] = useState(false);
   
   const handleGetStarted = () => {
-    setIsAuthenticated(true);
+    window.location.href = '/api/login';
   };
 
   const features = [

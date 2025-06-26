@@ -1,4 +1,6 @@
 import { 
+  User,
+  UpsertUser,
   ChatMessage, 
   InsertChatMessage,
   TaxDeadline,
@@ -23,6 +25,7 @@ import {
   InsertTaxCalculation,
   Receipt,
   InsertReceipt,
+  users,
   chatMessages,
   taxDeadlines,
   deductionRules,
@@ -40,6 +43,10 @@ import { db } from "./db";
 import { eq } from "drizzle-orm";
 
 export interface IStorage {
+  // User operations (required for Replit Auth)
+  getUser(id: string): Promise<User | undefined>;
+  upsertUser(user: UpsertUser): Promise<User>;
+
   // Chat messages
   getChatMessages(): Promise<ChatMessage[]>;
   createChatMessage(message: InsertChatMessage): Promise<ChatMessage>;
@@ -97,6 +104,27 @@ export interface IStorage {
 }
 
 export class DatabaseStorage implements IStorage {
+  // User operations (required for Replit Auth)
+  async getUser(id: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user;
+  }
+
+  async upsertUser(userData: UpsertUser): Promise<User> {
+    const [user] = await db
+      .insert(users)
+      .values(userData)
+      .onConflictDoUpdate({
+        target: users.id,
+        set: {
+          ...userData,
+          updatedAt: new Date(),
+        },
+      })
+      .returning();
+    return user;
+  }
+
   async getChatMessages(): Promise<ChatMessage[]> {
     return await db.select().from(chatMessages);
   }
