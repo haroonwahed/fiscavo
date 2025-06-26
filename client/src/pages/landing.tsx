@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Logo } from "@/components/ui/logo";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
+
 import { DemoSection } from "@/components/demo-section";
 import { FaqSection } from "@/components/faq-section";
 import { Footer } from "@/components/footer";
@@ -110,12 +110,11 @@ export default function Landing() {
             <nav className="hidden lg:flex items-center space-x-8">
               <a href="#features" className="nav-link">Features</a>
               <a href="#benefits" className="nav-link">Voordelen</a>
-              <a href="#pricing" className="nav-link">Pricing</a>
+              <a href="#pricing" className="nav-link">Tarieven</a>
               <a href="#faq-section" className="nav-link">FAQ</a>
             </nav>
             
             <div className="flex items-center space-x-3">
-              <ThemeToggle />
               <Button variant="ghost" onClick={handleGetStarted} className="btn-ghost">
                 Inloggen
               </Button>
