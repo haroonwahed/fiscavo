@@ -3,17 +3,17 @@
 @tailwind utilities;
 
 :root {
-  /* Brand colors */
+  /* TaxBuddy-style colors */
   --color-primary: #368DD9;
   --color-primary-dark: #2D79B8;
-  --color-primary-light: #A8D4F2;
-
-  /* Greyscale */
-  --color-text-main: #444B54;
-  --color-text-muted: #7A7F87;
-  --color-background: #EFF5FB;
   --color-surface: #FFFFFF;
-  --color-border: #DADFE5;
+  --color-background: #F7FAFC;
+  --color-text-main: #2C3E50;
+  --color-text-muted: #7F8C8D;
+  --color-border: #DCE3EA;
+  --radius: 12px;
+  --spacing: 24px;
+  --font-family: 'Segoe UI', sans-serif;
 
   /* Accent colors */
   --color-success: #47C390;
@@ -102,23 +102,71 @@
   }
 
   body {
-    font-family: var(--font-family-base);
-    font-size: var(--font-size-base);
+    font-family: var(--font-family);
     background-color: var(--color-background);
-    color: var(--color-text-main);
     margin: 0;
     padding: 0;
-    @apply antialiased;
-  }
-
-  h1, h2, h3 {
     color: var(--color-text-main);
-    margin-bottom: var(--spacing-sm);
   }
 
-  p {
+  .hero {
+    background: linear-gradient(to right, var(--color-primary), var(--color-primary-dark));
+    color: white;
+    padding: var(--spacing);
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero p {
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing);
+  }
+
+  .btn-primary {
+    background-color: white;
+    color: var(--color-primary);
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background-color: #f0f4f8;
+  }
+
+  .features {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing);
+    padding: var(--spacing);
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--spacing);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+
+  .card h2 {
+    margin-top: 0;
+    font-size: 1.25rem;
+  }
+
+  .card p {
     color: var(--color-text-muted);
-    font-size: var(--font-size-base);
   }
 }
 
