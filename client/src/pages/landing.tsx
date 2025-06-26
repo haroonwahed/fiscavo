@@ -4,6 +4,7 @@ export default function Landing() {
   const { setIsAuthenticated } = useAuth();
   
   const handleGetStarted = () => {
+    console.log("Button clicked - logging in user");
     setIsAuthenticated(true);
   };
 
@@ -14,9 +15,24 @@ export default function Landing() {
         <div className="hero-content">
           <h1>Fiscatax</h1>
           <p>Simpel. Accuraat. Veilig. Jouw Nederlandse belastingbuddy.</p>
-          <a className="btn-primary" href="#" onClick={handleGetStarted}>
+          <button 
+            className="btn-primary" 
+            onClick={handleGetStarted}
+            style={{ 
+              backgroundColor: 'white', 
+              color: '#368DD9', 
+              padding: '12px 24px', 
+              border: 'none', 
+              borderRadius: '12px', 
+              fontWeight: 'bold', 
+              cursor: 'pointer',
+              fontSize: '16px',
+              zIndex: 10,
+              position: 'relative'
+            }}
+          >
             Start nu met je aangifte
-          </a>
+          </button>
         </div>
       </header>
 
