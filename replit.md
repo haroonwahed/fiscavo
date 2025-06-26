@@ -4,6 +4,12 @@
 A comprehensive web application providing tax advice and management tools for Dutch freelancers and small business owners. The platform delivers simple, secure, and accurate tax solutions to help users save time, reduce stress, and manage their tax obligations effectively.
 
 ## Recent Changes
+- **2024-12-26**: Fixed landing page demo button functionality and styling
+  - Repaired "Bekijk demo" button that was appearing white and unresponsive
+  - Added proper click functionality to scroll to features section
+  - Fixed button styling with correct hover effects and transitions
+  - Added ID to features section for smooth scroll navigation
+
 - **2024-12-26**: Redesigned landing page with professional styling and app insights
   - Created comprehensive landing page showcasing all 6 core features without login requirement
   - Added professional header, hero section with gradient background

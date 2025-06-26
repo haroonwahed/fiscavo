@@ -123,8 +123,14 @@ export default function Landing() {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="border-white text-white hover:bg-white px-8 py-3 text-lg"
-                style={{ '--hover-color': 'var(--color-primary)' } as any}
+                onClick={() => {
+                  // Scroll to features section to show demo
+                  const featuresElement = document.querySelector('#features-section');
+                  if (featuresElement) {
+                    featuresElement.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="border-white text-white hover:bg-white hover:text-primary px-8 py-3 text-lg transition-colors"
               >
                 Bekijk demo
               </Button>
@@ -189,7 +195,7 @@ export default function Landing() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-gray-50">
+      <section id="features-section" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <Badge className="bg-blue-100 text-blue-800 mb-4">Alle tools in één platform</Badge>
