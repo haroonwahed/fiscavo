@@ -130,7 +130,20 @@ export default function Landing() {
                     featuresElement.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}
-                className="border-white text-white hover:bg-white hover:text-primary px-8 py-3 text-lg transition-colors"
+                className="px-8 py-3 text-lg transition-colors"
+                style={{ 
+                  borderColor: 'white', 
+                  color: 'white',
+                  backgroundColor: 'transparent'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'white';
+                  e.currentTarget.style.color = 'var(--color-primary)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = 'white';
+                }}
               >
                 Bekijk demo
               </Button>
