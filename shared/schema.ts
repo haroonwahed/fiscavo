@@ -80,7 +80,7 @@ export const todoLists = pgTable("todo_lists", {
   deadline: timestamp("deadline").notNull(),
   businessType: text("business_type").notNull(),
   sector: text("sector"),
-  tasks: json("tasks").$type<string[]>().notNull(),
+  tasks: text("tasks").array().notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 

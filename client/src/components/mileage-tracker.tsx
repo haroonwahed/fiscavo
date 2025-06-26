@@ -41,12 +41,9 @@ export function MileageTracker() {
 
   const addEntry = useMutation({
     mutationFn: async (data: any) => {
-      return apiRequest("/api/mileage", {
-        method: "POST",
-        body: JSON.stringify({
-          ...data,
-          userId: 1,
-        }),
+      return apiRequest("POST", "/api/mileage", {
+        ...data,
+        userId: 1,
       });
     },
     onSuccess: () => {
@@ -274,7 +271,7 @@ export function MileageTracker() {
                         {entry.startLocation} → {entry.endLocation}
                       </span>
                       {entry.isApproved && (
-                        <Badge variant="default" size="sm">Goedgekeurd</Badge>
+                        <Badge variant="default" className="text-xs">Goedgekeurd</Badge>
                       )}
                     </div>
                     <p className="text-sm text-muted-foreground mb-1">

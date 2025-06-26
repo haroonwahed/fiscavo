@@ -51,10 +51,7 @@ export function TransactionManager() {
       category: string; 
       isBusinessExpense: boolean; 
     }) => {
-      return apiRequest(`/api/transactions/${id}/categorize`, {
-        method: "PATCH",
-        body: JSON.stringify({ category, isBusinessExpense }),
-      });
+      return apiRequest("PATCH", `/api/transactions/${id}/categorize`, { category, isBusinessExpense });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/transactions"] });
@@ -63,10 +60,7 @@ export function TransactionManager() {
 
   const addTransaction = useMutation({
     mutationFn: async (data: any) => {
-      return apiRequest("/api/transactions", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
+      return apiRequest("POST", "/api/transactions", data);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/transactions"] });

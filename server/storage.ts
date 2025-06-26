@@ -40,7 +40,7 @@ import {
   receipts
 } from "@shared/schema";
 import { db } from "./db";
-import { eq } from "drizzle-orm";
+import { eq, and } from "drizzle-orm";
 
 export interface IStorage {
   // User operations (required for Replit Auth)
@@ -264,16 +264,20 @@ export class DatabaseStorage implements IStorage {
 
   // Transactions
   async getTransactions(bankAccountId?: number, businessOnly?: boolean): Promise<Transaction[]> {
-    let query = db.select().from(transactions);
+    const conditions = [];
     
     if (bankAccountId) {
-      query = query.where(eq(transactions.bankAccountId, bankAccountId));
+      conditions.push(eq(transactions.bankAccountId, bankAccountId));
     }
     if (businessOnly) {
-      query = query.where(eq(transactions.isBusinessExpense, true));
+      conditions.push(eq(transactions.isBusinessExpense, true));
     }
     
-    return await query;
+    if (conditions.length > 0) {
+      return await db.select().from(transactions).where(and(...conditions));
+    }
+    
+    return await db.select().from(transactions);
   }
 
   async createTransaction(transaction: InsertTransaction): Promise<Transaction> {
@@ -304,16 +308,20 @@ export class DatabaseStorage implements IStorage {
 
   // BTW returns
   async getBtwReturns(userId?: number, year?: number): Promise<BtwReturn[]> {
-    let query = db.select().from(btwReturns);
+    const conditions = [];
     
     if (userId) {
-      query = query.where(eq(btwReturns.userId, userId));
+      conditions.push(eq(btwReturns.userId, userId));
     }
     if (year) {
-      query = query.where(eq(btwReturns.year, year));
+      conditions.push(eq(btwReturns.year, year));
     }
     
-    return await query;
+    if (conditions.length > 0) {
+      return await db.select().from(btwReturns).where(and(...conditions));
+    }
+    
+    return await db.select().from(btwReturns);
   }
 
   async createBtwReturn(btwReturn: InsertBtwReturn): Promise<BtwReturn> {
@@ -335,13 +343,17 @@ export class DatabaseStorage implements IStorage {
 
   // Mileage entries
   async getMileageEntries(userId?: number, year?: number): Promise<MileageEntry[]> {
-    let query = db.select().from(mileageEntries);
+    const conditions = [];
     
     if (userId) {
-      query = query.where(eq(mileageEntries.userId, userId));
+      conditions.push(eq(mileageEntries.userId, userId));
     }
     
-    return await query;
+    if (conditions.length > 0) {
+      return await db.select().from(mileageEntries).where(and(...conditions));
+    }
+    
+    return await db.select().from(mileageEntries);
   }
 
   async createMileageEntry(entry: InsertMileageEntry): Promise<MileageEntry> {
@@ -363,16 +375,20 @@ export class DatabaseStorage implements IStorage {
 
   // Tax calculations
   async getTaxCalculations(userId?: number, year?: number): Promise<TaxCalculation[]> {
-    let query = db.select().from(taxCalculations);
+    const conditions = [];
     
     if (userId) {
-      query = query.where(eq(taxCalculations.userId, userId));
+      conditions.push(eq(taxCalculations.userId, userId));
     }
     if (year) {
-      query = query.where(eq(taxCalculations.year, year));
+      conditions.push(eq(taxCalculations.year, year));
     }
     
-    return await query;
+    if (conditions.length > 0) {
+      return await db.select().from(taxCalculations).where(and(...conditions));
+    }
+    
+    return await db.select().from(taxCalculations);
   }
 
   async createTaxCalculation(calculation: InsertTaxCalculation): Promise<TaxCalculation> {

@@ -40,10 +40,7 @@ export function TaxCalculator() {
 
   const calculateTax = useMutation({
     mutationFn: async ({ year }: { year: number }) => {
-      return apiRequest("/api/tax-calculations/calculate", {
-        method: "POST",
-        body: JSON.stringify({ userId: 1, year }),
-      });
+      return apiRequest("POST", "/api/tax-calculations/calculate", { userId: 1, year });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/tax-calculations"] });

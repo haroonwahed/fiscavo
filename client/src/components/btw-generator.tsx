@@ -36,10 +36,7 @@ export function BtwGenerator() {
 
   const generateBtwReturn = useMutation({
     mutationFn: async ({ quarter, year }: { quarter: number; year: number }) => {
-      return apiRequest("/api/btw-returns/generate", {
-        method: "POST",
-        body: JSON.stringify({ userId: 1, quarter, year }),
-      });
+      return apiRequest("POST", "/api/btw-returns/generate", { userId: 1, quarter, year });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/btw-returns"] });
