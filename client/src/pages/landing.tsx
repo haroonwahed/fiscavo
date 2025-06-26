@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { DemoSection } from "@/components/demo-section";
 import { 
   Calculator, 
   FileText, 
@@ -24,6 +26,7 @@ import {
 
 export default function Landing() {
   const { setIsAuthenticated } = useAuth();
+  const [showDemo, setShowDemo] = useState(false);
   
   const handleGetStarted = () => {
     setIsAuthenticated(true);
@@ -123,13 +126,7 @@ export default function Landing() {
               <Button 
                 variant="outline" 
                 size="lg"
-                onClick={() => {
-                  // Scroll to features section to show demo
-                  const featuresElement = document.querySelector('#features-section');
-                  if (featuresElement) {
-                    featuresElement.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
+                onClick={() => setShowDemo(true)}
                 className="px-8 py-3 text-lg transition-colors"
                 style={{ 
                   borderColor: 'white', 
@@ -343,6 +340,29 @@ export default function Landing() {
           </div>
         </div>
       </footer>
+
+      {/* Demo Modal/Section */}
+      {showDemo && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 overflow-y-auto">
+          <div className="min-h-screen">
+            <div className="sticky top-0 bg-white border-b z-10 px-4 py-3">
+              <div className="max-w-7xl mx-auto flex justify-between items-center">
+                <h2 className="text-xl font-bold" style={{ color: 'var(--color-primary)' }}>
+                  Fiscatax Demo
+                </h2>
+                <Button
+                  variant="outline"
+                  onClick={() => setShowDemo(false)}
+                  className="ml-4"
+                >
+                  Sluiten
+                </Button>
+              </div>
+            </div>
+            <DemoSection onClose={() => setShowDemo(false)} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
