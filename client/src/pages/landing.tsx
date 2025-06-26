@@ -1,13 +1,10 @@
-import { useAuth } from "../App";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function Landing() {
   const { setIsAuthenticated } = useAuth();
   
   const handleGetStarted = () => {
-    console.log("Button clicked - logging in user");
-    console.log("setIsAuthenticated function:", setIsAuthenticated);
     setIsAuthenticated(true);
-    console.log("Authentication set to true");
   };
 
   return (

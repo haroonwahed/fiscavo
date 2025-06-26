@@ -35,7 +35,7 @@ import { MileageTracker } from "@/components/mileage-tracker";
 import { TaxCalculator } from "@/components/tax-calculator";
 import { DeductionChecker } from "@/components/deduction-checker";
 import { TodoGenerator } from "@/components/todo-generator";
-import { useAuth } from "../App";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("dashboard");
