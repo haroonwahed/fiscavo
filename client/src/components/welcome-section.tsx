@@ -11,7 +11,7 @@ export function WelcomeSection() {
     <section className="mb-8">
       <div className="gradient-primary rounded-xl text-white p-8">
         <h2 className="text-3xl font-bold mb-4">
-          Welkom{user ? ` ${(user as any)?.firstName || 'terug'}` : ''} bij Fiscatax
+          Welkom{user ? ` ${(user as any)?.firstName || 'terug'}` : ''} bij Taxenzo
         </h2>
         <p className="text-xl mb-6" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
           {user ? 'Beheer je belastingen eenvoudig en accuraat' : 'Simpel, veilig en accuraat belastingbeheer voor ondernemers'}

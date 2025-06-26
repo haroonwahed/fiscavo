@@ -25,7 +25,7 @@ export function Header() {
           <div className="flex items-center">
             <Link href="/">
               <div className="flex-shrink-0 cursor-pointer">
-                <h1 className="text-2xl font-bold text-primary">Fiscatax</h1>
+                <h1 className="text-2xl font-bold text-primary">Taxenzo</h1>
                 <p className="text-xs text-gray-500">Simpel | Veilig | Accuraat</p>
               </div>
             </Link>

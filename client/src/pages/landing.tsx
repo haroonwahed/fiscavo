@@ -89,7 +89,7 @@ export default function Landing() {
                 <Calculator className="h-5 w-5 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold" style={{ color: 'var(--color-text-main)' }}>Fiscatax</h1>
+                <h1 className="text-xl font-bold" style={{ color: 'var(--color-text-main)' }}>Taxenzo</h1>
                 <p className="text-xs font-medium" style={{ color: 'var(--color-primary)' }}>Simpel | Veilig | Accuraat</p>
               </div>
             </div>
@@ -109,7 +109,7 @@ export default function Landing() {
               <span style={{ color: 'rgba(255, 255, 255, 0.8)' }}>eindelijk simpel</span>
             </h1>
             <p className="text-xl mb-8 max-w-3xl mx-auto" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
-              Fiscatax helpt ZZP'ers en BV-eigenaren met automatische BTW-aangiftes, 
+              Taxenzo helpt ZZP'ers en BV-eigenaren met automatische BTW-aangiftes, 
               slimme uitgavenregistratie en persoonlijk belastingadvies.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -156,7 +156,7 @@ export default function Landing() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Waarom kiezen 12.000+ ondernemers voor Fiscatax?
+              Waarom kiezen 12.000+ ondernemers voor Taxenzo?
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Van eenmanszaken tot groeiende BV's - onze gebruikers besparen tijd en vermijden kostbare fouten.
@@ -189,7 +189,7 @@ export default function Landing() {
 
           <div className="bg-gray-50 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-              Wat krijg je met Fiscatax?
+              Wat krijg je met Taxenzo?
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {benefits.map((benefit, index) => (
@@ -274,7 +274,7 @@ export default function Landing() {
                 <div className="w-6 h-6 rounded flex items-center justify-center" style={{ backgroundColor: 'var(--color-primary)' }}>
                   <Calculator className="h-4 w-4 text-white" />
                 </div>
-                <h3 className="text-lg font-bold">Fiscatax</h3>
+                <h3 className="text-lg font-bold">Taxenzo</h3>
               </div>
               <p className="text-gray-400 text-sm mb-4">
                 De meest gebruiksvriendelijke belastingsoftware voor Nederlandse ondernemers.
@@ -286,7 +286,7 @@ export default function Landing() {
                 </div>
                 <div className="flex items-center space-x-2">
                   <Mail className="h-4 w-4" />
-                  <span>support@fiscatax.nl</span>
+                  <span>support@taxenzo.nl</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <MapPin className="h-4 w-4" />
@@ -335,7 +335,7 @@ export default function Landing() {
           </div>
           
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; 2024 Fiscatax. Alle rechten voorbehouden. KvK: 12345678 | BTW: NL123456789B01</p>
+            <p>&copy; 2024 Taxenzo. Alle rechten voorbehouden. KvK: 12345678 | BTW: NL123456789B01</p>
           </div>
         </div>
       </footer>
@@ -347,7 +347,7 @@ export default function Landing() {
             <div className="sticky top-0 bg-white border-b z-10 px-4 py-3">
               <div className="max-w-7xl mx-auto flex justify-between items-center">
                 <h2 className="text-xl font-bold" style={{ color: 'var(--color-primary)' }}>
-                  Fiscatax Demo
+                  Taxenzo Demo
                 </h2>
                 <Button
                   variant="outline"
