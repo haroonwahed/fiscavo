@@ -17,6 +17,7 @@ export function DemoSection({ onClose }: DemoProps) {
   const [income, setIncome] = useState("75000");
   const [expenses, setExpenses] = useState("15000");
   const [distance, setDistance] = useState("150");
+  const [showUpgrade, setShowUpgrade] = useState(false);
 
   // BTW Calculator
   const calculateBTW = () => {
@@ -160,21 +161,21 @@ export function DemoSection({ onClose }: DemoProps) {
                       <label className="block text-sm font-medium mb-2">Omzet (excl. BTW)</label>
                       <Input
                         type="number"
-                        value={btwSales}
-                        onChange={(e) => setBtwSales(e.target.value)}
-                        placeholder="50000"
-                        className="text-lg"
+                        value="50000"
+                        disabled
+                        className="text-lg bg-gray-100"
                       />
+                      <p className="text-sm text-gray-500 mt-1">Demo waarden - upgrade voor eigen berekeningen</p>
                     </div>
                     <div>
                       <label className="block text-sm font-medium mb-2">Inkopen (excl. BTW)</label>
                       <Input
                         type="number"
-                        value={btwPurchases}
-                        onChange={(e) => setBtwPurchases(e.target.value)}
-                        placeholder="12000"
-                        className="text-lg"
+                        value="12000"
+                        disabled
+                        className="text-lg bg-gray-100"
                       />
+                      <p className="text-sm text-gray-500 mt-1">Demo waarden - upgrade voor eigen berekeningen</p>
                     </div>
                   </div>
                   <div className="bg-gray-50 p-6 rounded-lg">
@@ -196,9 +197,18 @@ export function DemoSection({ onClose }: DemoProps) {
                         </span>
                       </div>
                     </div>
-                    <Button className="w-full mt-4" style={{ backgroundColor: 'var(--color-primary)' }}>
-                      Genereer BTW Aangifte
-                    </Button>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-center bg-yellow-50 p-3 rounded-lg border-2 border-dashed border-yellow-300">
+                        <p className="text-sm text-yellow-800 font-medium">🔒 Upgrade voor volledige BTW functionaliteit</p>
+                      </div>
+                      <Button 
+                        className="w-full" 
+                        style={{ backgroundColor: 'var(--color-primary)' }}
+                        onClick={onClose}
+                      >
+                        Start nu - Genereer echte BTW aangiftes
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </CardContent>
@@ -223,21 +233,21 @@ export function DemoSection({ onClose }: DemoProps) {
                       <label className="block text-sm font-medium mb-2">Jaarinkomen</label>
                       <Input
                         type="number"
-                        value={income}
-                        onChange={(e) => setIncome(e.target.value)}
-                        placeholder="75000"
-                        className="text-lg"
+                        value="75000"
+                        disabled
+                        className="text-lg bg-gray-100"
                       />
+                      <p className="text-sm text-gray-500 mt-1">Demo waarden - upgrade voor persoonlijke berekeningen</p>
                     </div>
                     <div>
                       <label className="block text-sm font-medium mb-2">Zakelijke uitgaven</label>
                       <Input
                         type="number"
-                        value={expenses}
-                        onChange={(e) => setExpenses(e.target.value)}
-                        placeholder="15000"
-                        className="text-lg"
+                        value="15000"
+                        disabled
+                        className="text-lg bg-gray-100"
                       />
+                      <p className="text-sm text-gray-500 mt-1">Demo waarden - upgrade voor persoonlijke berekeningen</p>
                     </div>
                   </div>
                   <div className="bg-gray-50 p-6 rounded-lg">
@@ -263,9 +273,17 @@ export function DemoSection({ onClose }: DemoProps) {
                         </span>
                       </div>
                     </div>
-                    <Button className="w-full mt-4 bg-green-600 hover:bg-green-700">
-                      Download Belastingrapport
-                    </Button>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-center bg-yellow-50 p-3 rounded-lg border-2 border-dashed border-yellow-300">
+                        <p className="text-sm text-yellow-800 font-medium">🔒 Upgrade voor volledige belastingberekeningen</p>
+                      </div>
+                      <Button 
+                        className="w-full bg-green-600 hover:bg-green-700"
+                        onClick={onClose}
+                      >
+                        Start nu - Bereken je echte belasting
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </CardContent>
@@ -367,9 +385,17 @@ export function DemoSection({ onClose }: DemoProps) {
                     </div>
                   </div>
                 </div>
-                <Button className="w-full mt-4 bg-orange-600 hover:bg-orange-700">
-                  Begin chat met AI assistent
-                </Button>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-center bg-yellow-50 p-3 rounded-lg border-2 border-dashed border-yellow-300">
+                    <p className="text-sm text-yellow-800 font-medium">🔒 Upgrade voor persoonlijke AI belastingadvies</p>
+                  </div>
+                  <Button 
+                    className="w-full bg-orange-600 hover:bg-orange-700"
+                    onClick={onClose}
+                  >
+                    Start nu - Chat met AI assistent
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           </TabsContent>
