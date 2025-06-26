@@ -60,6 +60,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         title: "Welkom terug!",
         description: "Je bent succesvol ingelogd",
       });
+      // Redirect to dashboard after successful login
+      setTimeout(() => {
+        window.location.href = "/dashboard";
+      }, 1000);
     },
     onError: (error: Error) => {
       toast({
@@ -81,6 +85,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         title: "Account aangemaakt!",
         description: "Welkom bij Fiscavo",
       });
+      // Redirect to dashboard after successful registration
+      setTimeout(() => {
+        window.location.href = "/dashboard";
+      }, 1000);
     },
     onError: (error: Error) => {
       toast({

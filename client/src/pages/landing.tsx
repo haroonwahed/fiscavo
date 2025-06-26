@@ -238,7 +238,7 @@ export default function Landing() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto px-4">
             {/* Starter Plan */}
             <div className="pricing-card">
               <div className="text-center mb-8">
@@ -356,26 +356,39 @@ export default function Landing() {
       {/* Standalone FAQ Section */}
       <FaqSection />
       
-      {/* CTA Section */}
-      <section className="py-20 bg-blue-600 dark:bg-blue-700">
-        <div className="container-premium text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">
-            Klaar om te beginnen?
-          </h2>
-          <p className="text-xl text-blue-100 mb-10 max-w-3xl mx-auto">
-            Sluit je aan bij duizenden ondernemers die al profiteren van geautomatiseerde belastingadministratie.
-          </p>
-          <Button 
-            onClick={handleGetStarted}
-            size="lg"
-            className="bg-white text-blue-600 hover:bg-gray-50 px-8 py-3 text-lg font-semibold rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300"
-          >
-            Begin nu gratis
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
-          <p className="text-sm mt-4 text-blue-100">
-            Probeer 30 dagen gratis • Geen setup kosten • Nederlandse support
-          </p>
+      {/* Support Section - Blue Tile Design */}
+      <section className="py-20 bg-gray-50 dark:bg-gray-900">
+        <div className="container-premium">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-8 text-white">
+              <div className="text-center mb-8">
+                <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                </div>
+                <h2 className="text-3xl font-bold mb-4">Heb je nog vragen?</h2>
+                <p className="text-blue-100 text-lg mb-8">
+                  Ons team van belastingexperts staat klaar om je te helpen met al je Nederlandse belastingvragen.
+                </p>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                <Button 
+                  onClick={() => window.location.href = '/chat'}
+                  className="bg-white/20 hover:bg-white/30 text-white border-white/30 backdrop-blur-sm py-4 text-lg"
+                >
+                  Start chat ⚡
+                </Button>
+                <Button 
+                  onClick={() => window.location.href = 'mailto:support@fiscavo.nl'}
+                  className="bg-white text-blue-600 hover:bg-gray-50 py-4 text-lg"
+                >
+                  Email ons →
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

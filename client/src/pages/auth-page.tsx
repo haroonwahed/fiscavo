@@ -90,12 +90,6 @@ export default function AuthPage() {
           <div className="max-w-md mx-auto w-full">
             <div className="text-center mb-8">
               <Logo size="lg" className="mx-auto mb-6" />
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                Welkom bij Fiscavo
-              </h1>
-              <p className="text-gray-600 dark:text-gray-300">
-                Simpel | Veilig | Accuraat
-              </p>
             </div>
 
             <Card className="card-premium">
