@@ -2,6 +2,9 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { setupAuth, isAuthenticated } from "./replitAuth";
+import { generateTaxAdvice, categorizeExpense, analyzeReceipt, generateTaxRecommendations } from "./anthropic";
+import { sendDeadlineReminder, sendWeeklySummary } from "./emailService";
+import { bankService, validateDutchIban, detectBankFromIban } from "./bankIntegration";
 import { insertChatMessageSchema, insertTodoListSchema } from "@shared/schema";
 import { z } from "zod";
 
@@ -309,6 +312,155 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error bulk categorizing transactions:", error);
       res.status(500).json({ message: "Failed to bulk categorize transactions" });
+    }
+  });
+
+  // Bank integration endpoints
+  app.post('/api/banks/connect', isAuthenticated, async (req, res) => {
+    try {
+      const { bankCode, credentials } = req.body;
+      
+      if (!bankCode) {
+        return res.status(400).json({ error: 'Bank code is required' });
+      }
+
+      const result = await bankService.connectBank(bankCode, credentials);
+      res.json(result);
+    } catch (error) {
+      console.error("Error connecting bank:", error);
+      res.status(500).json({ error: "Failed to connect bank" });
+    }
+  });
+
+  app.get('/api/banks/accounts', isAuthenticated, async (req, res) => {
+    try {
+      const accounts = await bankService.getAccounts();
+      res.json(accounts);
+    } catch (error) {
+      console.error("Error fetching bank accounts:", error);
+      res.status(500).json({ error: "Failed to fetch bank accounts" });
+    }
+  });
+
+  app.post('/api/banks/:accountId/sync', isAuthenticated, async (req, res) => {
+    try {
+      const { accountId } = req.params;
+      const result = await bankService.syncTransactions(accountId);
+      res.json(result);
+    } catch (error) {
+      console.error("Error syncing transactions:", error);
+      res.status(500).json({ error: "Failed to sync transactions" });
+    }
+  });
+
+  app.post('/api/banks/validate-iban', isAuthenticated, async (req, res) => {
+    try {
+      const { iban } = req.body;
+      
+      if (!iban) {
+        return res.status(400).json({ error: 'IBAN is required' });
+      }
+
+      const isValid = validateDutchIban(iban);
+      const bankName = isValid ? detectBankFromIban(iban) : null;
+
+      res.json({ isValid, bankName });
+    } catch (error) {
+      console.error("Error validating IBAN:", error);
+      res.status(500).json({ error: "Failed to validate IBAN" });
+    }
+  });
+
+  // Email notification endpoints
+  app.post('/api/notifications/deadline-reminder', isAuthenticated, async (req, res) => {
+    try {
+      const userId = req.user?.claims?.sub;
+      const user = await storage.getUser(userId);
+      
+      if (!user?.email) {
+        return res.status(400).json({ error: 'User email not found' });
+      }
+
+      const { deadline } = req.body;
+      const success = await sendDeadlineReminder(user.email, deadline);
+      
+      res.json({ success });
+    } catch (error) {
+      console.error("Error sending deadline reminder:", error);
+      res.status(500).json({ error: "Failed to send reminder" });
+    }
+  });
+
+  app.post('/api/notifications/weekly-summary', isAuthenticated, async (req, res) => {
+    try {
+      const userId = req.user?.claims?.sub;
+      const user = await storage.getUser(userId);
+      
+      if (!user?.email) {
+        return res.status(400).json({ error: 'User email not found' });
+      }
+
+      const { summary } = req.body;
+      const success = await sendWeeklySummary(user.email, summary);
+      
+      res.json({ success });
+    } catch (error) {
+      console.error("Error sending weekly summary:", error);
+      res.status(500).json({ error: "Failed to send summary" });
+    }
+  });
+
+  // Export endpoints for tax documents
+  app.get('/api/export/btw/:returnId', isAuthenticated, async (req, res) => {
+    try {
+      const { returnId } = req.params;
+      const btwReturn = await storage.getBtwReturns().then(returns => 
+        returns.find(r => r.id === parseInt(returnId))
+      );
+      
+      if (!btwReturn) {
+        return res.status(404).json({ error: 'BTW return not found' });
+      }
+
+      // Generate CSV export
+      const csvData = `Kwartaal,Jaar,Totale Verkopen,Totale Inkopen,BTW Schuld,BTW Betaald,Netto BTW
+${btwReturn.quarter},${btwReturn.year},${btwReturn.totalSales},${btwReturn.totalPurchases},${btwReturn.btwOwed},${btwReturn.btwPaid},${btwReturn.netBtwDue}`;
+
+      res.setHeader('Content-Type', 'text/csv');
+      res.setHeader('Content-Disposition', `attachment; filename="btw-aangifte-q${btwReturn.quarter}-${btwReturn.year}.csv"`);
+      res.send(csvData);
+    } catch (error) {
+      console.error("Error exporting BTW return:", error);
+      res.status(500).json({ error: "Failed to export BTW return" });
+    }
+  });
+
+  app.get('/api/export/transactions', isAuthenticated, async (req, res) => {
+    try {
+      const { year, category } = req.query;
+      let transactions = await storage.getTransactions();
+      
+      if (year) {
+        transactions = transactions.filter(t => 
+          new Date(t.date).getFullYear() === parseInt(year as string)
+        );
+      }
+      
+      if (category) {
+        transactions = transactions.filter(t => t.category === category);
+      }
+
+      const csvHeader = 'Datum,Beschrijving,Bedrag,Categorie,Bankrekening\n';
+      const csvData = transactions.map(t => 
+        `${t.date},"${t.description}",${t.amount},${t.category || ''},${t.bankAccountId || ''}`
+      ).join('\n');
+
+      res.setHeader('Content-Type', 'text/csv');
+      res.setHeader('Content-Disposition', `attachment; filename="transacties-${year || 'alle'}.csv"`);
+      res.send(csvHeader + csvData);
+    } catch (error) {
+      console.error("Error exporting transactions:", error);
+      res.status(500).json({ error: "Failed to export transactions" });
     }
   });
 

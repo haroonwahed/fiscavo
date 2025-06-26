@@ -357,6 +357,173 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Tarieven Section */}
+      <section id="tarieven" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Transparante Tarieven
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Kies het pakket dat bij jouw onderneming past. Geen verborgen kosten, altijd duidelijke prijzen.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Starter Plan */}
+            <div className="bg-white rounded-2xl border-2 border-gray-200 p-8 hover:border-blue-300 transition-colors duration-300">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Starter</h3>
+                <p className="text-gray-600 mb-6">Perfect voor startende ZZP'ers</p>
+                <div className="mb-6">
+                  <span className="text-4xl font-bold text-blue-600">€19</span>
+                  <span className="text-gray-600">/maand</span>
+                </div>
+              </div>
+              
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-center text-gray-700">
+                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
+                  BTW-aangiftes (4 per jaar)
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
+                  Basis uitgavenregistratie
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
+                  Email ondersteuning
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
+                  Deadlineherinneringen
+                </li>
+              </ul>
+
+              <Button className="w-full bg-gray-900 hover:bg-gray-800 text-white py-3 rounded-xl font-semibold">
+                Start 30 dagen gratis
+              </Button>
+            </div>
+
+            {/* Professional Plan */}
+            <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-8 text-white relative transform hover:scale-105 transition-transform duration-300 shadow-2xl">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <span className="bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-semibold">
+                  Meest Populair
+                </span>
+              </div>
+              
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold mb-2">Professional</h3>
+                <p className="text-blue-100 mb-6">Voor groeiende ondernemingen</p>
+                <div className="mb-6">
+                  <span className="text-4xl font-bold">€49</span>
+                  <span className="text-blue-200">/maand</span>
+                </div>
+              </div>
+              
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-center">
+                  <CheckCircle className="h-5 w-5 text-green-400 mr-3 flex-shrink-0" />
+                  Alles van Starter
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="h-5 w-5 text-green-400 mr-3 flex-shrink-0" />
+                  AI uitgavencategorisering
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="h-5 w-5 text-green-400 mr-3 flex-shrink-0" />
+                  Kilometerregistratie
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="h-5 w-5 text-green-400 mr-3 flex-shrink-0" />
+                  Onbeperkte bankintegraties
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="h-5 w-5 text-green-400 mr-3 flex-shrink-0" />
+                  Prioriteit ondersteuning
+                </li>
+              </ul>
+
+              <Button className="w-full bg-white text-blue-600 hover:bg-gray-50 py-3 rounded-xl font-semibold">
+                Start 30 dagen gratis
+              </Button>
+            </div>
+
+            {/* Enterprise Plan */}
+            <div className="bg-white rounded-2xl border-2 border-gray-200 p-8 hover:border-blue-300 transition-colors duration-300">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Enterprise</h3>
+                <p className="text-gray-600 mb-6">Voor grote organisaties</p>
+                <div className="mb-6">
+                  <span className="text-4xl font-bold text-blue-600">€99</span>
+                  <span className="text-gray-600">/maand</span>
+                </div>
+              </div>
+              
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-center text-gray-700">
+                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
+                  Alles van Professional
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
+                  Persoonlijke accountmanager
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
+                  Custom integraties
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
+                  API toegang
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
+                  24/7 telefoonondersteuning
+                </li>
+              </ul>
+
+              <Button className="w-full bg-gray-900 hover:bg-gray-800 text-white py-3 rounded-xl font-semibold">
+                Contact opnemen
+              </Button>
+            </div>
+          </div>
+
+          {/* Additional Info */}
+          <div className="text-center mt-16">
+            <div className="bg-blue-50 rounded-2xl p-8 max-w-4xl mx-auto">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                Waarom kiezen voor Fiscavo?
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                <div className="flex items-start space-x-3">
+                  <Shield className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">100% Veilig</h4>
+                    <p className="text-gray-600 text-sm">Bank-level encryptie en AVG-compliant</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <Clock className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Bespaar Tijd</h4>
+                    <p className="text-gray-600 text-sm">Gemiddeld 15 uur per maand minder administratie</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <TrendingUp className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">99.8% Accuraat</h4>
+                    <p className="text-gray-600 text-sm">AI-powered berekeningen voor maximale precisie</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Standalone FAQ Section */}
       <FaqSection />
       
