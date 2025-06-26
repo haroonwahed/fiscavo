@@ -9,10 +9,10 @@ interface LogoProps {
 
 export function Logo({ className, size = "md", variant = "default" }: LogoProps) {
   const imageHeights = {
-    sm: "h-6",
-    md: "h-8", 
-    lg: "h-10",
-    xl: "h-12"
+    sm: "h-8",
+    md: "h-12", 
+    lg: "h-16",
+    xl: "h-20"
   };
 
   return (
@@ -34,11 +34,11 @@ interface LogoTextOnlyProps {
 
 export function LogoTextOnly({ className, size = "md", variant = "default" }: LogoTextOnlyProps) {
   const imageHeights = {
-    sm: "h-6",
-    md: "h-10",
-    lg: "h-12", 
-    xl: "h-16",
-    "2xl": "h-20"
+    sm: "h-8",
+    md: "h-12",
+    lg: "h-16", 
+    xl: "h-20",
+    "2xl": "h-24"
   };
 
   return (

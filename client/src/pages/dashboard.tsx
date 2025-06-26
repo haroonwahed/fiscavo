@@ -29,6 +29,7 @@ import { UpcomingDeadlines } from "@/components/upcoming-deadlines";
 import { ToolsSection } from "@/components/tools-section";
 import { FaqSection } from "@/components/faq-section";
 import { FloatingChatButton } from "@/components/ui/floating-chat-button";
+import { Logo } from "@/components/ui/logo";
 import { ChatAssistant } from "@/components/chat-assistant";
 import { TransactionManager } from "@/components/transaction-manager";
 import { BtwGenerator } from "@/components/btw-generator";
@@ -59,9 +60,9 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* TaxBuddy-style Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50">
+      {/* Premium Header */}
+      <header className="bg-white/80 backdrop-blur-lg border-b border-blue-100 sticky top-0 z-40 shadow-sm">
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
