@@ -35,6 +35,8 @@ import { MileageTracker } from "@/components/mileage-tracker";
 import { TaxCalculator } from "@/components/tax-calculator";
 import { DeductionChecker } from "@/components/deduction-checker";
 import { TodoGenerator } from "@/components/todo-generator";
+import { DashboardAnalytics } from "@/components/dashboard-analytics";
+import { ExpenseCategorizationAI } from "@/components/expense-categorization-ai";
 import { useAuth } from "../contexts/AuthContext";
 
 export default function Dashboard() {
@@ -51,7 +53,8 @@ export default function Dashboard() {
     { id: "deductions", label: "Aftrekposten", icon: Receipt },
     { id: "deadlines", label: "Deadlines", icon: Calendar },
     { id: "assistant", label: "AI Assistent", icon: MessageSquare },
-    { id: "reports", label: "Rapportages", icon: BarChart3 },
+    { id: "analytics", label: "Analytics", icon: BarChart3 },
+    { id: "ai-categorization", label: "AI Categorisering", icon: TrendingUp },
   ];
 
   return (
@@ -309,12 +312,8 @@ export default function Dashboard() {
             {activeTab === "deductions" && <DeductionChecker />}
             {activeTab === "deadlines" && <UpcomingDeadlines />}
             {activeTab === "assistant" && <ChatAssistant />}
-            {activeTab === "reports" && (
-              <div className="bg-white rounded-lg p-6">
-                <h2 className="text-2xl font-bold mb-4">Rapportages</h2>
-                <p className="text-gray-600">Hier komen uitgebreide rapportages en analyses van je belastinggegevens.</p>
-              </div>
-            )}
+            {activeTab === "analytics" && <DashboardAnalytics />}
+            {activeTab === "ai-categorization" && <ExpenseCategorizationAI />}
           </div>
           
           {/* Professional Footer */}

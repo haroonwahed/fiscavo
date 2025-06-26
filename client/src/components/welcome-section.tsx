@@ -1,8 +1,12 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
+import { OnboardingFlow } from "./onboarding-flow";
 
 export function WelcomeSection() {
   const { user } = useAuth();
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  
   return (
     <section className="mb-8">
       <div className="gradient-primary rounded-xl text-white p-8">
