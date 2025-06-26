@@ -11,7 +11,8 @@ A comprehensive web application providing tax advice and management tools for Du
   - Added email notification system with deadline reminders and weekly summaries
   - Created export functionality for BTW returns and transaction data
   - Implemented comprehensive error handling and production-ready features
-  - Significantly increased logo sizes across all components for better brand visibility
+  - Significantly increased logo sizes across all components for maximum brand visibility (h-52 XL size)
+  - Enhanced header height and landing page logo scaling for premium appearance
 - **2024-12-26**: Premium Design System Implementation
   - Created new premium logo with gradient background and professional styling
   - Implemented comprehensive design overhaul inspired by Stripe, Notion, and Taxfix
