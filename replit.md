@@ -17,6 +17,11 @@ A comprehensive web application providing tax advice and management tools for Du
   - Added blue gradient support section matching design specifications with chat/email options
   - Confirmed complete authentication flow working: registration → automatic login → dashboard redirect
   - Maintained consistent Plus Jakarta Sans typography and #2563EB/#1D4ED8 blue color scheme throughout
+  - **Post-Login Branding Fixes**: Eliminated all remaining "Fiscatax" references in dashboard and components
+  - Updated dashboard footer with proper Fiscavo branding and functional navigation buttons
+  - Fixed all footer links to properly navigate to tools (BTW, transactions, chat assistant, etc.)
+  - Enhanced user experience with clickable support links (email, phone, help center)
+  - Updated FAQ data and storage references to show correct Fiscavo pricing and branding
 - **2024-12-26**: Fixed Design System Consistency and Navigation Issues
   - Removed duplicate pricing (Tarieven) sections to eliminate redundancy
   - Fixed purple gradient backgrounds to match consistent blue theme (#2563EB, #1D4ED8)

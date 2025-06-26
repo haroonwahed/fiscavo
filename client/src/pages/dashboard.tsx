@@ -41,12 +41,12 @@ import { DeductionChecker } from "@/components/deduction-checker";
 import { TodoGenerator } from "@/components/todo-generator";
 import { DashboardAnalytics } from "@/components/dashboard-analytics";
 import { ExpenseCategorizationAI } from "@/components/expense-categorization-ai";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const { user, setIsAuthenticated } = useAuth();
+  const { user } = useAuth();
   
   const getUserDisplayName = () => {
     if (!user) return "Gebruiker";
@@ -104,7 +104,7 @@ export default function Dashboard() {
                   <Users className="h-4 w-4 text-blue-600" />
                 </div>
                 <div className="text-sm mr-3">
-                  <p className="font-medium text-gray-900 dark:text-gray-100">Jan Ondernemer</p>
+                  <p className="font-medium text-gray-900 dark:text-gray-100">{getUserDisplayName()}</p>
                   <p className="text-gray-500 dark:text-gray-400 text-xs">Eenmanszaak</p>
                 </div>
                 <Button 
@@ -338,7 +338,7 @@ export default function Dashboard() {
                     <div className="w-6 h-6 bg-emerald-500 rounded flex items-center justify-center">
                       <Calculator className="h-4 w-4 text-white" />
                     </div>
-                    <h3 className="text-lg font-bold text-gray-900">Fiscatax</h3>
+                    <h3 className="text-lg font-bold text-gray-900">Fiscavo</h3>
                   </div>
                   <p className="text-sm text-gray-600 mb-4">
                     Simpel | Veilig | Accuraat belastingadvies voor Nederlandse ondernemers
@@ -353,11 +353,11 @@ export default function Dashboard() {
                 <div className="col-span-1">
                   <h4 className="text-sm font-semibold text-gray-900 mb-3">Diensten</h4>
                   <ul className="space-y-2 text-sm text-gray-600">
-                    <li><a href="#" className="hover:text-emerald-600">BTW Aangifte</a></li>
-                    <li><a href="#" className="hover:text-emerald-600">Inkomstenbelasting</a></li>
-                    <li><a href="#" className="hover:text-emerald-600">Boekhouden</a></li>
-                    <li><a href="#" className="hover:text-emerald-600">Belastingadvies</a></li>
-                    <li><a href="#" className="hover:text-emerald-600">Administratie</a></li>
+                    <li><button onClick={() => setActiveTab("btw")} className="hover:text-blue-600 text-left">BTW Aangifte</button></li>
+                    <li><button onClick={() => setActiveTab("calculator")} className="hover:text-blue-600 text-left">Inkomstenbelasting</button></li>
+                    <li><button onClick={() => setActiveTab("transactions")} className="hover:text-blue-600 text-left">Boekhouden</button></li>
+                    <li><button onClick={() => setActiveTab("assistant")} className="hover:text-blue-600 text-left">Belastingadvies</button></li>
+                    <li><button onClick={() => setActiveTab("deductions")} className="hover:text-blue-600 text-left">Administratie</button></li>
                   </ul>
                 </div>
 
@@ -365,11 +365,11 @@ export default function Dashboard() {
                 <div className="col-span-1">
                   <h4 className="text-sm font-semibold text-gray-900 mb-3">Ondersteuning</h4>
                   <ul className="space-y-2 text-sm text-gray-600">
-                    <li><a href="#" className="hover:text-emerald-600">Help centrum</a></li>
-                    <li><a href="#" className="hover:text-emerald-600">Contact</a></li>
-                    <li><a href="#" className="hover:text-emerald-600">FAQ</a></li>
-                    <li><a href="#" className="hover:text-emerald-600">Live chat</a></li>
-                    <li><a href="#" className="hover:text-emerald-600">Telefoon support</a></li>
+                    <li><a href="/support" className="hover:text-blue-600">Help centrum</a></li>
+                    <li><a href="mailto:support@fiscavo.nl" className="hover:text-blue-600">Contact</a></li>
+                    <li><button onClick={() => document.getElementById('faq-section')?.scrollIntoView({behavior: 'smooth'})} className="hover:text-blue-600 text-left">FAQ</button></li>
+                    <li><button onClick={() => setActiveTab("assistant")} className="hover:text-blue-600 text-left">Live chat</button></li>
+                    <li><a href="tel:+31208080888" className="hover:text-blue-600">Telefoon support</a></li>
                   </ul>
                 </div>
 
@@ -377,11 +377,11 @@ export default function Dashboard() {
                 <div className="col-span-1">
                   <h4 className="text-sm font-semibold text-gray-900 mb-3">Juridisch</h4>
                   <ul className="space-y-2 text-sm text-gray-600">
-                    <li><a href="#" className="hover:text-emerald-600">Privacyverklaring</a></li>
-                    <li><a href="#" className="hover:text-emerald-600">Algemene voorwaarden</a></li>
-                    <li><a href="#" className="hover:text-emerald-600">Cookie beleid</a></li>
-                    <li><a href="#" className="hover:text-emerald-600">Disclaimer</a></li>
-                    <li><a href="#" className="hover:text-emerald-600">Klachtenregeling</a></li>
+                    <li><a href="/privacy" className="hover:text-blue-600">Privacyverklaring</a></li>
+                    <li><a href="/terms" className="hover:text-blue-600">Algemene voorwaarden</a></li>
+                    <li><a href="/cookies" className="hover:text-blue-600">Cookie beleid</a></li>
+                    <li><a href="/security" className="hover:text-blue-600">Disclaimer</a></li>
+                    <li><a href="/gdpr" className="hover:text-blue-600">Klachtenregeling</a></li>
                   </ul>
                 </div>
               </div>
@@ -390,7 +390,7 @@ export default function Dashboard() {
               <div className="border-t border-gray-200 mt-8 pt-6">
                 <div className="flex flex-col md:flex-row justify-between items-center">
                   <div className="text-sm text-gray-500 mb-4 md:mb-0">
-                    © 2024 Fiscatax B.V. Alle rechten voorbehouden. 
+                    © 2024 Fiscavo B.V. Alle rechten voorbehouden. 
                     Geregistreerd bij de Nederlandse Orde van Belastingadviseurs (NOB).
                   </div>
                   <div className="flex space-x-6 text-sm text-gray-500">
@@ -403,11 +403,11 @@ export default function Dashboard() {
                 {/* Compliance Notice */}
                 <div className="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-600">
                   <p className="mb-1">
-                    <strong>Belangrijke informatie:</strong> Fiscatax is een geregistreerd belastingadviesbureau. 
+                    <strong>Belangrijke informatie:</strong> Fiscavo is een geregistreerd belastingadviesbureau. 
                     Alle adviezen worden gegeven conform de Nederlandse belastingwetgeving en onder toezicht van gekwalificeerde belastingadviseurs.
                   </p>
                   <p>
-                    Voor vragen over privacy en gegevensbescherming kunt u contact opnemen via privacy@fiscatax.nl
+                    Voor vragen over privacy en gegevensbescherming kunt u contact opnemen via support@fiscavo.nl
                   </p>
                 </div>
               </div>

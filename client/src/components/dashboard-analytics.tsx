@@ -160,7 +160,7 @@ export function DashboardAnalytics() {
           Welkom terug, {(user as any)?.firstName || 'gebruiker'}!
         </h2>
         <p className="text-blue-100">
-          Je hebt dit kwartaal al <span className="font-bold">€{data.totalSavings}</span> bespaard met Fiscatax
+          Je hebt dit kwartaal al <span className="font-bold">€{data.totalSavings}</span> bespaard met Fiscavo
         </p>
       </div>
 
