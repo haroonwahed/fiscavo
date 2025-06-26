@@ -157,7 +157,7 @@ export function DashboardAnalytics() {
       {/* Welcome Header */}
       <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6 rounded-xl">
         <h2 className="text-2xl font-bold mb-2">
-          Welkom terug, {user?.firstName || 'gebruiker'}!
+          Welkom terug, {(user as any)?.firstName || 'gebruiker'}!
         </h2>
         <p className="text-blue-100">
           Je hebt dit kwartaal al <span className="font-bold">€{data.totalSavings}</span> bespaard met Fiscatax

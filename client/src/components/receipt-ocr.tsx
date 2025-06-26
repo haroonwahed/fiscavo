@@ -59,7 +59,7 @@ export function ReceiptOCR() {
       
       return apiRequest("POST", "/api/receipts/upload", formData);
     },
-    onSuccess: (data) => {
+    onSuccess: (data: any) => {
       setExtractedData(data.extractedData);
       setProcessing(false);
       queryClient.invalidateQueries({ queryKey: ["/api/receipts"] });

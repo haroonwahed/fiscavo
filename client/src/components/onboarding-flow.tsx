@@ -128,7 +128,7 @@ export function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowProps) {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h2 className="text-2xl font-bold text-gray-900">
-                Welkom, {user?.firstName || 'gebruiker'}!
+                Welkom, {(user as any)?.firstName || 'gebruiker'}!
               </h2>
               <p className="text-gray-600">Leer Fiscatax kennen in 2 minuten</p>
             </div>
