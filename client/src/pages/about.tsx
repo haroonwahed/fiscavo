@@ -269,7 +269,7 @@ export default function About() {
                 variant="outline" 
                 size="lg" 
                 className="px-8 py-4 text-lg border-2 border-blue-600 text-blue-600 hover:bg-blue-50"
-                onClick={() => window.location.href = "mailto:info@fiscavo.com"}
+                onClick={() => window.location.href = "mailto:support@fiscavo.nl"}
               >
                 Neem contact op
               </Button>

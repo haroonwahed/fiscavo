@@ -28,8 +28,8 @@ export function Footer() {
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">Email ons</p>
-                      <a href="mailto:info@fiscavo.com" className="font-semibold text-blue-600 hover:text-blue-700 transition-colors">
-                        info@fiscavo.com
+                      <a href="mailto:support@fiscavo.nl" className="font-semibold text-blue-600 hover:text-blue-700 transition-colors">
+                        support@fiscavo.nl
                       </a>
                     </div>
                   </div>
@@ -82,7 +82,7 @@ export function Footer() {
                 <Button 
                   variant="ghost" 
                   className="text-gray-600 hover:text-blue-600 hover:bg-blue-50 p-0 h-auto font-medium justify-start"
-                  onClick={() => window.location.href = 'mailto:info@fiscavo.com'}
+                  onClick={() => window.location.href = 'mailto:support@fiscavo.nl'}
                 >
                   Contact
                   <ArrowRight className="ml-2 h-4 w-4" />

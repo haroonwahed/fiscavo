@@ -212,7 +212,7 @@ export function FaqSection() {
                 <Button 
                   variant="outline"
                   className="btn-outline border-blue-200 hover:bg-blue-50 px-8 py-4 text-lg"
-                  onClick={() => window.location.href = 'mailto:info@fiscavo.com'}
+                  onClick={() => window.location.href = 'mailto:support@fiscavo.nl'}
                 >
                   Email ons
                   <ArrowRight className="ml-2 h-5 w-5" />

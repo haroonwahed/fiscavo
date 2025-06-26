@@ -234,7 +234,7 @@ export default function Terms() {
                 <div className="p-4 bg-blue-50 rounded-lg">
                   <h4 className="font-semibold text-blue-800 mb-2">Stap 1: Directe melding</h4>
                   <p className="text-blue-700 text-sm">
-                    Klachten eerst melden via info@fiscavo.com of 088-3472829. 
+                    Klachten eerst melden via support@fiscavo.nl of 088-3472829. 
                     Wij streven naar oplossing binnen 5 werkdagen.
                   </p>
                 </div>
@@ -316,7 +316,7 @@ export default function Terms() {
                 Voor vragen over deze voorwaarden kunt u contact met ons opnemen:
               </p>
               <div className="space-y-2 text-gray-600">
-                <p><strong>Email:</strong> <a href="mailto:info@fiscavo.com" className="text-blue-600 hover:underline">info@fiscavo.com</a></p>
+                <p><strong>Email:</strong> <a href="mailto:support@fiscavo.nl" className="text-blue-600 hover:underline">support@fiscavo.nl</a></p>
                 <p><strong>Telefoon:</strong> <a href="tel:+31883472829" className="text-blue-600 hover:underline">088-3472829</a></p>
                 <p><strong>KvK-nummer:</strong> 85234567</p>
                 <p><strong>BTW-nummer:</strong> NL863456789B01</p>

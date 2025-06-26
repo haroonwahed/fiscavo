@@ -391,7 +391,7 @@ export default function Security() {
                   <h4 className="font-semibold text-green-800 mb-2">Algemene security vragen</h4>
                   <p className="text-green-700 text-sm">
                     Voor algemene vragen over onze beveiligingsmaatregelen kunt u contact opnemen via 
-                    <a href="mailto:info@fiscavo.com" className="text-green-600 hover:underline ml-1">info@fiscavo.com</a> 
+                    <a href="mailto:support@fiscavo.nl" className="text-green-600 hover:underline ml-1">support@fiscavo.nl</a> 
                     of <a href="tel:+31883472829" className="text-green-600 hover:underline">088-3472829</a>.
                   </p>
                 </div>

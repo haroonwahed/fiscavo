@@ -110,14 +110,14 @@ export default function Support() {
                 <div className="space-y-3">
                   <div>
                     <p className="text-sm text-blue-700 mb-1">Algemene vragen:</p>
-                    <a href="mailto:info@fiscavo.com" className="text-blue-600 hover:text-blue-800 font-semibold">
-                      info@fiscavo.com
+                    <a href="mailto:support@fiscavo.nl" className="text-blue-600 hover:text-blue-800 font-semibold">
+                      support@fiscavo.nl
                     </a>
                   </div>
                   <div>
                     <p className="text-sm text-blue-700 mb-1">Technische ondersteuning:</p>
-                    <a href="mailto:support@fiscavo.com" className="text-blue-600 hover:text-blue-800 font-semibold">
-                      support@fiscavo.com
+                    <a href="mailto:support@fiscavo.nl" className="text-blue-600 hover:text-blue-800 font-semibold">
+                      support@fiscavo.nl
                     </a>
                   </div>
                   <div className="pt-2 border-t border-blue-200">

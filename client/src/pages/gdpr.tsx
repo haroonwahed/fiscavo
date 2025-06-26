@@ -96,7 +96,7 @@ export default function GDPR() {
                   <div className="p-3 bg-blue-100 rounded border border-blue-300">
                     <p className="text-blue-800 text-sm">
                       <strong>Automatische correctie:</strong> Veel gegevens kunt u zelf bijwerken via uw account instellingen. 
-                      Voor andere gegevens kunt u contact opnemen via info@fiscavo.com.
+                      Voor andere gegevens kunt u contact opnemen via support@fiscavo.nl.
                     </p>
                   </div>
                 </div>
