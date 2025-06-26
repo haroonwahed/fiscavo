@@ -73,7 +73,7 @@ export async function sendDeadlineReminder(
 
   return await sendEmail({
     to: userEmail,
-    from: 'info@fiscavo.com',
+    from: 'support@fiscavo.nl',
     subject: `Herinnering: ${deadline.title} - Deadline ${new Date(deadline.deadline).toLocaleDateString('nl-NL')}`,
     html
   });
@@ -132,7 +132,7 @@ export async function sendWeeklySummary(
 
   return await sendEmail({
     to: userEmail,
-    from: 'info@fiscavo.com',
+    from: 'support@fiscavo.nl',
     subject: 'Jouw Fiscavo weekoverzicht',
     html
   });
