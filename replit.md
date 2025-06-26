@@ -4,6 +4,12 @@
 A comprehensive web application providing tax advice and management tools for Dutch freelancers and small business owners. The platform delivers simple, secure, and accurate tax solutions to help users save time, reduce stress, and manage their tax obligations effectively.
 
 ## Recent Changes
+- **2024-12-26**: Created About Us and Support Center Pages
+  - Built comprehensive "Over Ons" page with company story, mission, vision, and values
+  - Created detailed Support Center with multiple contact options and help topics
+  - Added proper routing for /about and /support pages accessible to all users
+  - Fixed footer navigation buttons to properly redirect to new pages
+  - Enhanced user experience with professional content and clear navigation paths
 - **2024-12-26**: Created Comprehensive Legal Framework
   - Built complete Privacy Policy with GDPR compliance and Dutch legal requirements
   - Created detailed Terms of Service with subscription tiers, liability, and legal protections

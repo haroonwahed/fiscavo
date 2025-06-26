@@ -82,7 +82,7 @@ export function Footer() {
                 <Button 
                   variant="ghost" 
                   className="text-gray-600 hover:text-blue-600 hover:bg-blue-50 p-0 h-auto font-medium justify-start"
-                  onClick={() => window.location.href = '/contact'}
+                  onClick={() => window.location.href = 'mailto:info@fiscavo.com'}
                 >
                   Contact
                   <ArrowRight className="ml-2 h-4 w-4" />

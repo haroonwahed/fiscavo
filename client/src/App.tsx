@@ -19,6 +19,8 @@ import Terms from "@/pages/terms";
 import Cookies from "@/pages/cookies";
 import GDPR from "@/pages/gdpr";
 import Security from "@/pages/security";
+import About from "@/pages/about";
+import Support from "@/pages/support";
 
 
 function Router() {
@@ -36,6 +38,8 @@ function Router() {
           <Route path="/cookies" component={Cookies} />
           <Route path="/gdpr" component={GDPR} />
           <Route path="/security" component={Security} />
+          <Route path="/about" component={About} />
+          <Route path="/support" component={Support} />
         </>
       ) : (
         <>
@@ -51,6 +55,8 @@ function Router() {
           <Route path="/cookies" component={Cookies} />
           <Route path="/gdpr" component={GDPR} />
           <Route path="/security" component={Security} />
+          <Route path="/about" component={About} />
+          <Route path="/support" component={Support} />
         </>
       )}
       <Route component={NotFound} />
