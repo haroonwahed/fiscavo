@@ -611,7 +611,10 @@ async function seedDatabase() {
   try {
     // Check if data already exists
     const existingDeadlines = await dbStorage.getTaxDeadlines();
-    if (existingDeadlines.length > 0) {
+    const existingFaqs = await dbStorage.getFaqItems();
+    
+    // Only skip if both deadlines and FAQs exist (with sufficient content)
+    if (existingDeadlines.length > 0 && existingFaqs.length >= 10) {
       return; // Data already seeded
     }
 
