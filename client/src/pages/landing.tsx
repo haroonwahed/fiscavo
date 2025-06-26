@@ -1,6 +1,10 @@
+import { useAuth } from "../App";
+
 export default function Landing() {
+  const { setIsAuthenticated } = useAuth();
+  
   const handleGetStarted = () => {
-    window.location.href = "/dashboard";
+    setIsAuthenticated(true);
   };
 
   return (
