@@ -51,12 +51,12 @@ export default function Landing() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-fiscatax-primary rounded-lg flex items-center justify-center">
                 <Calculator className="h-5 w-5 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">Fiscatax</h1>
-                <p className="text-xs text-emerald-600 font-medium">Simpel | Veilig | Accuraat</p>
+                <h1 className="text-xl font-bold text-fiscatax-text">Fiscatax</h1>
+                <p className="text-xs text-fiscatax-primary font-medium">Simpel | Veilig | Accuraat</p>
               </div>
             </div>
             
@@ -76,29 +76,29 @@ export default function Landing() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-emerald-500 via-emerald-600 to-emerald-700 text-white py-20">
+      <section className="gradient-fiscatax text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl lg:text-6xl font-bold mb-6">
-                Belastingen <span className="text-emerald-200">simpel</span> geregeld
+                Belastingen <span className="text-blue-200">simpel</span> geregeld
               </h1>
-              <p className="text-xl text-emerald-100 mb-8">
+              <p className="text-xl text-blue-100 mb-8">
                 De slimste belastingassistent voor Nederlandse ondernemers. 
                 Automatiseer je BTW, beheers je administratie en krijg expert advies.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <div className="flex items-center space-x-2">
-                  <CheckCircle className="h-5 w-5 text-emerald-200" />
+                  <CheckCircle className="h-5 w-5 text-blue-200" />
                   <span>Automatische BTW berekening</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <CheckCircle className="h-5 w-5 text-emerald-200" />
+                  <CheckCircle className="h-5 w-5 text-blue-200" />
                   <span>AI-powered belastingadvies</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <CheckCircle className="h-5 w-5 text-emerald-200" />
+                  <CheckCircle className="h-5 w-5 text-blue-200" />
                   <span>100% Nederlandse wetgeving</span>
                 </div>
               </div>
@@ -109,7 +109,7 @@ export default function Landing() {
                     <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
                   ))}
                 </div>
-                <span className="text-emerald-100">4.9/5 - Meer dan 10.000 tevreden ondernemers</span>
+                <span className="text-blue-100">4.9/5 - Meer dan 10.000 tevreden ondernemers</span>
               </div>
             </div>
 
@@ -117,7 +117,7 @@ export default function Landing() {
             <div className="flex justify-center lg:justify-end">
               <Card className="w-full max-w-md">
                 <CardHeader className="text-center">
-                  <CardTitle className="text-gray-900">Welkom bij Fiscatax</CardTitle>
+                  <CardTitle className="text-fiscatax-text">Welkom bij Fiscatax</CardTitle>
                   <CardDescription>Start vandaag nog met slimme belastingen</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -148,13 +148,13 @@ export default function Landing() {
                         </div>
                         <Button 
                           type="submit" 
-                          className="w-full bg-emerald-600 hover:bg-emerald-700"
+                          className="w-full bg-fiscatax-primary hover:bg-blue-600"
                           disabled={isLoading}
                         >
                           {isLoading ? "Bezig met inloggen..." : "Inloggen"}
                         </Button>
                         <p className="text-center text-sm text-gray-600">
-                          <a href="#" className="text-emerald-600 hover:underline">
+                          <a href="#" className="text-fiscatax-primary hover:underline">
                             Wachtwoord vergeten?
                           </a>
                         </p>

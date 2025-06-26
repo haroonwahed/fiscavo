@@ -4,31 +4,32 @@
 
 :root {
   --background: hsl(0, 0%, 100%);
-  --foreground: hsl(20, 14.3%, 4.1%);
-  --muted: hsl(60, 4.8%, 95.9%);
-  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --foreground: hsl(213, 14%, 33%);
+  --muted: hsl(216, 50%, 97%);
+  --muted-foreground: hsl(210, 16%, 87%);
   --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --popover-foreground: hsl(213, 14%, 33%);
   --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(20, 14.3%, 4.1%);
-  --border: hsl(20, 5.9%, 90%);
-  --input: hsl(20, 5.9%, 90%);
-  --primary: hsl(160, 84%, 39%);
+  --card-foreground: hsl(213, 14%, 33%);
+  --border: hsl(210, 16%, 87%);
+  --input: hsl(216, 50%, 97%);
+  --primary: hsl(207, 67%, 53%);
   --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(160, 84%, 39%);
-  --secondary-foreground: hsl(0, 0%, 100%);
-  --accent: hsl(60, 4.8%, 95.9%);
-  --accent-foreground: hsl(24, 9.8%, 10%);
+  --secondary: hsl(216, 50%, 97%);
+  --secondary-foreground: hsl(213, 14%, 33%);
+  --accent: hsl(216, 50%, 97%);
+  --accent-foreground: hsl(213, 14%, 33%);
   --destructive: hsl(0, 84.2%, 60.2%);
   --destructive-foreground: hsl(60, 9.1%, 97.8%);
-  --ring: hsl(20, 14.3%, 4.1%);
+  --ring: hsl(207, 67%, 53%);
   --radius: 0.5rem;
   
-  /* Custom colors for the tax app */
-  --tax-orange: hsl(25, 95%, 53%);
-  --tax-purple: hsl(262, 83%, 58%);
-  --tax-red: hsl(0, 84%, 60%);
-  --tax-green: hsl(120, 100%, 25%);
+  /* Fiscatax brand colors */
+  --fiscatax-primary: hsl(207, 67%, 53%);
+  --fiscatax-background: hsl(216, 50%, 97%);
+  --fiscatax-text: hsl(213, 14%, 33%);
+  --fiscatax-border: hsl(210, 16%, 87%);
+  --fiscatax-success: hsl(158, 48%, 52%);
 }
 
 .dark {
@@ -67,34 +68,38 @@
 
 @layer utilities {
   .gradient-primary {
-    background: linear-gradient(135deg, hsl(168, 76%, 42%), hsl(168, 76%, 52%));
+    background: linear-gradient(135deg, hsl(207, 67%, 53%), hsl(207, 67%, 63%));
   }
   
-  .gradient-taxbuddy {
-    background: linear-gradient(135deg, #00c896, #0fb884);
+  .gradient-fiscatax {
+    background: linear-gradient(135deg, #368DD9, #4A9EE7);
   }
   
-  .text-tax-orange {
-    color: hsl(25, 95%, 53%);
+  .bg-fiscatax-primary {
+    background-color: hsl(207, 67%, 53%);
   }
   
-  .bg-tax-orange {
-    background-color: hsl(25, 95%, 53%);
+  .text-fiscatax-primary {
+    color: hsl(207, 67%, 53%);
   }
   
-  .text-tax-purple {
-    color: hsl(262, 83%, 58%);
+  .bg-fiscatax-background {
+    background-color: hsl(216, 50%, 97%);
   }
   
-  .bg-tax-purple {
-    background-color: hsl(262, 83%, 58%);
+  .text-fiscatax-text {
+    color: hsl(213, 14%, 33%);
   }
   
-  .text-tax-red {
-    color: hsl(0, 84%, 60%);
+  .border-fiscatax-border {
+    border-color: hsl(210, 16%, 87%);
   }
   
-  .bg-tax-red {
-    background-color: hsl(0, 84%, 60%);
+  .bg-fiscatax-success {
+    background-color: hsl(158, 48%, 52%);
+  }
+  
+  .text-fiscatax-success {
+    color: hsl(158, 48%, 52%);
   }
 }

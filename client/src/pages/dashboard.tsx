@@ -70,12 +70,12 @@ export default function Dashboard() {
                 {sidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </Button>
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-fiscatax-primary rounded-lg flex items-center justify-center">
                   <Calculator className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold text-gray-900">Fiscatax</h1>
-                  <p className="text-xs text-emerald-600 font-medium">Simpel | Veilig | Accuraat</p>
+                  <h1 className="text-xl font-bold text-fiscatax-text">Fiscatax</h1>
+                  <p className="text-xs text-fiscatax-primary font-medium">Simpel | Veilig | Accuraat</p>
                 </div>
               </div>
             </div>
@@ -88,11 +88,11 @@ export default function Dashboard() {
               
               {/* User Profile with Logout */}
               <div className="hidden sm:flex items-center space-x-2">
-                <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
-                  <Users className="h-4 w-4 text-emerald-600" />
+                <div className="w-8 h-8 bg-fiscatax-background rounded-full flex items-center justify-center">
+                  <Users className="h-4 w-4 text-fiscatax-primary" />
                 </div>
                 <div className="text-sm mr-3">
-                  <p className="font-medium text-gray-900">Jan Ondernemer</p>
+                  <p className="font-medium text-fiscatax-text">Jan Ondernemer</p>
                   <p className="text-gray-500 text-xs">Eenmanszaak</p>
                 </div>
                 <Button 
@@ -126,8 +126,8 @@ export default function Dashboard() {
                     }}
                     className={`w-full flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-colors ${
                       activeTab === item.id
-                        ? 'bg-emerald-50 text-emerald-700 border-r-2 border-emerald-500'
-                        : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                        ? 'bg-fiscatax-background text-fiscatax-primary border-r-2 border-fiscatax-primary'
+                        : 'text-fiscatax-text hover:bg-gray-50 hover:text-fiscatax-text'
                     }`}
                   >
                     <Icon className={`mr-3 h-5 w-5 ${
