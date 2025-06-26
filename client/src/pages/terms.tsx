@@ -214,7 +214,7 @@ export default function Terms() {
                 Voor vragen over deze voorwaarden kunt u contact met ons opnemen:
               </p>
               <div className="space-y-2 text-gray-600">
-                <p><strong>Email:</strong> <a href="mailto:info@taxenzo.com" className="text-blue-600 hover:underline">info@taxenzo.com</a></p>
+                <p><strong>Email:</strong> <a href="mailto:info@fiscavo.com" className="text-blue-600 hover:underline">info@fiscavo.com</a></p>
                 <p><strong>Telefoon:</strong> <a href="tel:+31883472829" className="text-blue-600 hover:underline">088-3472829</a></p>
                 <p><strong>KvK-nummer:</strong> 85234567</p>
                 <p><strong>BTW-nummer:</strong> NL863456789B01</p>

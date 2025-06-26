@@ -267,7 +267,7 @@ export default function GDPR() {
                   kunt u direct contact opnemen met onze DPO:
                 </p>
                 <div className="space-y-2 text-blue-800 text-sm">
-                  <p><strong>Email:</strong> <a href="mailto:dpo@taxenzo.com" className="text-blue-600 hover:underline">dpo@taxenzo.com</a></p>
+                  <p><strong>Email:</strong> <a href="mailto:dpo@fiscavo.com" className="text-blue-600 hover:underline">dpo@fiscavo.com</a></p>
                   <p><strong>Telefoon:</strong> <a href="tel:+31883472829" className="text-blue-600 hover:underline">088-3472829 (optie 3)</a></p>
                   <p><strong>Post:</strong> Fiscavo B.V., t.a.v. DPO, Amsterdam, Nederland</p>
                 </div>

@@ -322,7 +322,11 @@ export default function Landing() {
                   className="card-premium cursor-pointer hover:scale-105 hover:shadow-xl group border-0 bg-white"
                   onClick={() => {
                     const url = getFeatureUrl(feature.title);
-                    window.location.href = url;
+                    if (url === '/chat' || url === '/btw-calculator' || url === '/transactions' || url === '/mileage' || url === '/tax-calculator' || url === '/deductions') {
+                      window.location.href = '/api/login';
+                    } else {
+                      window.location.href = url;
+                    }
                   }}
                 >
                   <CardHeader className="pb-4">
@@ -343,7 +347,11 @@ export default function Landing() {
                       onClick={(e) => {
                         e.stopPropagation();
                         const url = getFeatureUrl(feature.title);
-                        window.location.href = url;
+                        if (url === '/chat' || url === '/btw-calculator' || url === '/transactions' || url === '/mileage' || url === '/tax-calculator' || url === '/deductions') {
+                          window.location.href = '/api/login';
+                        } else {
+                          window.location.href = url;
+                        }
                       }}
                     >
                       Probeer nu

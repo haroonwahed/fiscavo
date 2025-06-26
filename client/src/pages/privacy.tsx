@@ -141,7 +141,7 @@ export default function Privacy() {
                 Voor vragen over dit privacybeleid of om uw rechten uit te oefenen, kunt u contact met ons opnemen:
               </p>
               <div className="space-y-2 text-gray-600">
-                <p><strong>Email:</strong> <a href="mailto:privacy@taxenzo.com" className="text-blue-600 hover:underline">privacy@taxenzo.com</a></p>
+                <p><strong>Email:</strong> <a href="mailto:privacy@fiscavo.com" className="text-blue-600 hover:underline">privacy@fiscavo.com</a></p>
                 <p><strong>Telefoon:</strong> <a href="tel:+31883472829" className="text-blue-600 hover:underline">088-3472829</a></p>
                 <p><strong>Adres:</strong> Fiscavo B.V., Amsterdam, Nederland</p>
               </div>

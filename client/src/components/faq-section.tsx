@@ -206,13 +206,13 @@ export function FaqSection() {
                   onClick={() => window.location.href = '/chat'}
                 >
                   <MessageCircle className="mr-2 h-5 w-5" />
-                  Start live chat
+                  Start chat
                   <Zap className="ml-2 h-5 w-5" />
                 </Button>
                 <Button 
                   variant="outline"
                   className="btn-outline border-blue-200 hover:bg-blue-50 px-8 py-4 text-lg"
-                  onClick={() => window.location.href = 'mailto:info@taxenzo.com'}
+                  onClick={() => window.location.href = 'mailto:info@fiscavo.com'}
                 >
                   Email ons
                   <ArrowRight className="ml-2 h-5 w-5" />

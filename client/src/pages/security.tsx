@@ -335,7 +335,7 @@ export default function Security() {
                   Hebt u een beveiligingsprobleem ontdekt? Neem onmiddellijk contact met ons op via:
                 </p>
                 <div className="space-y-2 text-blue-800 text-sm">
-                  <p><strong>Security Email:</strong> <a href="mailto:security@taxenzo.com" className="text-blue-600 hover:underline">security@taxenzo.com</a></p>
+                  <p><strong>Security Email:</strong> <a href="mailto:security@fiscavo.com" className="text-blue-600 hover:underline">security@fiscavo.com</a></p>
                   <p><strong>24/7 Security Hotline:</strong> <a href="tel:+31883472829" className="text-blue-600 hover:underline">088-3472829 (optie 1)</a></p>
                   <p><strong>Response tijd:</strong> &lt; 2 uur voor kritieke issues</p>
                 </div>

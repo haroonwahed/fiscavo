@@ -204,7 +204,10 @@ export function DemoSection({ onClose }: DemoProps) {
                       <Button 
                         className="w-full" 
                         style={{ backgroundColor: 'var(--color-primary)' }}
-                        onClick={onClose}
+                        onClick={() => {
+                          onClose();
+                          window.location.href = '/api/login';
+                        }}
                       >
                         Start nu - Genereer echte BTW aangiftes
                       </Button>
@@ -279,7 +282,10 @@ export function DemoSection({ onClose }: DemoProps) {
                       </div>
                       <Button 
                         className="w-full bg-green-600 hover:bg-green-700"
-                        onClick={onClose}
+                        onClick={() => {
+                          onClose();
+                          window.location.href = '/api/login';
+                        }}
                       >
                         Start nu - Bereken je echte belasting
                       </Button>
@@ -391,7 +397,10 @@ export function DemoSection({ onClose }: DemoProps) {
                   </div>
                   <Button 
                     className="w-full bg-orange-600 hover:bg-orange-700"
-                    onClick={onClose}
+                    onClick={() => {
+                      onClose();
+                      window.location.href = '/api/login';
+                    }}
                   >
                     Start nu - Chat met AI assistent
                   </Button>
@@ -459,7 +468,13 @@ export function DemoSection({ onClose }: DemoProps) {
                         <strong>Let op:</strong> Deze berekening is indicatief. Werkelijke besparingen zijn afhankelijk van je specifieke situatie.
                       </p>
                     </div>
-                    <Button className="w-full mt-4 bg-red-600 hover:bg-red-700">
+                    <Button 
+                      className="w-full mt-4 bg-red-600 hover:bg-red-700"
+                      onClick={() => {
+                        onClose();
+                        window.location.href = '/api/login';
+                      }}
+                    >
                       Start aftrekposten scan
                     </Button>
                   </div>
@@ -528,7 +543,13 @@ export function DemoSection({ onClose }: DemoProps) {
                       <p className="text-sm text-blue-600">Te betalen</p>
                     </div>
                   </div>
-                  <Button className="w-full bg-indigo-600 hover:bg-indigo-700">
+                  <Button 
+                    className="w-full bg-indigo-600 hover:bg-indigo-700"
+                    onClick={() => {
+                      onClose();
+                      window.location.href = '/api/login';
+                    }}
+                  >
                     Koppel je bankrekening
                   </Button>
                 </div>
@@ -545,7 +566,10 @@ export function DemoSection({ onClose }: DemoProps) {
             size="lg" 
             className="px-8 py-3 text-lg"
             style={{ backgroundColor: 'var(--color-primary)' }}
-            onClick={onClose}
+            onClick={() => {
+              onClose();
+              window.location.href = '/api/login';
+            }}
           >
             Begin nu gratis
           </Button>
