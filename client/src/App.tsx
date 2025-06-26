@@ -21,6 +21,7 @@ import GDPR from "@/pages/gdpr";
 import Security from "@/pages/security";
 import About from "@/pages/about";
 import Support from "@/pages/support";
+import AIFeatures from "@/pages/ai-features";
 
 
 function Router() {
@@ -50,6 +51,7 @@ function Router() {
           <Route path="/tax-calculator" component={TaxCalculatorPage} />
           <Route path="/chat" component={Chat} />
           <Route path="/deductions" component={Deductions} />
+          <Route path="/ai-features" component={AIFeatures} />
           <Route path="/privacy" component={Privacy} />
           <Route path="/terms" component={Terms} />
           <Route path="/cookies" component={Cookies} />

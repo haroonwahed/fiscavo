@@ -184,6 +184,192 @@ export async function analyzeReceipt(receiptText: string): Promise<{
   }
 }
 
+// Bulk transaction categorization with AI
+export async function bulkCategorizeTransactions(
+  transactions: Array<{ id: string; description: string; amount: number }>
+): Promise<Array<{
+  id: string;
+  category: string;
+  confidence: number;
+  isBusinessExpense: boolean;
+  reasoning: string;
+}>> {
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return transactions.map(t => ({
+      id: t.id,
+      category: "Onbekend",
+      confidence: 0,
+      isBusinessExpense: false,
+      reasoning: "AI-categorisering vereist configuratie"
+    }));
+  }
+
+  try {
+    const systemPrompt = `Je bent een Nederlandse boekhouding-AI. Categoriseer bulk uitgaven efficiënt voor ZZP'ers en ondernemers.
+    
+    Categorieën:
+    - Kantoorbenodigdheden
+    - Vervoer en reiskosten  
+    - Marketing en reclame
+    - Software en abonnementen
+    - Kantoorruimte
+    - Zakelijke maaltijden
+    - Opleidingen en cursussen
+    - Telefoon en internet
+    - Administratiekosten
+    - Overige bedrijfskosten
+    - Privé uitgave
+    
+    Geef antwoord in JSON array formaat:
+    [
+      {
+        "id": "transaction_id",
+        "category": "categorie naam",
+        "confidence": 0.85,
+        "isBusinessExpense": true,
+        "reasoning": "korte uitleg"
+      }
+    ]`;
+
+    const transactionData = transactions.map(t => 
+      `ID: ${t.id}, Beschrijving: "${t.description}", Bedrag: €${t.amount}`
+    ).join('\n');
+
+    const response = await anthropic.messages.create({
+      model: DEFAULT_MODEL_STR,
+      max_tokens: 2048,
+      system: systemPrompt,
+      messages: [{ 
+        role: 'user', 
+        content: `Categoriseer deze transacties:\n${transactionData}` 
+      }],
+    });
+
+    const results = JSON.parse(response.content[0].type === 'text' ? response.content[0].text : '[]');
+    
+    return results.map((result: any) => ({
+      id: result.id,
+      category: result.category || "Onbekend",
+      confidence: Math.max(0, Math.min(1, result.confidence || 0)),
+      isBusinessExpense: result.isBusinessExpense || false,
+      reasoning: result.reasoning || "Geen uitleg beschikbaar"
+    }));
+  } catch (error) {
+    console.error("Bulk categorization error:", error);
+    return transactions.map(t => ({
+      id: t.id,
+      category: "Onbekend",
+      confidence: 0,
+      isBusinessExpense: false,
+      reasoning: "Fout bij bulk categoriseren"
+    }));
+  }
+}
+
+// Advanced receipt OCR with image analysis
+export async function analyzeReceiptImage(base64Image: string): Promise<{
+  vendor: string;
+  amount: number;
+  date: string;
+  category: string;
+  confidence: number;
+  items: Array<{
+    description: string;
+    quantity: number;
+    unitPrice: number;
+    total: number;
+  }>;
+  vatAmount?: number;
+  vatRate?: number;
+}> {
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return {
+      vendor: "Onbekend",
+      amount: 0,
+      date: new Date().toISOString().split('T')[0],
+      category: "Onbekend",
+      confidence: 0,
+      items: []
+    };
+  }
+
+  try {
+    const systemPrompt = `Je bent een Nederlandse bon-analyse AI met OCR mogelijkheden. Extraheer alle relevante gegevens uit bonnen en facturen.
+    
+    Focus op:
+    - Leverancier details
+    - Datum en tijd
+    - Individuele items met prijzen
+    - BTW informatie
+    - Totaalbedrag
+    
+    Geef antwoord in JSON formaat:
+    {
+      "vendor": "leverancier naam",
+      "amount": 25.50,
+      "date": "2024-01-15",
+      "category": "categorie",
+      "confidence": 0.90,
+      "items": [
+        {
+          "description": "item naam",
+          "quantity": 2,
+          "unitPrice": 10.00,
+          "total": 20.00
+        }
+      ],
+      "vatAmount": 4.41,
+      "vatRate": 21
+    }`;
+
+    const response = await anthropic.messages.create({
+      model: DEFAULT_MODEL_STR,
+      max_tokens: 1024,
+      system: systemPrompt,
+      messages: [{
+        role: "user",
+        content: [
+          {
+            type: "text",
+            text: "Analyseer deze bon en extraheer alle gegevens:"
+          },
+          {
+            type: "image",
+            source: {
+              type: "base64",
+              media_type: "image/jpeg",
+              data: base64Image
+            }
+          }
+        ]
+      }]
+    });
+
+    const result = JSON.parse(response.content[0].type === 'text' ? response.content[0].text : '{}');
+    
+    return {
+      vendor: result.vendor || "Onbekend",
+      amount: result.amount || 0,
+      date: result.date || new Date().toISOString().split('T')[0],
+      category: result.category || "Onbekend",
+      confidence: Math.max(0, Math.min(1, result.confidence || 0)),
+      items: result.items || [],
+      vatAmount: result.vatAmount,
+      vatRate: result.vatRate
+    };
+  } catch (error) {
+    console.error("Receipt image analysis error:", error);
+    return {
+      vendor: "Onbekend",
+      amount: 0,
+      date: new Date().toISOString().split('T')[0],
+      category: "Onbekend",
+      confidence: 0,
+      items: []
+    };
+  }
+}
+
 // Tax savings recommendations
 export async function generateTaxRecommendations(
   transactions: any[],

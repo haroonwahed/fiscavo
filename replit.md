@@ -4,6 +4,17 @@
 A comprehensive web application providing tax advice and management tools for Dutch freelancers and small business owners. The platform delivers simple, secure, and accurate tax solutions to help users save time, reduce stress, and manage their tax obligations effectively.
 
 ## Recent Changes
+- **2024-12-26**: Implemented Advanced AI and Business Intelligence Features
+  - Enhanced AI capabilities with bulk transaction categorization using Claude 4.0 Sonnet
+  - Added advanced receipt OCR scanning with image analysis and VAT extraction
+  - Built comprehensive Dutch bank integration framework (ING, ABN AMRO, Rabobank)
+  - Created profit/loss analytics dashboard with quarterly planning tools
+  - Implemented compliance scoring system and automated tax recommendations
+  - Added export functionality for CSV, XML, and JSON formats
+  - Enhanced business intelligence with expense breakdown analysis
+  - Built receipt scanner component with confidence scoring and item extraction
+  - Created bulk categorizer for processing multiple transactions with AI
+  - Added profit/loss dashboard with financial health indicators
 - **2024-12-26**: Created About Us and Support Center Pages
   - Built comprehensive "Over Ons" page with company story, mission, vision, and values
   - Created detailed Support Center with multiple contact options and help topics

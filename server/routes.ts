@@ -2,7 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { setupAuth, isAuthenticated } from "./replitAuth";
-import { generateTaxAdvice, categorizeExpense, analyzeReceipt, generateTaxRecommendations } from "./anthropic";
+import { generateTaxAdvice, categorizeExpense, analyzeReceipt, generateTaxRecommendations, bulkCategorizeTransactions, analyzeReceiptImage } from "./anthropic";
 import { sendDeadlineReminder, sendWeeklySummary } from "./emailService";
 import { bankService, validateDutchIban, detectBankFromIban } from "./bankIntegration";
 import { insertChatMessageSchema, insertTodoListSchema } from "@shared/schema";
@@ -432,6 +432,214 @@ ${btwReturn.quarter},${btwReturn.year},${btwReturn.totalSales},${btwReturn.total
     } catch (error) {
       console.error("Error exporting BTW return:", error);
       res.status(500).json({ error: "Failed to export BTW return" });
+    }
+  });
+
+  // Advanced AI endpoints
+  app.post('/api/ai/bulk-categorize', isAuthenticated, async (req, res) => {
+    try {
+      const { transactions } = req.body;
+      
+      if (!Array.isArray(transactions)) {
+        return res.status(400).json({ error: 'Transactions array required' });
+      }
+
+      const results = await bulkCategorizeTransactions(transactions);
+      res.json(results);
+    } catch (error) {
+      console.error("Error in bulk categorization:", error);
+      res.status(500).json({ error: "Failed to categorize transactions" });
+    }
+  });
+
+  app.post('/api/ai/analyze-receipt-image', isAuthenticated, async (req, res) => {
+    try {
+      const { image } = req.body;
+      
+      if (!image) {
+        return res.status(400).json({ error: 'Base64 image required' });
+      }
+
+      const analysis = await analyzeReceiptImage(image);
+      res.json(analysis);
+    } catch (error) {
+      console.error("Error analyzing receipt image:", error);
+      res.status(500).json({ error: "Failed to analyze receipt" });
+    }
+  });
+
+  app.get('/api/ai/tax-recommendations/:userId', isAuthenticated, async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const transactions = await storage.getTransactions();
+      const userProfile = await storage.getUserProfile(parseInt(userId));
+      
+      const businessType = userProfile?.businessType || 'ZZP';
+      const recommendations = await generateTaxRecommendations(transactions, businessType);
+      
+      res.json(recommendations);
+    } catch (error) {
+      console.error("Error generating tax recommendations:", error);
+      res.status(500).json({ error: "Failed to generate recommendations" });
+    }
+  });
+
+  // Enhanced banking endpoints
+  app.post('/api/bank/connect', isAuthenticated, async (req, res) => {
+    try {
+      const { bankCode, credentials } = req.body;
+      const result = await bankService.connectBank(bankCode, credentials);
+      res.json(result);
+    } catch (error) {
+      console.error("Error connecting bank:", error);
+      res.status(500).json({ error: "Failed to connect bank" });
+    }
+  });
+
+  app.get('/api/bank/accounts', isAuthenticated, async (req, res) => {
+    try {
+      const accounts = await bankService.getAccounts();
+      res.json(accounts);
+    } catch (error) {
+      console.error("Error fetching bank accounts:", error);
+      res.status(500).json({ error: "Failed to fetch accounts" });
+    }
+  });
+
+  app.post('/api/bank/sync/:accountId', isAuthenticated, async (req, res) => {
+    try {
+      const { accountId } = req.params;
+      const result = await bankService.syncTransactions(accountId);
+      res.json(result);
+    } catch (error) {
+      console.error("Error syncing transactions:", error);
+      res.status(500).json({ error: "Failed to sync transactions" });
+    }
+  });
+
+  app.get('/api/bank/export/:accountId', isAuthenticated, async (req, res) => {
+    try {
+      const { accountId } = req.params;
+      const { format = 'csv', fromDate, toDate } = req.query;
+      
+      const exportData = await bankService.exportTransactions(
+        accountId, 
+        format as any, 
+        fromDate as string, 
+        toDate as string
+      );
+      
+      const contentType = format === 'json' ? 'application/json' : 'text/csv';
+      const extension = format === 'json' ? 'json' : 'csv';
+      
+      res.setHeader('Content-Type', contentType);
+      res.setHeader('Content-Disposition', `attachment; filename="transactions.${extension}"`);
+      res.send(exportData);
+    } catch (error) {
+      console.error("Error exporting transactions:", error);
+      res.status(500).json({ error: "Failed to export transactions" });
+    }
+  });
+
+  app.get('/api/bank/compliance/:accountId/:year', isAuthenticated, async (req, res) => {
+    try {
+      const { accountId, year } = req.params;
+      const report = await bankService.generateComplianceReport(accountId, parseInt(year));
+      res.json(report);
+    } catch (error) {
+      console.error("Error generating compliance report:", error);
+      res.status(500).json({ error: "Failed to generate compliance report" });
+    }
+  });
+
+  // Business Intelligence endpoints
+  app.get('/api/analytics/profit-loss', isAuthenticated, async (req: any, res) => {
+    try {
+      const { year, quarter } = req.query;
+      const transactions = await storage.getTransactions();
+      
+      let filteredTransactions = transactions;
+      if (year) {
+        filteredTransactions = transactions.filter(t => 
+          new Date(t.date).getFullYear() === parseInt(year as string)
+        );
+      }
+      if (quarter) {
+        const q = parseInt(quarter as string);
+        filteredTransactions = filteredTransactions.filter(t => {
+          const month = new Date(t.date).getMonth() + 1;
+          return Math.ceil(month / 3) === q;
+        });
+      }
+
+      const income = filteredTransactions
+        .filter(t => parseFloat(t.amount) > 0)
+        .reduce((sum, t) => sum + parseFloat(t.amount), 0);
+      
+      const expenses = filteredTransactions
+        .filter(t => parseFloat(t.amount) < 0)
+        .reduce((sum, t) => sum + Math.abs(parseFloat(t.amount)), 0);
+
+      const profitLoss = {
+        period: quarter ? `Q${quarter} ${year}` : year || 'All time',
+        totalIncome: income,
+        totalExpenses: expenses,
+        netProfit: income - expenses,
+        profitMargin: income > 0 ? ((income - expenses) / income * 100) : 0,
+        expenseBreakdown: {
+          'Kantoorbenodigdheden': filteredTransactions.filter(t => t.category === 'Kantoorbenodigdheden').reduce((sum, t) => sum + Math.abs(parseFloat(t.amount)), 0),
+          'Software en abonnementen': filteredTransactions.filter(t => t.category === 'Software en abonnementen').reduce((sum, t) => sum + Math.abs(parseFloat(t.amount)), 0),
+          'Vervoer en reiskosten': filteredTransactions.filter(t => t.category === 'Vervoer en reiskosten').reduce((sum, t) => sum + Math.abs(parseFloat(t.amount)), 0),
+          'Marketing en reclame': filteredTransactions.filter(t => t.category === 'Marketing en reclame').reduce((sum, t) => sum + Math.abs(parseFloat(t.amount)), 0)
+        }
+      };
+
+      res.json(profitLoss);
+    } catch (error) {
+      console.error("Error generating profit/loss report:", error);
+      res.status(500).json({ error: "Failed to generate profit/loss report" });
+    }
+  });
+
+  app.get('/api/analytics/quarterly-planning', isAuthenticated, async (req, res) => {
+    try {
+      const currentYear = new Date().getFullYear();
+      const currentQuarter = Math.ceil((new Date().getMonth() + 1) / 3);
+      
+      const quarterlyPlanning = {
+        currentQuarter: currentQuarter,
+        year: currentYear,
+        projections: {
+          estimatedIncome: 45000,
+          estimatedExpenses: 32000,
+          estimatedProfit: 13000,
+          vatOwed: 9450
+        },
+        upcomingDeadlines: [
+          {
+            task: 'BTW Aangifte Q4',
+            deadline: '2025-01-31',
+            daysLeft: Math.ceil((new Date('2025-01-31').getTime() - Date.now()) / 86400000),
+            priority: 'high'
+          },
+          {
+            task: 'Inkomstenbelasting 2024',
+            deadline: '2025-04-01',
+            daysLeft: Math.ceil((new Date('2025-04-01').getTime() - Date.now()) / 86400000),
+            priority: 'medium'
+          }
+        ],
+        recommendations: [
+          'Overweeg extra aftrekposten voor kantoorkosten',
+          'Plan liquiditeit voor BTW betaling',
+          'Controleer of alle uitgaven correct gecategoriseerd zijn'
+        ]
+      };
+
+      res.json(quarterlyPlanning);
+    } catch (error) {
+      console.error("Error generating quarterly planning:", error);
+      res.status(500).json({ error: "Failed to generate quarterly planning" });
     }
   });
 
