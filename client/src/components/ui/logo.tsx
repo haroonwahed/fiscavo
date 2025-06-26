@@ -34,11 +34,11 @@ interface LogoTextOnlyProps {
 
 export function LogoTextOnly({ className, size = "md", variant = "default" }: LogoTextOnlyProps) {
   const imageHeights = {
-    sm: "h-16",
-    md: "h-28",
-    lg: "h-40", 
-    xl: "h-52",
-    "2xl": "h-64"
+    sm: "h-8",
+    md: "h-14",
+    lg: "h-20", 
+    xl: "h-26",
+    "2xl": "h-32"
   };
 
   return (
