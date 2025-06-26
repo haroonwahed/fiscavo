@@ -13,6 +13,11 @@ import Mileage from "@/pages/mileage";
 import TaxCalculatorPage from "@/pages/tax-calculator";
 import Chat from "@/pages/chat";
 import Deductions from "@/pages/deductions";
+import Privacy from "@/pages/privacy";
+import Terms from "@/pages/terms";
+import Cookies from "@/pages/cookies";
+import GDPR from "@/pages/gdpr";
+import Security from "@/pages/security";
 
 
 function Router() {
@@ -23,7 +28,14 @@ function Router() {
   return (
     <Switch>
       {isLoading || !isAuthenticated ? (
-        <Route path="/" component={Landing} />
+        <>
+          <Route path="/" component={Landing} />
+          <Route path="/privacy" component={Privacy} />
+          <Route path="/terms" component={Terms} />
+          <Route path="/cookies" component={Cookies} />
+          <Route path="/gdpr" component={GDPR} />
+          <Route path="/security" component={Security} />
+        </>
       ) : (
         <>
           <Route path="/" component={Dashboard} />
@@ -33,6 +45,11 @@ function Router() {
           <Route path="/tax-calculator" component={TaxCalculatorPage} />
           <Route path="/chat" component={Chat} />
           <Route path="/deductions" component={Deductions} />
+          <Route path="/privacy" component={Privacy} />
+          <Route path="/terms" component={Terms} />
+          <Route path="/cookies" component={Cookies} />
+          <Route path="/gdpr" component={GDPR} />
+          <Route path="/security" component={Security} />
         </>
       )}
       <Route component={NotFound} />

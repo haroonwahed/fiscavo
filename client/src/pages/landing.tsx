@@ -220,18 +220,37 @@ export default function Landing() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => {
               const Icon = feature.icon;
+              const getFeatureUrl = (title: string) => {
+                switch(title) {
+                  case 'BTW Calculator': return '/btw-calculator';
+                  case 'Transactie Beheer': return '/transactions';
+                  case 'Kilometerregistratie': return '/mileage';
+                  case 'Belastingcalculator': return '/tax-calculator';
+                  case 'AI Belastingadvies': return '/chat';
+                  case 'Aftrekposten Checker': return '/deductions';
+                  default: return '/';
+                }
+              };
+              
               return (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
+                <Card 
+                  key={index} 
+                  className="hover:shadow-lg transition-all duration-200 cursor-pointer hover:scale-105 group"
+                  onClick={() => window.location.href = getFeatureUrl(feature.title)}
+                >
                   <CardHeader>
-                    <div className={`w-12 h-12 rounded-lg ${feature.color} flex items-center justify-center mb-4`}>
+                    <div className={`w-12 h-12 rounded-lg ${feature.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                       <Icon className="h-6 w-6" />
                     </div>
-                    <CardTitle className="text-lg">{feature.title}</CardTitle>
+                    <CardTitle className="text-lg group-hover:text-blue-600 transition-colors">{feature.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <CardDescription className="text-gray-600">
                       {feature.description}
                     </CardDescription>
+                    <Button variant="ghost" className="mt-4 w-full text-blue-600 hover:bg-blue-50">
+                      Probeer nu →
+                    </Button>
                   </CardContent>
                 </Card>
               );
@@ -335,21 +354,11 @@ export default function Landing() {
             <div>
               <h4 className="font-semibold mb-4">Juridisch</h4>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li><button className="text-gray-400 hover:text-gray-200 transition-colors text-left" onClick={() => {
-                  alert('Privacybeleid: Taxenzo respecteert uw privacy. Wij verwerken alleen noodzakelijke gegevens voor onze dienstverlening en delen deze nooit met derden. Volledige privacyverklaring op aanvraag beschikbaar.');
-                }}>Privacybeleid</button></li>
-                <li><button className="text-gray-400 hover:text-gray-200 transition-colors text-left" onClick={() => {
-                  alert('Algemene Voorwaarden: Onze diensten worden geleverd conform Nederlandse wetgeving. Voor zakelijke gebruikers geldt een 30-dagen geld-terug-garantie. Volledige voorwaarden op aanvraag.');
-                }}>Algemene voorwaarden</button></li>
-                <li><button className="text-gray-400 hover:text-gray-200 transition-colors text-left" onClick={() => {
-                  alert('Cookie Beleid: Taxenzo gebruikt alleen functionele cookies voor het verbeteren van de gebruikerservaring. Geen tracking cookies zonder uw toestemming.');
-                }}>Cookie beleid</button></li>
-                <li><button className="text-gray-400 hover:text-gray-200 transition-colors text-left" onClick={() => {
-                  alert('AVG Compliance: Taxenzo is volledig AVG-compliant. Uw gegevens worden veilig opgeslagen in Nederland volgens de hoogste beveiligingsstandaarden.');
-                }}>AVG Compliance</button></li>
-                <li><button className="text-gray-400 hover:text-gray-200 transition-colors text-left" onClick={() => {
-                  alert('Beveiliging: 256-bit SSL encryptie, two-factor authenticatie beschikbaar, regelmatige beveiligingsaudits, en compliance met Nederlandse financiële regelgeving.');
-                }}>Beveiliging</button></li>
+                <li><a href="/privacy" className="text-gray-400 hover:text-gray-200 transition-colors">Privacybeleid</a></li>
+                <li><a href="/terms" className="text-gray-400 hover:text-gray-200 transition-colors">Algemene voorwaarden</a></li>
+                <li><a href="/cookies" className="text-gray-400 hover:text-gray-200 transition-colors">Cookie beleid</a></li>
+                <li><a href="/gdpr" className="text-gray-400 hover:text-gray-200 transition-colors">AVG Compliance</a></li>
+                <li><a href="/security" className="text-gray-400 hover:text-gray-200 transition-colors">Beveiliging</a></li>
               </ul>
             </div>
           </div>

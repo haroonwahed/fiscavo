@@ -38,9 +38,7 @@ export function Footer() {
                   window.location.href = '/chat';
                 }
               }}>Chat: 24/7 beschikbaar</button></li>
-              <li><button className="text-gray-300 hover:text-white transition-colors text-left" onClick={() => {
-                alert('Privacy & Beveiliging: Taxenzo voldoet aan alle Nederlandse privacy wetgeving (AVG). Uw gegevens worden veilig opgeslagen in Nederland en nooit gedeeld met derden zonder uw toestemming.');
-              }}>Privacy & Beveiliging</button></li>
+              <li><a href="/privacy" className="text-gray-300 hover:text-white transition-colors">Privacy & Beveiliging</a></li>
             </ul>
           </div>
         </div>
