@@ -151,7 +151,7 @@ export default function Landing() {
             </h1>
             
             <p className="text-xl lg:text-2xl mb-12 text-blue-100 max-w-3xl mx-auto leading-relaxed animate-slide-up" style={{ animationDelay: '0.2s' }}>
-              Taxenzo helpt ondernemers en organisaties met automatische BTW-aangiftes, 
+              Fiscavo helpt ondernemers en organisaties met automatische BTW-aangiftes, 
               slimme uitgavenregistratie en persoonlijk belastingadvies.
             </p>
             

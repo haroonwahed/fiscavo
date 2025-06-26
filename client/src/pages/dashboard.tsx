@@ -170,7 +170,7 @@ export default function Dashboard() {
               <div className="space-y-6">
                 {/* Dashboard Header with Blue Theme */}
                 <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl p-6 text-white">
-                  <h2 className="text-2xl font-bold mb-2">Welkom terug, Jan!</h2>
+                  <h2 className="text-2xl font-bold mb-2">Welkom terug bij Fiscavo!</h2>
                   <p className="text-blue-100 mb-4">Hier is je belastingoverzicht voor dit kwartaal</p>
                   
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">

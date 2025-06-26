@@ -112,6 +112,7 @@ A comprehensive web application providing tax advice and management tools for Du
 
 - **2024-12-26**: Completed application rebranding to Fiscavo
   - Updated application name from "BelastingAssistent" to "Fiscatax", then to "Taxenzo", and finally to "Fiscavo"
+  - Removed all remaining "Taxenzo" references throughout the application
   - Integrated custom Fiscavo logo image throughout the application
   - Updated to latest Fiscavo logo with refined blue design (fiscavo (1)_1750940637348.png)
   - Added new positioning: "Simpel | Veilig | Accuraat"
