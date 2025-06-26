@@ -39,7 +39,7 @@ export function FaqSection() {
 
   if (isLoading) {
     return (
-      <section className="mt-12" id="faq">
+      <section className="mt-12" id="faq-section">
         <h3 className="text-2xl font-bold text-gray-900 mb-6">Veelgestelde vragen</h3>
         <Card>
           <div className="p-6 animate-pulse space-y-4">
@@ -53,7 +53,7 @@ export function FaqSection() {
   }
 
   return (
-    <section className="mt-12" id="faq">
+    <section className="mt-12" id="faq-section">
       <h3 className="text-2xl font-bold text-gray-900 mb-6">Veelgestelde vragen</h3>
       <Card>
         {faqItems.map((item, index) => (

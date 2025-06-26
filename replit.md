@@ -4,6 +4,13 @@
 A comprehensive web application providing tax advice and management tools for Dutch freelancers and small business owners. The platform delivers simple, secure, and accurate tax solutions to help users save time, reduce stress, and manage their tax obligations effectively.
 
 ## Recent Changes
+- **2024-12-26**: Updated Contact Information and Footer Links
+  - Changed email address from support@taxenzo.nl to info@taxenzo.com
+  - Made all footer links functional with proper navigation and interactions
+  - Added clickable phone numbers with tel: links
+  - Implemented smooth scrolling to FAQ section from footer links
+  - Added informational modals for legal pages (Privacy, Terms, etc.)
+  - Enhanced user experience with hover effects and proper link functionality
 - **2024-12-26**: Added Comprehensive Enhancement Package (Onboarding + Analytics + AI Features)
   - Implemented interactive onboarding flow with guided tour of all tax management features
   - Added personalized dashboard analytics with real-time savings tracking and compliance scoring

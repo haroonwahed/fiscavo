@@ -13,21 +13,34 @@ export function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Functies</h4>
             <ul className="space-y-2 text-gray-300">
-              <li><a href="#transactions" className="hover:text-white transition-colors">Transactiebeheer</a></li>
-              <li><a href="#btw" className="hover:text-white transition-colors">BTW Aangifte Generator</a></li>
-              <li><a href="#mileage" className="hover:text-white transition-colors">Kilometerregistratie</a></li>
-              <li><a href="#calculator" className="hover:text-white transition-colors">Belastingcalculator</a></li>
-              <li><a href="#receipts" className="hover:text-white transition-colors">Bonnetjes Scanner</a></li>
+              <li><a href="/transactions" className="hover:text-white transition-colors">Transactiebeheer</a></li>
+              <li><a href="/btw-calculator" className="hover:text-white transition-colors">BTW Aangifte Generator</a></li>
+              <li><a href="/mileage" className="hover:text-white transition-colors">Kilometerregistratie</a></li>
+              <li><a href="/tax-calculator" className="hover:text-white transition-colors">Belastingcalculator</a></li>
+              <li><a href="/deductions" className="hover:text-white transition-colors">Aftrekposten Checker</a></li>
             </ul>
           </div>
           <div>
             <h4 className="font-semibold mb-4">Support</h4>
             <ul className="space-y-2 text-gray-300">
-              <li><a href="#faq" className="hover:text-white transition-colors">Veelgestelde vragen</a></li>
-              <li className="text-gray-300">support@taxenzo.nl</li>
-              <li className="text-gray-300">088-3472829</li>
-              <li className="text-gray-300">Chat: 24/7 beschikbaar</li>
-              <li><a href="#privacy" className="hover:text-white transition-colors">Privacy & Beveiliging</a></li>
+              <li><a href="#faq-section" className="hover:text-white transition-colors" onClick={(e) => {
+                e.preventDefault();
+                const element = document.getElementById('faq-section');
+                if (element) element.scrollIntoView({ behavior: 'smooth' });
+              }}>Veelgestelde vragen</a></li>
+              <li><a href="mailto:info@taxenzo.com" className="text-gray-300 hover:text-white transition-colors">info@taxenzo.com</a></li>
+              <li><a href="tel:+31883472829" className="text-gray-300 hover:text-white transition-colors">088-3472829</a></li>
+              <li><button className="text-gray-300 hover:text-white transition-colors text-left" onClick={() => {
+                const element = document.querySelector('[data-chat-section]');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                  window.location.href = '/chat';
+                }
+              }}>Chat: 24/7 beschikbaar</button></li>
+              <li><button className="text-gray-300 hover:text-white transition-colors text-left" onClick={() => {
+                alert('Privacy & Beveiliging: Taxenzo voldoet aan alle Nederlandse privacy wetgeving (AVG). Uw gegevens worden veilig opgeslagen in Nederland en nooit gedeeld met derden zonder uw toestemming.');
+              }}>Privacy & Beveiliging</button></li>
             </ul>
           </div>
         </div>

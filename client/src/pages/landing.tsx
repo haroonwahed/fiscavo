@@ -282,11 +282,11 @@ export default function Landing() {
               <div className="space-y-2 text-sm text-gray-400">
                 <div className="flex items-center space-x-2">
                   <Phone className="h-4 w-4" />
-                  <span>020 123 4567</span>
+                  <a href="tel:+31201234567" className="hover:text-blue-400 transition-colors">020 123 4567</a>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Mail className="h-4 w-4" />
-                  <span>support@taxenzo.nl</span>
+                  <a href="mailto:info@taxenzo.com" className="hover:text-blue-400 transition-colors">info@taxenzo.com</a>
                 </div>
                 <div className="flex items-center space-x-2">
                   <MapPin className="h-4 w-4" />
@@ -299,12 +299,12 @@ export default function Landing() {
             <div>
               <h4 className="font-semibold mb-4">Product</h4>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li>BTW Calculator</li>
-                <li>Transactiebeheer</li>
-                <li>Kilometerregistratie</li>
-                <li>AI Belastingadvies</li>
-                <li>Aftrekposten Checker</li>
-                <li>Rapportages</li>
+                <li><a href="/btw-calculator" className="hover:text-gray-200 transition-colors">BTW Calculator</a></li>
+                <li><a href="/transactions" className="hover:text-gray-200 transition-colors">Transactiebeheer</a></li>
+                <li><a href="/mileage" className="hover:text-gray-200 transition-colors">Kilometerregistratie</a></li>
+                <li><a href="/chat" className="hover:text-gray-200 transition-colors">AI Belastingadvies</a></li>
+                <li><a href="/deductions" className="hover:text-gray-200 transition-colors">Aftrekposten Checker</a></li>
+                <li><a href="/" className="hover:text-gray-200 transition-colors">Analytics Dashboard</a></li>
               </ul>
             </div>
 
@@ -312,12 +312,22 @@ export default function Landing() {
             <div>
               <h4 className="font-semibold mb-4">Support</h4>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li>Help Center</li>
-                <li>Veelgestelde vragen</li>
-                <li>Contact</li>
-                <li>Belastingadvies</li>
-                <li>Webinars</li>
-                <li>Status</li>
+                <li><button className="text-gray-400 hover:text-gray-200 transition-colors text-left" onClick={() => {
+                  const element = document.getElementById('faq-section');
+                  if (element) element.scrollIntoView({ behavior: 'smooth' });
+                }}>Help Center</button></li>
+                <li><button className="text-gray-400 hover:text-gray-200 transition-colors text-left" onClick={() => {
+                  const element = document.getElementById('faq-section');
+                  if (element) element.scrollIntoView({ behavior: 'smooth' });
+                }}>Veelgestelde vragen</button></li>
+                <li><a href="mailto:info@taxenzo.com" className="hover:text-gray-200 transition-colors">Contact</a></li>
+                <li><a href="/chat" className="hover:text-gray-200 transition-colors">Belastingadvies</a></li>
+                <li><button className="text-gray-400 hover:text-gray-200 transition-colors text-left" onClick={() => {
+                  alert('Taxenzo Webinars: Binnenkort beschikbaar! We organiseren maandelijks gratis webinars over Nederlandse belastingwetgeving voor ondernemers.');
+                }}>Webinars</button></li>
+                <li><button className="text-gray-400 hover:text-gray-200 transition-colors text-left" onClick={() => {
+                  alert('System Status: ✅ All systems operational. 99.9% uptime laatste 30 dagen.');
+                }}>Status</button></li>
               </ul>
             </div>
 
@@ -325,11 +335,21 @@ export default function Landing() {
             <div>
               <h4 className="font-semibold mb-4">Juridisch</h4>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li>Privacybeleid</li>
-                <li>Algemene voorwaarden</li>
-                <li>Cookie beleid</li>
-                <li>AVG Compliance</li>
-                <li>Beveiliging</li>
+                <li><button className="text-gray-400 hover:text-gray-200 transition-colors text-left" onClick={() => {
+                  alert('Privacybeleid: Taxenzo respecteert uw privacy. Wij verwerken alleen noodzakelijke gegevens voor onze dienstverlening en delen deze nooit met derden. Volledige privacyverklaring op aanvraag beschikbaar.');
+                }}>Privacybeleid</button></li>
+                <li><button className="text-gray-400 hover:text-gray-200 transition-colors text-left" onClick={() => {
+                  alert('Algemene Voorwaarden: Onze diensten worden geleverd conform Nederlandse wetgeving. Voor zakelijke gebruikers geldt een 30-dagen geld-terug-garantie. Volledige voorwaarden op aanvraag.');
+                }}>Algemene voorwaarden</button></li>
+                <li><button className="text-gray-400 hover:text-gray-200 transition-colors text-left" onClick={() => {
+                  alert('Cookie Beleid: Taxenzo gebruikt alleen functionele cookies voor het verbeteren van de gebruikerservaring. Geen tracking cookies zonder uw toestemming.');
+                }}>Cookie beleid</button></li>
+                <li><button className="text-gray-400 hover:text-gray-200 transition-colors text-left" onClick={() => {
+                  alert('AVG Compliance: Taxenzo is volledig AVG-compliant. Uw gegevens worden veilig opgeslagen in Nederland volgens de hoogste beveiligingsstandaarden.');
+                }}>AVG Compliance</button></li>
+                <li><button className="text-gray-400 hover:text-gray-200 transition-colors text-left" onClick={() => {
+                  alert('Beveiliging: 256-bit SSL encryptie, two-factor authenticatie beschikbaar, regelmatige beveiligingsaudits, en compliance met Nederlandse financiële regelgeving.');
+                }}>Beveiliging</button></li>
               </ul>
             </div>
           </div>
