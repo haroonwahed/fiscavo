@@ -4,6 +4,15 @@
 A comprehensive web application providing tax advice and management tools for Dutch freelancers and small business owners. The platform delivers simple, secure, and accurate tax solutions to help users save time, reduce stress, and manage their tax obligations effectively.
 
 ## Recent Changes
+- **2024-12-26**: Fixed Design System Consistency and Navigation Issues
+  - Removed duplicate pricing (Tarieven) sections to eliminate redundancy
+  - Fixed purple gradient backgrounds to match consistent blue theme (#2563EB, #1D4ED8)
+  - Updated .bg-gradient-premium CSS class from purple to blue gradient
+  - Resolved JSX syntax errors that were preventing application startup
+  - Fixed CSS @apply group utility error in feature cards
+  - Corrected Logo component import path to maintain proper functionality
+  - Ensured single, clean pricing section with proper navigation
+  - Application now runs smoothly with consistent blue brand colors throughout
 - **2024-12-26**: Implemented Advanced AI and Business Intelligence Features
   - Enhanced AI capabilities with bulk transaction categorization using Claude 4.0 Sonnet
   - Added advanced receipt OCR scanning with image analysis and VAT extraction
