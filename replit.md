@@ -4,6 +4,16 @@
 A comprehensive web application providing tax advice and management tools for Dutch freelancers and small business owners. The platform delivers simple, secure, and accurate tax solutions to help users save time, reduce stress, and manage their tax obligations effectively.
 
 ## Recent Changes
+- **2024-12-26**: Fixed Critical API and Database Issues + Completed User Personalization
+  - Fixed all API mutation issues preventing tax data from saving properly
+  - Corrected PostgreSQL database schema type mismatches for proper data persistence
+  - Updated all tax management components to use correct apiRequest syntax
+  - Resolved Drizzle ORM query filtering issues for proper data retrieval
+  - Integrated authenticated user system across all tax tools (transactions, BTW, mileage, calculations)
+  - Replaced hardcoded user IDs with actual authenticated user data for full personalization
+  - Added personalized welcome messages using authenticated user information
+  - Successfully pushed corrected database schema to PostgreSQL
+
 - **2024-12-26**: Implemented Replit OpenID Connect Authentication System
   - Added complete user authentication using Replit's secure OAuth system
   - Created PostgreSQL user and session tables with proper schema

@@ -9,6 +9,7 @@ import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Calculator, TrendingUp, PieChart, AlertTriangle } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
+import { useAuth } from "@/hooks/useAuth";
 
 interface TaxCalculation {
   id: number;
@@ -23,6 +24,7 @@ interface TaxCalculation {
 }
 
 export function TaxCalculator() {
+  const { user } = useAuth();
   const [selectedYear, setSelectedYear] = useState<number>(2024);
   const queryClient = useQueryClient();
 
@@ -40,7 +42,7 @@ export function TaxCalculator() {
 
   const calculateTax = useMutation({
     mutationFn: async ({ year }: { year: number }) => {
-      return apiRequest("POST", "/api/tax-calculations/calculate", { userId: 1, year });
+      return apiRequest("POST", "/api/tax-calculations/calculate", { userId: (user as any)?.id, year });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/tax-calculations"] });

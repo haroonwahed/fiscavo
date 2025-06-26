@@ -10,6 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { Progress } from "@/components/ui/progress";
 import { Calculator, FileText, Download, Send } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
+import { useAuth } from "@/hooks/useAuth";
 
 interface BtwReturn {
   id: number;
@@ -26,6 +27,7 @@ interface BtwReturn {
 }
 
 export function BtwGenerator() {
+  const { user } = useAuth();
   const [selectedQuarter, setSelectedQuarter] = useState<number>(4);
   const [selectedYear, setSelectedYear] = useState<number>(2024);
   const queryClient = useQueryClient();
@@ -36,7 +38,7 @@ export function BtwGenerator() {
 
   const generateBtwReturn = useMutation({
     mutationFn: async ({ quarter, year }: { quarter: number; year: number }) => {
-      return apiRequest("POST", "/api/btw-returns/generate", { userId: 1, quarter, year });
+      return apiRequest("POST", "/api/btw-returns/generate", { userId: (user as any)?.id, quarter, year });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/btw-returns"] });

@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Car, Plus, MapPin, Calculator } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
+import { useAuth } from "@/hooks/useAuth";
 
 interface MileageEntry {
   id: number;
@@ -24,6 +25,7 @@ interface MileageEntry {
 }
 
 export function MileageTracker() {
+  const { user } = useAuth();
   const [showAddEntry, setShowAddEntry] = useState(false);
   const [formData, setFormData] = useState({
     date: new Date().toISOString().split('T')[0],
@@ -43,7 +45,7 @@ export function MileageTracker() {
     mutationFn: async (data: any) => {
       return apiRequest("POST", "/api/mileage", {
         ...data,
-        userId: 1,
+        userId: (user as any)?.id,
       });
     },
     onSuccess: () => {

@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Upload, Plus, CheckCircle, AlertCircle } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
+import { useAuth } from "@/hooks/useAuth";
 
 interface Transaction {
   id: number;
@@ -32,6 +33,7 @@ interface BankAccount {
 }
 
 export function TransactionManager() {
+  const { user } = useAuth();
   const [selectedAccount, setSelectedAccount] = useState<number | null>(null);
   const [showAddTransaction, setShowAddTransaction] = useState(false);
   const queryClient = useQueryClient();
