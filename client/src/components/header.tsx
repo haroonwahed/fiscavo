@@ -35,9 +35,13 @@ export function Header() {
                   <Link key={item.href} href={item.href}>
                     <div className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                       isActive 
-                        ? 'text-primary bg-blue-50 border border-blue-200' 
+                        ? 'border' 
                         : 'text-gray-600 hover:text-primary hover:bg-gray-50'
-                    }`}>
+                    }`} style={isActive ? { 
+                      color: 'var(--color-primary)', 
+                      backgroundColor: 'rgba(54, 141, 217, 0.1)', 
+                      borderColor: 'var(--color-primary)' 
+                    } : {}}>
                       <Icon className="w-4 h-4" />
                       {item.label}
                     </div>

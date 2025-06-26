@@ -83,15 +83,15 @@ export default function Landing() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'var(--color-primary)' }}>
                 <Calculator className="h-5 w-5 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">Fiscatax</h1>
-                <p className="text-xs text-blue-600 font-medium">Simpel | Veilig | Accuraat</p>
+                <h1 className="text-xl font-bold" style={{ color: 'var(--color-text-main)' }}>Fiscatax</h1>
+                <p className="text-xs font-medium" style={{ color: 'var(--color-primary)' }}>Simpel | Veilig | Accuraat</p>
               </div>
             </div>
-            <Button onClick={handleGetStarted} className="bg-blue-600 hover:bg-blue-700">
+            <Button onClick={handleGetStarted} style={{ backgroundColor: 'var(--color-primary)', color: 'white' }} className="hover:opacity-90">
               Inloggen
             </Button>
           </div>
@@ -99,14 +99,14 @@ export default function Landing() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white">
+      <section className="text-white" style={{ background: `linear-gradient(to right, var(--color-primary), var(--color-primary-dark))` }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
             <h1 className="text-5xl font-bold mb-6">
               Nederlandse belastingen<br />
-              <span className="text-blue-200">eindelijk simpel</span>
+              <span style={{ color: 'rgba(255, 255, 255, 0.8)' }}>eindelijk simpel</span>
             </h1>
-            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl mb-8 max-w-3xl mx-auto" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
               Fiscatax helpt ZZP'ers en BV-eigenaren met automatische BTW-aangiftes, 
               slimme uitgavenregistratie en persoonlijk belastingadvies.
             </p>
@@ -114,7 +114,8 @@ export default function Landing() {
               <Button 
                 onClick={handleGetStarted}
                 size="lg"
-                className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-3 text-lg"
+                className="px-8 py-3 text-lg hover:opacity-90"
+                style={{ backgroundColor: 'white', color: 'var(--color-primary)' }}
               >
                 Start gratis proefperiode
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -122,12 +123,13 @@ export default function Landing() {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3 text-lg"
+                className="border-white text-white hover:bg-white px-8 py-3 text-lg"
+                style={{ '--hover-color': 'var(--color-primary)' } as any}
               >
                 Bekijk demo
               </Button>
             </div>
-            <p className="text-blue-200 text-sm mt-4">
+            <p className="text-sm mt-4" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
               Geen creditcard vereist • 30 dagen gratis • Cancel elk moment
             </p>
           </div>
@@ -224,23 +226,24 @@ export default function Landing() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-blue-600">
+      <section className="py-20" style={{ backgroundColor: 'var(--color-primary)' }}>
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-white mb-4">
             Klaar om je belastingstress te verminderen?
           </h2>
-          <p className="text-xl text-blue-100 mb-8">
+          <p className="text-xl mb-8" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
             Sluit je aan bij duizenden ondernemers die al profiteren van geautomatiseerde belastingadministratie.
           </p>
           <Button 
             onClick={handleGetStarted}
             size="lg"
-            className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-3 text-lg"
+            className="px-8 py-3 text-lg hover:opacity-90"
+            style={{ backgroundColor: 'white', color: 'var(--color-primary)' }}
           >
             Begin nu gratis
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
-          <p className="text-blue-200 text-sm mt-4">
+          <p className="text-sm mt-4" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
             Probeer 30 dagen gratis • Geen setup kosten • Nederlandse support
           </p>
         </div>
@@ -253,7 +256,7 @@ export default function Landing() {
             {/* Company Info */}
             <div className="col-span-1">
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-6 h-6 bg-blue-600 rounded flex items-center justify-center">
+                <div className="w-6 h-6 rounded flex items-center justify-center" style={{ backgroundColor: 'var(--color-primary)' }}>
                   <Calculator className="h-4 w-4 text-white" />
                 </div>
                 <h3 className="text-lg font-bold">Fiscatax</h3>
