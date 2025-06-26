@@ -178,7 +178,7 @@ export default function Dashboard() {
                       <div className="flex items-center justify-between">
                         <div>
                           <p className="text-blue-100 text-sm">BTW te betalen</p>
-                          <p className="text-2xl font-bold">€9.498</p>
+                          <p className="text-2xl font-bold text-white">€9.498</p>
                         </div>
                         <TrendingUp className="h-8 w-8 text-blue-200" />
                       </div>
@@ -187,7 +187,7 @@ export default function Dashboard() {
                       <div className="flex items-center justify-between">
                         <div>
                           <p className="text-blue-100 text-sm">Openstaande facturen</p>
-                          <p className="text-2xl font-bold">€12.450</p>
+                          <p className="text-2xl font-bold text-white">€12.450</p>
                         </div>
                         <DollarSign className="h-8 w-8 text-blue-200" />
                       </div>
@@ -196,7 +196,7 @@ export default function Dashboard() {
                       <div className="flex items-center justify-between">
                         <div>
                           <p className="text-blue-100 text-sm">Dagen tot deadline</p>
-                          <p className="text-2xl font-bold">12</p>
+                          <p className="text-2xl font-bold text-white">12</p>
                         </div>
                         <Clock className="h-8 w-8 text-blue-200" />
                       </div>

@@ -248,7 +248,7 @@ export default function Landing() {
               </div>
               <div className="text-3xl font-bold text-gray-900 mb-2">12.000+</div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Tevreden klanten</h3>
-              <p className="text-gray-600 leading-relaxed">vertrouwen dagelijks op Taxenzo voor hun complete belastingbeheer</p>
+              <p className="text-gray-600 leading-relaxed">vertrouwen dagelijks op Fiscavo voor hun complete belastingbeheer</p>
             </div>
           </div>
 
