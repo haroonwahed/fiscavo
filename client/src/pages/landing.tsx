@@ -156,7 +156,7 @@ export default function Landing() {
                 variant="outline" 
                 size="lg"
                 onClick={() => setShowDemo(true)}
-                className="border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-4 text-lg rounded-xl backdrop-blur-sm transition-all duration-300"
+                className="bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white font-semibold px-8 py-4 text-lg rounded-xl backdrop-blur-sm transition-all duration-300"
               >
                 <span className="flex items-center">
                   Bekijk demo
@@ -308,7 +308,12 @@ export default function Landing() {
                 <Card 
                   key={index} 
                   className="card-premium cursor-pointer hover:scale-105 hover:shadow-xl group border-0 bg-white"
-                  onClick={() => window.location.href = getFeatureUrl(feature.title)}
+                  onClick={() => {
+                    const url = getFeatureUrl(feature.title);
+                    if (url !== '/') {
+                      window.location.href = url;
+                    }
+                  }}
                 >
                   <CardHeader className="pb-4">
                     <div className={`w-16 h-16 rounded-2xl ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-300 shadow-lg`}>
@@ -322,7 +327,17 @@ export default function Landing() {
                     <CardDescription className="text-gray-600 text-base leading-relaxed mb-6">
                       {feature.description}
                     </CardDescription>
-                    <Button variant="ghost" className="w-full text-blue-600 hover:bg-blue-50 font-semibold rounded-xl transition-all duration-200 group-hover:bg-blue-600 group-hover:text-white">
+                    <Button 
+                      variant="ghost" 
+                      className="w-full text-blue-600 hover:bg-blue-50 font-semibold rounded-xl transition-all duration-200 group-hover:bg-blue-600 group-hover:text-white"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const url = getFeatureUrl(feature.title);
+                        if (url !== '/') {
+                          window.location.href = url;
+                        }
+                      }}
+                    >
                       Probeer nu
                       <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
@@ -334,27 +349,27 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Standalone FAQ Section */}
       <FaqSection />
       
       {/* CTA Section */}
-      <section className="py-20" style={{ backgroundColor: 'var(--color-primary)' }}>
+      <section className="py-20 bg-blue-600">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-white mb-4">
             Klaar om je belastingstress te verminderen?
           </h2>
-          <p className="text-xl mb-8" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+          <p className="text-xl mb-8 text-blue-100">
             Sluit je aan bij duizenden ondernemers die al profiteren van geautomatiseerde belastingadministratie.
           </p>
           <Button 
             onClick={handleGetStarted}
             size="lg"
-            className="px-8 py-3 text-lg hover:opacity-90"
-            style={{ backgroundColor: 'white', color: 'var(--color-primary)' }}
+            className="bg-white text-blue-600 hover:bg-gray-50 px-8 py-3 text-lg font-semibold rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300"
           >
             Begin nu gratis
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
-          <p className="text-sm mt-4" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
+          <p className="text-sm mt-4 text-blue-100">
             Probeer 30 dagen gratis • Geen setup kosten • Nederlandse support
           </p>
         </div>
