@@ -98,11 +98,11 @@ export default function Landing() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900">
       {showDemo && <DemoSection onClose={() => setShowDemo(false)} />}
       
       {/* Premium Header */}
-      <header className="bg-white/80 backdrop-blur-xl border-b border-gray-100 sticky top-0 z-50">
+      <header className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-100 dark:border-gray-700 sticky top-0 z-50">
         <div className="container-premium">
           <div className="flex justify-between items-center py-6">
             <Logo size="md" className="animate-fade-in" />
@@ -130,7 +130,7 @@ export default function Landing() {
 
       {/* Premium Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 dark:from-blue-800 dark:via-blue-900 dark:to-indigo-900"></div>
         <div className="absolute inset-0 opacity-10">
           <div className="w-full h-full bg-repeat" style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='60' cy='60' r='30'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
@@ -500,32 +500,159 @@ export default function Landing() {
 
           {/* Additional Info */}
           <div className="text-center mt-16">
-            <div className="bg-blue-50 rounded-2xl p-8 max-w-4xl mx-auto">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            <div className="bg-blue-50 dark:bg-blue-900/30 rounded-2xl p-8 max-w-4xl mx-auto">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
                 Waarom kiezen voor Fiscavo?
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
                 <div className="flex items-start space-x-3">
                   <Shield className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">100% Veilig</h4>
-                    <p className="text-gray-600 text-sm">Bank-level encryptie en AVG-compliant</p>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">100% Veilig</h4>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">Bank-level encryptie en AVG-compliant</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   <Clock className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Bespaar Tijd</h4>
-                    <p className="text-gray-600 text-sm">Gemiddeld 15 uur per maand minder administratie</p>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Bespaar Tijd</h4>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">Gemiddeld 15 uur per maand minder administratie</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   <TrendingUp className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">99.8% Accuraat</h4>
-                    <p className="text-gray-600 text-sm">AI-powered berekeningen voor maximale precisie</p>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">99.8% Accuraat</h4>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">AI-powered berekeningen voor maximale precisie</p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section id="pricing" className="py-20 bg-gray-50 dark:bg-gray-900">
+        <div className="container-premium">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+              Transparante Prijzen
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Kies het plan dat bij jouw onderneming past. Alle plannen bevatten Nederlandse support en 30 dagen geld-terug-garantie.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Starter Plan */}
+            <div className="pricing-card">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Starter</h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-6">Perfect voor ZZP'ers</p>
+                <div className="text-4xl font-bold text-gray-900 dark:text-white">
+                  €19
+                  <span className="text-lg font-normal text-gray-500">/maand</span>
+                </div>
+              </div>
+              
+              <ul className="check-list space-y-3 mb-8">
+                <li>Tot 50 transacties per maand</li>
+                <li>Basis BTW berekeningen</li>
+                <li>Kilometerregistratie</li>
+                <li>Email support</li>
+                <li>Mobiele app</li>
+              </ul>
+              
+              <Button 
+                onClick={handleGetStarted}
+                className="w-full btn-secondary"
+              >
+                Begin met Starter
+              </Button>
+            </div>
+
+            {/* Professional Plan - Featured */}
+            <div className="pricing-card featured">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <Badge className="bg-blue-600 text-white px-4 py-1">
+                  Meest Populair
+                </Badge>
+              </div>
+              
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Professional</h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-6">Voor groeiende bedrijven</p>
+                <div className="text-4xl font-bold text-blue-600">
+                  €49
+                  <span className="text-lg font-normal text-gray-500">/maand</span>
+                </div>
+              </div>
+              
+              <ul className="check-list space-y-3 mb-8">
+                <li>Onbeperkte transacties</li>
+                <li>AI-powered categorisering</li>
+                <li>Geavanceerde rapportages</li>
+                <li>Bankintegraties</li>
+                <li>Prioriteit support</li>
+                <li>Export naar accountant</li>
+                <li>Automatische BTW aangifte</li>
+              </ul>
+              
+              <Button 
+                onClick={handleGetStarted}
+                className="w-full btn-primary"
+              >
+                Begin met Professional
+              </Button>
+            </div>
+
+            {/* Enterprise Plan */}
+            <div className="pricing-card">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Enterprise</h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-6">Voor grote organisaties</p>
+                <div className="text-4xl font-bold text-gray-900 dark:text-white">
+                  €99
+                  <span className="text-lg font-normal text-gray-500">/maand</span>
+                </div>
+              </div>
+              
+              <ul className="check-list space-y-3 mb-8">
+                <li>Alles van Professional</li>
+                <li>Multi-user toegang</li>
+                <li>Custom integraties</li>
+                <li>Dedicated accountmanager</li>
+                <li>Advanced compliance tools</li>
+                <li>API toegang</li>
+                <li>SLA garantie</li>
+              </ul>
+              
+              <Button 
+                onClick={handleGetStarted}
+                className="w-full btn-secondary"
+              >
+                Begin met Enterprise
+              </Button>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              Alle plannen bevatten een 30-dagen gratis proefperiode
+            </p>
+            <div className="flex justify-center items-center space-x-8 text-sm text-gray-500 dark:text-gray-400">
+              <div className="flex items-center">
+                <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                Geen setup kosten
+              </div>
+              <div className="flex items-center">
+                <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                Annuleer wanneer je wilt
+              </div>
+              <div className="flex items-center">
+                <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                Nederlandse support
               </div>
             </div>
           </div>
@@ -536,7 +663,7 @@ export default function Landing() {
       <FaqSection />
       
       {/* CTA Section */}
-      <section className="py-20 bg-blue-600">
+      <section className="py-20 bg-blue-600 dark:bg-blue-700">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6 tracking-tight">
             <span className="text-white">Klaar om je belastingstress</span>
