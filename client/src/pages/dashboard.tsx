@@ -28,8 +28,8 @@ import { QuickActions } from "@/components/quick-actions";
 import { UpcomingDeadlines } from "@/components/upcoming-deadlines";
 import { ToolsSection } from "@/components/tools-section";
 import { FaqSection } from "@/components/faq-section";
-import { FloatingChatButton } from "@/components/ui/floating-chat-button";
 import { Logo } from "@/components/ui/logo";
+import { FloatingChatButton } from "@/components/ui/floating-chat-button";
 import { ChatAssistant } from "@/components/chat-assistant";
 import { TransactionManager } from "@/components/transaction-manager";
 import { BtwGenerator } from "@/components/btw-generator";
@@ -75,7 +75,7 @@ export default function Dashboard() {
                 {sidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </Button>
               <div className="flex items-center">
-                <Logo size="lg" variant="default" />
+                <Logo size="sm" variant="default" />
               </div>
             </div>
             
@@ -165,7 +165,7 @@ export default function Dashboard() {
                 {/* Dashboard Header with Blue Theme */}
                 <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl p-6 text-white">
                   <div className="flex items-center mb-4">
-                    <Logo size="md" variant="white" className="mr-4" />
+                    <Logo size="sm" variant="white" className="mr-4" />
                     <div>
                       <h2 className="text-2xl font-bold">Welkom terug!</h2>
                       <p className="text-blue-100 text-sm">Simpel | Veilig | Accuraat</p>
