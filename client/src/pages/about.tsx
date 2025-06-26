@@ -261,7 +261,7 @@ export default function About() {
               <Button 
                 size="lg" 
                 className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 px-8 py-4 text-lg"
-                onClick={() => setLocation("/api/login")}
+                onClick={() => setLocation("/auth")}
               >
                 Start gratis proefperiode
               </Button>

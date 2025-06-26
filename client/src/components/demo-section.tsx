@@ -206,7 +206,7 @@ export function DemoSection({ onClose }: DemoProps) {
                         style={{ backgroundColor: 'var(--color-primary)' }}
                         onClick={() => {
                           onClose();
-                          window.location.href = '/api/login';
+                          window.location.href = '/auth';
                         }}
                       >
                         Start nu - Genereer echte BTW aangiftes
@@ -284,7 +284,7 @@ export function DemoSection({ onClose }: DemoProps) {
                         className="w-full bg-green-600 hover:bg-green-700"
                         onClick={() => {
                           onClose();
-                          window.location.href = '/api/login';
+                          window.location.href = '/auth';
                         }}
                       >
                         Start nu - Bereken je echte belasting
@@ -399,7 +399,7 @@ export function DemoSection({ onClose }: DemoProps) {
                     className="w-full bg-orange-600 hover:bg-orange-700"
                     onClick={() => {
                       onClose();
-                      window.location.href = '/api/login';
+                      window.location.href = '/auth';
                     }}
                   >
                     Start nu - Chat met AI assistent
@@ -472,7 +472,7 @@ export function DemoSection({ onClose }: DemoProps) {
                       className="w-full mt-4 bg-red-600 hover:bg-red-700"
                       onClick={() => {
                         onClose();
-                        window.location.href = '/api/login';
+                        window.location.href = '/auth';
                       }}
                     >
                       Start aftrekposten scan
@@ -547,7 +547,7 @@ export function DemoSection({ onClose }: DemoProps) {
                     className="w-full bg-indigo-600 hover:bg-indigo-700"
                     onClick={() => {
                       onClose();
-                      window.location.href = '/api/login';
+                      window.location.href = '/auth';
                     }}
                   >
                     Koppel je bankrekening
@@ -568,7 +568,7 @@ export function DemoSection({ onClose }: DemoProps) {
             style={{ backgroundColor: 'var(--color-primary)' }}
             onClick={() => {
               onClose();
-              window.location.href = '/api/login';
+              window.location.href = '/auth';
             }}
           >
             Begin nu gratis

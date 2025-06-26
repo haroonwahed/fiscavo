@@ -86,7 +86,7 @@ export function Header() {
               </DropdownMenu>
             ) : (
               <Button 
-                onClick={() => window.location.href = '/api/login'}
+                onClick={() => window.location.href = '/auth'}
                 className="btn-primary"
               >
                 Inloggen
