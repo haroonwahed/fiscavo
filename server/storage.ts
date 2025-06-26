@@ -684,6 +684,7 @@ async function seedDatabase() {
 
     // Seed FAQ items
     const faqs = [
+      // Dutch Tax System Questions
       {
         question: "Wanneer moet ik BTW aangifte doen als ZZP'er?",
         answer: "Als ZZP'er moet je BTW aangifte doen indien je BTW-plichtig bent (omzet >€20.000). De aangiften zijn per kwartaal: Q1: Uiterlijk 30 april, Q2: Uiterlijk 31 juli, Q3: Uiterlijk 31 oktober, Q4: Uiterlijk 31 januari (volgend jaar).",
@@ -692,19 +693,112 @@ async function seedDatabase() {
         tags: ["btw", "deadlines", "kwartaal"],
       },
       {
-        question: "Welke kosten kan ik aftrekken als webdeveloper?",
-        answer: "Als webdeveloper kun je o.a. aftrekken: laptop en software, internetkosten, telefoonkosten, thuiswerkplek (€2/dag), cursussen en boeken, hosting en domeinkosten, kantoorbenodigdheden.",
+        question: "Wat is de kleine ondernemersregeling (KOR)?",
+        answer: "Met de KOR hoef je geen BTW te berekenen over je omzet als deze onder €20.000 blijft. Je bent dan geen BTW verschuldigd, maar kunt ook geen BTW terugvragen. Overschrijding betekent automatisch BTW-plicht vanaf 1 januari van dat jaar.",
+        category: "btw",
+        businessType: "zzp",
+        tags: ["kor", "btw", "€20000"],
+      },
+      {
+        question: "Welke kosten zijn aftrekbaar voor ondernemers?",
+        answer: "Zakelijke kosten zoals kantoorbenodigdheden, software, telefoon/internet, reiskosten (€0.23/km), cursussen, kantoorruimte, marketing, en representatiekosten (max 1,5% omzet) zijn aftrekbaar. Kosten moeten zakelijk zijn en bewijsstukken bewaard worden.",
         category: "aftrekposten",
         businessType: "both",
-        tags: ["aftrekposten", "IT", "webdevelopment"],
+        tags: ["aftrekposten", "kosten", "zakelijk"],
+      },
+      {
+        question: "Hoe werkt de thuiswerkaftrek?",
+        answer: "Je kunt €2 per dag aftrekken voor thuiswerken (max €734/jaar). Alternatief: werkelijke kosten berekenen op basis van m² kantoorruimte t.o.v. totale woning. Kies de methode die het voordeligst is.",
+        category: "aftrekposten",
+        businessType: "both",
+        tags: ["thuiswerk", "€2", "kantoor"],
       },
       {
         question: "Wat is het verschil tussen ZZP en BV voor belastingen?",
-        answer: "ZZP'ers betalen inkomstenbelasting over winst, BV's betalen vennootschapsbelasting (25.8%). BV biedt meer fiscale mogelijkheden maar ook meer administratieve lasten en kosten.",
+        answer: "ZZP: Inkomstenbelasting (36,93-49,5%), alle winst is inkomen. BV: Vennootschapsbelasting (25,8%), salaris/dividend apart belast. BV biedt meer fiscale mogelijkheden maar meer administratie.",
         category: "algemeen",
         businessType: "both",
         tags: ["zzp", "bv", "verschillen"],
       },
+      {
+        question: "Wanneer moet ik overstappen van ZZP naar BV?",
+        answer: "Overweeg een BV bij €50.000+ winst per jaar. Voordelen: lagere belasting op ingehouden winst, pensioenopbouw, kredietwaardigheid. Nadelen: meer administratie, kosten (€1000+/jaar), dubbele belasting op uitkeringen.",
+        category: "algemeen",
+        businessType: "both",
+        tags: ["zzp", "bv", "overstap"],
+      },
+      {
+        question: "Hoe werkt de zelfstandigenaftrek?",
+        answer: "Voor 2024: €7.280 basisaftrek + €2.520 aanvullende aftrek (1250+ uur). Totaal €9.800 aftrek. Voorwaarden: minimaal 1250 uur ondernemersactiviteiten en voldoende winst. Geldt alleen voor ZZP'ers.",
+        category: "aftrekposten",
+        businessType: "zzp",
+        tags: ["zelfstandigenaftrek", "€9800", "1250uur"],
+      },
+      {
+        question: "Wat zijn de belastingschijven voor 2024?",
+        answer: "Schijf 1: €0-37.149 (36,93%), Schijf 2: €37.149-73.031 (37,93%), Schijf 3: €73.031+ (49,5%). Dit is exclusief lokale belastingen en premies. AOW-leeftijd heeft andere schijven.",
+        category: "algemeen",
+        businessType: "both",
+        tags: ["belastingschijven", "2024", "percentages"],
+      },
+      
+      // Application-Specific Questions
+      {
+        question: "Hoe importeer ik mijn banktransacties in Fiscatax?",
+        answer: "Ga naar het Transacties-tabblad en klik op 'Import'. Upload je CSV-bestand van je bank (ING, Rabobank, ABN AMRO). Fiscatax herkent automatisch het formaat en categoriseert transacties. Controleer en bevestig de categorieën.",
+        category: "applicatie",
+        businessType: "both",
+        tags: ["import", "banktransacties", "csv"],
+      },
+      {
+        question: "Hoe genereert Fiscatax mijn BTW aangifte?",
+        answer: "Fiscatax berekent automatisch je BTW aangifte op basis van gecategoriseerde transacties. Selecteer het kwartaal, klik 'Genereren' en controleer de berekening. Je kunt de aangifte downloaden als PDF of direct versturen naar de Belastingdienst.",
+        category: "applicatie",
+        businessType: "both",
+        tags: ["btw-aangifte", "automatisch", "pdf"],
+      },
+      {
+        question: "Worden mijn gegevens veilig opgeslagen?",
+        answer: "Ja, Fiscatax gebruikt bankwaardige beveiliging met 256-bit encryptie. Gegevens worden opgeslagen in Europa conform AVG. We delen nooit data met derden. Je kunt altijd je volledige data downloaden of account verwijderen.",
+        category: "veiligheid",
+        businessType: "both",
+        tags: ["beveiliging", "privacy", "avg"],
+      },
+      {
+        question: "Kan ik mijn kilometerregistratie automatiseren?",
+        answer: "Ja, gebruik de kilometer-tracker in Fiscatax. Voer start/eindlocatie in, de afstand wordt automatisch berekend tegen €0.23/km. Voor automatische GPS-tracking kun je externe apps koppelen via de API.",
+        category: "applicatie",
+        businessType: "both",
+        tags: ["kilometers", "gps", "€0.23"],
+      },
+      {
+        question: "Ondersteunt Fiscatax alle Nederlandse banken?",
+        answer: "Fiscatax ondersteunt CSV-export van alle grote Nederlandse banken: ING, Rabobank, ABN AMRO, ASN, Triodos, Bunq en meer. Ook internationale formats zoals MT940 worden herkend.",
+        category: "applicatie",
+        businessType: "both",
+        tags: ["banken", "ing", "rabobank"],
+      },
+      {
+        question: "Hoe accuraat zijn de belastingberekeningen?",
+        answer: "Fiscatax gebruikt de officiële belastingtabellen van 2024. Berekeningen zijn 99.9% accuraat voor standaard situaties. Voor complexe zaken adviseren we altijd overleg met een belastingadviseur. Updates volgen automatisch wetswijzigingen.",
+        category: "applicatie",
+        businessType: "both",
+        tags: ["accuraat", "belastingtabellen", "2024"],
+      },
+      {
+        question: "Kan ik facturen scannen met Fiscatax?",
+        answer: "Ja, de receipt-scanner gebruikt OCR-technologie om bedrag, datum en leverancier automatisch uit te lezen. Upload foto's van bonnetjes en facturen, Fiscatax categoriseert automatisch en koppelt aan de juiste uitgavencategorie.",
+        category: "applicatie",
+        businessType: "both",
+        tags: ["facturen", "ocr", "scanner"],
+      },
+      {
+        question: "Wat kost Fiscatax?",
+        answer: "Fiscatax werkt met een simpel abonnement van €9.99/maand voor ZZP'ers en €19.99/maand voor BV's. Alle functies inbegrepen, geen verborgen kosten. 30 dagen gratis proberen zonder betalingsverplichting.",
+        category: "pricing",
+        businessType: "both",
+        tags: ["prijzen", "abonnement", "gratis-trial"],
+      }
     ];
 
     for (const faq of faqs) {

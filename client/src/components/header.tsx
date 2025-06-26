@@ -5,8 +5,8 @@ export function Header() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <h1 className="text-2xl font-bold text-primary">BelastingAssistent</h1>
-              <p className="text-xs text-gray-500">Voor ZZP'ers & BV's</p>
+              <h1 className="text-2xl font-bold text-primary">Fiscatax</h1>
+              <p className="text-xs text-gray-500">Simpel | Veilig | Accuraat</p>
             </div>
           </div>
           <nav className="hidden md:block">
