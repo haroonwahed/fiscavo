@@ -13,10 +13,10 @@
   --card-foreground: hsl(20, 14.3%, 4.1%);
   --border: hsl(20, 5.9%, 90%);
   --input: hsl(20, 5.9%, 90%);
-  --primary: hsl(215, 85%, 52%);
-  --primary-foreground: hsl(211, 100%, 99%);
-  --secondary: hsl(159, 85%, 40%);
-  --secondary-foreground: hsl(211, 100%, 99%);
+  --primary: hsl(168, 76%, 42%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(210, 40%, 98%);
+  --secondary-foreground: hsl(222.2, 84%, 4.9%);
   --accent: hsl(60, 4.8%, 95.9%);
   --accent-foreground: hsl(24, 9.8%, 10%);
   --destructive: hsl(0, 84.2%, 60.2%);
@@ -67,7 +67,11 @@
 
 @layer utilities {
   .gradient-primary {
-    background: linear-gradient(to right, hsl(215, 85%, 52%), hsl(215, 85%, 62%));
+    background: linear-gradient(135deg, hsl(168, 76%, 42%), hsl(168, 76%, 52%));
+  }
+  
+  .gradient-taxbuddy {
+    background: linear-gradient(135deg, #00c896, #0fb884);
   }
   
   .text-tax-orange {
