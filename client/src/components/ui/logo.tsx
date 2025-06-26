@@ -2,56 +2,118 @@ import { cn } from "@/lib/utils";
 
 interface LogoProps {
   className?: string;
-  variant?: "default" | "light" | "dark";
   size?: "sm" | "md" | "lg" | "xl";
+  variant?: "default" | "white" | "gradient";
 }
 
-export function Logo({ className, variant = "default", size = "md" }: LogoProps) {
-  const sizeClasses = {
-    sm: "w-8 h-8",
-    md: "w-10 h-10",
-    lg: "w-12 h-12",
-    xl: "w-16 h-16"
+export function Logo({ className, size = "md", variant = "default" }: LogoProps) {
+  const sizes = {
+    sm: "text-xl",
+    md: "text-2xl", 
+    lg: "text-3xl",
+    xl: "text-4xl"
   };
 
-  const iconColors = {
-    default: "#2563EB", // blue-600
-    light: "#FFFFFF",
-    dark: "#1E293B"
-  };
-
-  const textColors = {
-    default: "text-gray-900",
-    light: "text-white",
-    dark: "text-gray-900"
+  const variants = {
+    default: "text-blue-600",
+    white: "text-white",
+    gradient: "bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 bg-clip-text text-transparent"
   };
 
   return (
-    <div className={cn("flex items-center gap-3", className)}>
-      <div className={cn("rounded-lg flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-700 shadow-lg", sizeClasses[size])}>
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          className={cn("transition-all", size === "sm" ? "w-4 h-4" : size === "md" ? "w-5 h-5" : size === "lg" ? "w-6 h-6" : "w-8 h-8")}
-        >
-          <path
-            d="M9 3V1H15V3H21V5H19V7C19 8.1 18.1 9 17 9H15V11H17C18.1 11 19 11.9 19 13V15H21V17H15V19H9V17H3V15H5V13C5 11.9 5.9 11 7 11H9V9H7C5.9 9 5 8.1 5 7V5H3V3H9Z"
-            fill="white"
-          />
-          <path
-            d="M11 5H13V7H11V5Z"
-            fill="white"
-          />
-          <path
-            d="M11 13H13V15H11V13Z"
-            fill="white"
-          />
-        </svg>
+    <div className={cn("flex items-center space-x-3", className)}>
+      {/* Premium Logo Icon */}
+      <div className={cn(
+        "relative flex items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 shadow-lg",
+        size === "sm" && "w-8 h-8",
+        size === "md" && "w-10 h-10", 
+        size === "lg" && "w-12 h-12",
+        size === "xl" && "w-16 h-16"
+      )}>
+        {/* T Symbol */}
+        <div className={cn(
+          "font-black text-white relative",
+          size === "sm" && "text-sm",
+          size === "md" && "text-lg",
+          size === "lg" && "text-xl", 
+          size === "xl" && "text-2xl"
+        )}>
+          T
+        </div>
+        
+        {/* Glow Effect */}
+        <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 opacity-20 blur-sm"></div>
+        
+        {/* Highlight */}
+        <div className="absolute top-1 left-1 w-2 h-2 bg-white/30 rounded-full blur-[1px]"></div>
       </div>
-      <span className={cn("font-bold tracking-tight", textColors[variant], 
-        size === "sm" ? "text-lg" : size === "md" ? "text-xl" : size === "lg" ? "text-2xl" : "text-3xl")}>
-        Taxenzo
+      
+      {/* Premium Typography */}
+      <div className="flex flex-col">
+        <span className={cn(
+          "font-black tracking-tight leading-none",
+          sizes[size],
+          variants[variant]
+        )}>
+          Tax<span className="text-blue-800">enzo</span>
+        </span>
+        <span className={cn(
+          "text-xs font-medium leading-none mt-0.5",
+          variant === "white" ? "text-blue-100" : "text-gray-500"
+        )}>
+          Simpel | Veilig | Accuraat
+        </span>
+      </div>
+    </div>
+  );
+}
+
+interface LogoTextOnlyProps {
+  className?: string;
+  size?: "sm" | "md" | "lg" | "xl" | "2xl";
+  variant?: "default" | "white" | "gradient";
+}
+
+export function LogoTextOnly({ className, size = "md", variant = "default" }: LogoTextOnlyProps) {
+  const sizes = {
+    sm: "text-lg",
+    md: "text-2xl",
+    lg: "text-3xl", 
+    xl: "text-4xl",
+    "2xl": "text-5xl"
+  };
+
+  const variants = {
+    default: "text-blue-600",
+    white: "text-white",
+    gradient: "bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 bg-clip-text text-transparent"
+  };
+
+  return (
+    <div className={cn("relative", className)}>
+      <span className={cn(
+        "font-black tracking-tight relative z-10",
+        sizes[size],
+        variants[variant]
+      )}>
+        Tax
+        <span className={cn(
+          variant === "gradient" 
+            ? "bg-gradient-to-r from-blue-700 via-blue-800 to-blue-900 bg-clip-text text-transparent"
+            : variant === "white" 
+              ? "text-blue-100"
+              : "text-blue-800"
+        )}>
+          enzo
+        </span>
       </span>
+      
+      {/* Premium Shadow Effect */}
+      {variant === "gradient" && (
+        <span className="absolute top-0 left-0 font-black tracking-tight text-blue-900/20 blur-sm -z-10" style={{ fontSize: "inherit" }}>
+          Taxenzo
+        </span>
+      )}
     </div>
   );
 }

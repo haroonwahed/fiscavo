@@ -1,10 +1,12 @@
+import { Logo } from "@/components/ui/logo";
+
 export function Footer() {
   return (
     <footer className="bg-gray-900 text-white mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-xl font-bold mb-4">Taxenzo</h3>
+            <Logo size="lg" variant="white" className="mb-4" />
             <p className="text-gray-300 mb-4">Simpel, veilig en accuraat belastingbeheer voor Nederlandse ondernemers. Automatiseer je BTW, track uitgaven en bereken belastingen in realtime.</p>
             <p className="text-sm text-gray-400">
               Dit is geen vervanging voor professioneel belastingadvies. Raadpleeg altijd een boekhouder voor complexe situaties.

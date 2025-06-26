@@ -3,6 +3,7 @@ import { Calculator, FileText, Car, MessageSquare, CheckSquare, BarChart3, Home,
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Logo } from "@/components/ui/logo";
 
 export function Header() {
   const [location] = useLocation();
@@ -25,8 +26,7 @@ export function Header() {
           <div className="flex items-center">
             <Link href="/">
               <div className="flex-shrink-0 cursor-pointer">
-                <h1 className="text-2xl font-bold text-primary">Taxenzo</h1>
-                <p className="text-xs text-gray-500">Simpel | Veilig | Accuraat</p>
+                <Logo size="md" variant="default" />
               </div>
             </Link>
           </div>
