@@ -20,7 +20,7 @@ export function Header() {
   ];
 
   return (
-    <header className="bg-white shadow-sm border-b border-gray-200">
+    <header className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-100 dark:border-gray-700 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center">
@@ -40,11 +40,11 @@ export function Header() {
                     <div className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                       isActive 
                         ? 'border' 
-                        : 'text-gray-600 hover:text-primary hover:bg-gray-50'
+                        : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800'
                     }`} style={isActive ? { 
-                      color: 'var(--color-primary)', 
-                      backgroundColor: 'rgba(54, 141, 217, 0.1)', 
-                      borderColor: 'var(--color-primary)' 
+                      color: '#2563EB', 
+                      backgroundColor: 'rgba(37, 99, 235, 0.1)', 
+                      borderColor: '#2563EB' 
                     } : {}}>
                       <Icon className="w-4 h-4" />
                       {item.label}
@@ -87,7 +87,7 @@ export function Header() {
             ) : (
               <Button 
                 onClick={() => window.location.href = '/api/login'}
-                className="bg-blue-600 hover:bg-blue-700 text-white"
+                className="btn-primary"
               >
                 Inloggen
               </Button>
