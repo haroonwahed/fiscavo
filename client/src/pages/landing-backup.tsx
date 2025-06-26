@@ -1,9 +1,10 @@
+// Backup of the working landing page structure
 import { useState } from "react";
 import { ArrowRight, CheckCircle, MessageCircle, Zap, Shield, Clock, Users, TrendingUp, Globe, Calculator, FileText, Car, Brain, Euro } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { Logo } from "@/components/ui/logo";
+import { Logo } from "@/components/logo";
 import { DemoSection } from "@/components/demo-section";
 import { FaqSection } from "@/components/faq-section";
 import { Footer } from "@/components/footer";
@@ -155,7 +156,7 @@ export default function Landing() {
       <section id="features" className="section-padding bg-gray-50 dark:bg-gray-900">
         <div className="container-premium">
           <div className="text-center mb-20">
-            <Badge className="mb-6 bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 border-blue-200">
+            <Badge className="mb-6 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 border-blue-200">
               <Globe className="mr-2 h-4 w-4" />
               Alle tools in één platform
             </Badge>
@@ -205,9 +206,9 @@ export default function Landing() {
             </div>
             
             <div className="relative">
-              <div className="card-elevated bg-gradient-premium text-white">
-                <div className="w-20 h-20 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <Users className="h-10 w-10 text-blue-600" />
+              <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-3xl p-8 text-white">
+                <div className="w-20 h-20 bg-gradient-to-br from-purple-100 to-purple-200 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Users className="h-10 w-10 text-purple-600" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-center">Join 12,000+ ondernemers</h3>
                 <p className="text-blue-100 text-center mb-6">
