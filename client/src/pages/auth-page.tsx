@@ -67,17 +67,17 @@ export default function AuthPage() {
   const features = [
     {
       icon: Calculator,
-      title: "BTW Automatisering",
+      title: "BTW-automatisering",
       description: "Automatische BTW-berekeningen en aangiftes"
     },
     {
       icon: FileText,
-      title: "Transactie Beheer",
+      title: "Transactiebeheer",
       description: "Slimme categorisering van al je uitgaven"
     },
     {
       icon: Euro,
-      title: "Aftrekposten Optimizer",
+      title: "Aftrekposten-optimizer",
       description: "Maximaliseer je fiscale voordelen"
     }
   ];
@@ -278,19 +278,46 @@ export default function AuthPage() {
                 </p>
               </div>
 
-              <div className="space-y-6">
+              {/* Blue tile with trial offer */}
+              <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-6 text-white mb-8">
+                <div className="flex items-center mb-4">
+                  <CheckCircle className="h-8 w-8 text-white mr-3" />
+                  <div>
+                    <h3 className="text-xl font-bold">30 dagen gratis proberen</h3>
+                    <p className="text-blue-100">Geen setup kosten • Nederlandse support</p>
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-3 gap-6 mt-6">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold">99,8%</div>
+                    <div className="text-blue-100 text-sm">Nauwkeurigheid</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold">12K+</div>
+                    <div className="text-blue-100 text-sm">Gebruikers</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold">15u</div>
+                    <div className="text-blue-100 text-sm">Besparing/maand</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Feature cards */}
+              <div className="space-y-4">
                 {features.map((feature, index) => {
                   const Icon = feature.icon;
                   return (
-                    <div key={index} className="flex items-start space-x-4 p-4 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
-                      <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/50 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <div key={index} className="flex items-center space-x-4 p-4 rounded-xl bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50">
+                      <div className="w-12 h-12 bg-blue-50 dark:bg-blue-900/30 rounded-xl flex items-center justify-center flex-shrink-0">
                         <Icon className="h-6 w-6 text-blue-600 dark:text-blue-400" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                        <h3 className="font-semibold text-gray-900 dark:text-white text-lg">
                           {feature.title}
                         </h3>
-                        <p className="text-gray-600 dark:text-gray-300 text-sm">
+                        <p className="text-gray-600 dark:text-gray-300">
                           {feature.description}
                         </p>
                       </div>
