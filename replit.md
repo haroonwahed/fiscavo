@@ -4,6 +4,18 @@
 A comprehensive web application providing tax advice and management tools for Dutch freelancers and small business owners. The platform delivers simple, secure, and accurate tax solutions to help users save time, reduce stress, and manage their tax obligations effectively.
 
 ## Recent Changes
+- **2024-12-26**: Added complete tax functionality as individual accessible pages
+  - Created separate pages for all 6 core tax management tools
+  - BTW Calculator (/btw-calculator) - Quarterly BTW return generation
+  - Transactions (/transactions) - Bank account and transaction management
+  - Mileage Tracker (/mileage) - Business kilometer registration at €0.23/km
+  - Tax Calculator (/tax-calculator) - Income tax and social contribution calculations
+  - Chat Assistant (/chat) - AI-powered tax advice in Dutch
+  - Deductions Checker (/deductions) - Business expense deduction discovery
+  - Updated header navigation with icon-based links to all functionality
+  - Enhanced routing system to support direct page access
+  - Maintained TaxBuddy.com styling consistency across all pages
+
 - **2024-12-26**: Transformed to TaxBuddy.com-style design with exact styling
   - Implemented clean, minimal landing page with gradient hero section
   - Added professional card-based feature layout with proper spacing
