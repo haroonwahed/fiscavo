@@ -74,14 +74,8 @@ export default function Dashboard() {
               >
                 {sidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </Button>
-              <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                  <Calculator className="h-5 w-5 text-white" />
-                </div>
-                <div>
-                  <h1 className="text-xl font-bold text-gray-900">Fiscavo</h1>
-                  <p className="text-xs text-blue-600 font-medium">Simpel | Veilig | Accuraat</p>
-                </div>
+              <div className="flex items-center">
+                <Logo size="lg" variant="default" />
               </div>
             </div>
             
@@ -170,7 +164,13 @@ export default function Dashboard() {
               <div className="space-y-6">
                 {/* Dashboard Header with Blue Theme */}
                 <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl p-6 text-white">
-                  <h2 className="text-2xl font-bold mb-2">Welkom terug bij Fiscavo!</h2>
+                  <div className="flex items-center mb-4">
+                    <Logo size="md" variant="white" className="mr-4" />
+                    <div>
+                      <h2 className="text-2xl font-bold">Welkom terug!</h2>
+                      <p className="text-blue-100 text-sm">Simpel | Veilig | Accuraat</p>
+                    </div>
+                  </div>
                   <p className="text-blue-100 mb-4">Hier is je belastingoverzicht voor dit kwartaal</p>
                   
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
