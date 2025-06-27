@@ -41,8 +41,10 @@ export function setupAuth(app: Express) {
     }),
     cookie: {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: process.env.NODE_ENV === "production" || !!(process.env.REPLIT_DOMAINS && process.env.REPLIT_DOMAINS.includes('fiscavo.nl')),
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      sameSite: 'lax',
+      domain: process.env.NODE_ENV === "production" ? '.fiscavo.nl' : undefined
     },
   };
 

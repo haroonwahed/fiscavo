@@ -4,6 +4,14 @@
 A comprehensive web application providing tax advice and management tools for Dutch freelancers and small business owners. The platform delivers simple, secure, and accurate tax solutions to help users save time, reduce stress, and manage their tax obligations effectively.
 
 ## Recent Changes
+- **2024-12-27**: Domain Security and SSL Configuration for fiscavo.nl
+  - Added comprehensive HTTPS enforcement and security headers for fiscavo.nl domain
+  - Configured enhanced SSL security with HSTS, CSP, and permission policies
+  - Fixed CORS configuration to properly support fiscavo.nl and www.fiscavo.nl
+  - Enhanced session cookie security with proper domain handling for production
+  - Implemented automatic HTTPS redirect for fiscavo.nl domain access
+  - Fixed authentication type errors that were preventing dashboard analytics
+  - Added production-ready security headers including Content Security Policy
 - **2024-12-26**: Complete Authentication System Overhaul and Design Standardization
   - Resolved critical authentication registration failures caused by database session index conflicts
   - Switched from PostgreSQL to memory-based session storage to eliminate index collision errors

@@ -3,6 +3,58 @@ import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
+
+// Security headers for HTTPS and domain safety
+app.use((req, res, next) => {
+  // Force HTTPS for fiscavo.nl domain
+  const host = req.get('host');
+  const isProduction = process.env.NODE_ENV === 'production' || host?.includes('fiscavo.nl');
+  
+  if (isProduction && req.header('x-forwarded-proto') !== 'https') {
+    return res.redirect(301, `https://${host}${req.url}`);
+  }
+  
+  // Enhanced security headers for fiscavo.nl
+  res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'");
+  res.setHeader('Permissions-Policy', 'geolocation=(), microphone=(), camera=()');
+  
+  next();
+});
+
+// Trust proxy for Replit deployment
+app.set('trust proxy', 1);
+
+// CORS configuration for fiscavo.nl domain
+app.use((req, res, next) => {
+  const allowedOrigins = [
+    'https://fiscavo.nl',
+    'https://www.fiscavo.nl',
+    'https://fiscavo.replit.app',
+    ...(process.env.REPLIT_DOMAINS?.split(',').map(domain => `https://${domain}`) || [])
+  ].filter(Boolean);
+  
+  const origin = req.headers.origin as string | undefined;
+  if (origin && allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(200);
+    return;
+  }
+  
+  next();
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

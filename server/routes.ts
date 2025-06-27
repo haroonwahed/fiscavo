@@ -172,7 +172,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Analytics endpoints
   app.get('/api/analytics/dashboard', isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       
       const btwReturns = await storage.getBtwReturns(userId);
       const mileageEntries = await storage.getMileageEntries(userId);
@@ -370,7 +370,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Email notification endpoints
   app.post('/api/notifications/deadline-reminder', isAuthenticated, async (req, res) => {
     try {
-      const userId = req.user?.claims?.sub;
+      const userId = req.user?.id;
+      if (!userId) {
+        return res.status(401).json({ error: "User not authenticated" });
+      }
       const user = await storage.getUser(userId);
       
       if (!user?.email) {
@@ -389,7 +392,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post('/api/notifications/weekly-summary', isAuthenticated, async (req, res) => {
     try {
-      const userId = req.user?.claims?.sub;
+      const userId = req.user?.id;
+      if (!userId) {
+        return res.status(401).json({ error: "User not authenticated" });
+      }
       const user = await storage.getUser(userId);
       
       if (!user?.email) {
