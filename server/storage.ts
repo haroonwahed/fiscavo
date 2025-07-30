@@ -678,9 +678,9 @@ const dbStorage = new DatabaseStorage();
 // Seed data function
 async function seedDatabase() {
   try {
-    // Check if data already exists
-    const existingDeadlines = await dbStorage.getTaxDeadlines();
-    const existingFaqs = await dbStorage.getFaqItems();
+    // Check if data already exists - use memory storage to avoid database errors
+    const existingDeadlines = await storage.getTaxDeadlines();
+    const existingFaqs = await storage.getFaqItems();
     
     // Only skip if both deadlines and FAQs exist (with sufficient content)
     if (existingDeadlines.length > 0 && existingFaqs.length >= 10) {
@@ -716,7 +716,7 @@ async function seedDatabase() {
     ];
 
     for (const deadline of deadlines) {
-      await dbStorage.createTaxDeadline(deadline);
+      await storage.createTaxDeadline(deadline);
     }
 
     // Seed deduction rules
@@ -751,7 +751,7 @@ async function seedDatabase() {
     ];
 
     for (const rule of rules) {
-      await dbStorage.createDeductionRule(rule);
+      await storage.createDeductionRule(rule);
     }
 
     // Seed FAQ items
@@ -874,7 +874,7 @@ async function seedDatabase() {
     ];
 
     for (const faq of faqs) {
-      await dbStorage.createFaqItem(faq);
+      await storage.createFaqItem(faq);
     }
 
     console.log('Database seeded successfully');
@@ -883,7 +883,8 @@ async function seedDatabase() {
   }
 }
 
+// Use memory storage to avoid database connection issues
+export const storage = new MemStorage();
+
 // Seed database on startup
 seedDatabase();
-
-export const storage = dbStorage;

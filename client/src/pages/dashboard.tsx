@@ -389,9 +389,10 @@ export default function Dashboard() {
               {/* Bottom Section */}
               <div className="border-t border-gray-200 mt-8 pt-6">
                 <div className="flex flex-col md:flex-row justify-between items-center">
-                  <div className="text-sm text-gray-500 mb-4 md:mb-0">
-                    © 2024 Fiscavo B.V. Alle rechten voorbehouden. 
-                    Geregistreerd bij de Nederlandse Orde van Belastingadviseurs (NOB).
+                  <div className="flex items-center space-x-3 text-sm text-gray-500 mb-4 md:mb-0">
+                    <img src="/attached_assets/image_1751014947502.png" alt="Fiscavo" className="h-5 w-auto" />
+                    <span>© 2024 B.V. Alle rechten voorbehouden. 
+                    Geregistreerd bij de Nederlandse Orde van Belastingadviseurs (NOB).</span>
                   </div>
                   <div className="flex space-x-6 text-sm text-gray-500">
                     <span>🔒 SSL Beveiligd</span>

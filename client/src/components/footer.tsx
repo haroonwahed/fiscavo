@@ -163,9 +163,12 @@ export function Footer() {
         <div className="border-t border-gray-200 dark:border-gray-700 pt-8">
           <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
             <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6">
-              <p className="text-gray-600 dark:text-gray-300 font-medium">
-                © 2024 Fiscavo. Alle rechten voorbehouden.
-              </p>
+              <div className="flex items-center space-x-3">
+                <img src="/attached_assets/image_1751014947502.png" alt="Fiscavo" className="h-6 w-auto" />
+                <p className="text-gray-600 dark:text-gray-300 font-medium">
+                  © 2024 Alle rechten voorbehouden.
+                </p>
+              </div>
               <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
                 <span>KvK: 87654321</span>
                 <span>•</span>
