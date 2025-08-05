@@ -42,6 +42,7 @@ import { TodoGenerator } from "@/components/todo-generator";
 import { DashboardAnalytics } from "@/components/dashboard-analytics";
 import { ExpenseCategorizationAI } from "@/components/expense-categorization-ai";
 import { useAuth } from "@/hooks/useAuth";
+import { DashboardLayout } from "@/components/ui/dashboard-layout";
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -110,7 +111,10 @@ export default function Dashboard() {
                 <Button 
                   variant="outline" 
                   size="sm"
-                  onClick={() => window.location.href = '/api/logout'}
+                  onClick={() => {
+                    const { logoutMutation } = useAuth();
+                    logoutMutation.mutate();
+                  }}
                 >
                   Uitloggen
                 </Button>
