@@ -77,6 +77,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Todo lists
+  app.get("/api/todo", async (req, res) => {
+    try {
+      const lists = await storage.getTodoLists();
+      res.json(lists);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch todo lists" });
+    }
+  });
+
   app.get("/api/todo-lists", async (req, res) => {
     try {
       const lists = await storage.getTodoLists();
@@ -97,6 +106,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
       } else {
         res.status(500).json({ error: "Failed to create todo list" });
       }
+    }
+  });
+
+  // Chat endpoint 
+  app.post("/api/chat", async (req, res) => {
+    try {
+      const { message, category } = req.body;
+      
+      // Simple tax advice response based on message content
+      const response = generateSimpleResponse(message, category);
+      
+      // Save the conversation
+      await storage.createChatMessage({
+        message: message,
+        response: response,
+        category: category || 'algemeen',
+      });
+
+      res.json({ response, category: category || 'algemeen' });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to process chat message" });
     }
   });
 
@@ -167,6 +197,112 @@ export async function registerRoutes(app: Express): Promise<Server> {
     ];
     
     return businessKeywords.some(keyword => desc.includes(keyword));
+  }
+
+  function generateSimpleResponse(message: string, category: string): string {
+    const lowerMessage = message.toLowerCase();
+    
+    if (lowerMessage.includes('btw') || category === 'btw') {
+      return 'Voor BTW-vragen: als ZZP\'er ben je BTW-plichtig vanaf €20.000 per jaar. Aangiftes zijn per kwartaal verschuldigd. BTW-tarieven zijn 21% (algemeen), 9% (laag tarief), of 0%. Gebruik onze BTW-calculator voor berekeningen.';
+    }
+    
+    if (lowerMessage.includes('aftrek') || lowerMessage.includes('kosten')) {
+      return 'Aftrekbare kosten voor ondernemers: kantoorbenodigdheden, telefoon/internet (zakelijk deel), reiskosten (€0.23/km), cursussen, software, thuiswerkplek (€2/dag). Bewaar altijd bonnetjes als bewijs.';
+    }
+    
+    if (lowerMessage.includes('kilometer') || lowerMessage.includes('reiskosten')) {
+      return 'Zakelijke kilometers kun je aftrekken tegen €0.23 per kilometer. Houd een kilometerregistratie bij met datum, bestemming, doel en aantal kilometers. Woon-werk verkeer is meestal niet aftrekbaar.';
+    }
+    
+    if (lowerMessage.includes('zelfstandigenaftrek')) {
+      return 'Zelfstandigenaftrek 2024: €7.280 basis + €2.520 aanvullend = €9.800 totaal. Voorwaarden: minimaal 1250 uur ondernemersactiviteiten en voldoende winst.';
+    }
+    
+    return 'Bedankt voor je vraag! Voor specifiek belastingadvies raadpleeg je het beste een belastingadviseur. Onze tools kunnen je helpen met berekeningen en basisinformatie.';
+  }
+
+  // BTW Calculator endpoint
+  app.post("/api/btw-calculate", async (req, res) => {
+    try {
+      const { sales, purchases, rate } = req.body;
+      
+      const salesAmount = parseFloat(sales) || 0;
+      const purchasesAmount = parseFloat(purchases) || 0;
+      const vatRate = parseFloat(rate) || 21;
+      
+      const salesVat = salesAmount * (vatRate / 100);
+      const purchasesVat = purchasesAmount * (vatRate / 100);
+      const netVat = salesVat - purchasesVat;
+      
+      const result = {
+        sales: salesAmount,
+        purchases: purchasesAmount,
+        vatRate: vatRate,
+        salesVat: Math.round(salesVat * 100) / 100,
+        purchasesVat: Math.round(purchasesVat * 100) / 100,
+        netVat: Math.round(netVat * 100) / 100,
+        dueDate: getNextQuarterDeadline()
+      };
+      
+      res.json(result);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to calculate BTW" });
+    }
+  });
+
+  // Tax Calculator endpoint  
+  app.post("/api/tax-calculate", async (req, res) => {
+    try {
+      const { income, expenses } = req.body;
+      
+      const grossIncome = parseFloat(income) || 0;
+      const totalExpenses = parseFloat(expenses) || 0;
+      const taxableIncome = Math.max(0, grossIncome - totalExpenses);
+      
+      // Dutch tax brackets 2024
+      const incomeTax = calculateIncomeTax(taxableIncome);
+      const socialContributions = calculateSocialContributions(taxableIncome);
+      const totalTax = incomeTax + socialContributions;
+      
+      const result = {
+        grossIncome,
+        totalExpenses,
+        taxableIncome: Math.round(taxableIncome * 100) / 100,
+        incomeTax: Math.round(incomeTax * 100) / 100,
+        socialContributions: Math.round(socialContributions * 100) / 100,
+        totalTax: Math.round(totalTax * 100) / 100,
+        netIncome: Math.round((taxableIncome - totalTax) * 100) / 100,
+        effectiveRate: taxableIncome > 0 ? Math.round((totalTax / taxableIncome * 100) * 100) / 100 : 0
+      };
+      
+      res.json(result);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to calculate tax" });
+    }
+  });
+
+  function getNextQuarterDeadline(): string {
+    const now = new Date();
+    const month = now.getMonth() + 1;
+    const year = now.getFullYear();
+    
+    if (month <= 3) return `2025-04-30`;
+    if (month <= 6) return `2025-07-31`;
+    if (month <= 9) return `2025-10-31`;
+    return `${year + 1}-01-31`;
+  }
+
+  function calculateIncomeTax(income: number): number {
+    if (income <= 37149) return income * 0.3693;
+    if (income <= 73031) return 37149 * 0.3693 + (income - 37149) * 0.3793;
+    return 37149 * 0.3693 + (73031 - 37149) * 0.3793 + (income - 73031) * 0.495;
+  }
+
+  function calculateSocialContributions(income: number): number {
+    // Simplified social contributions calculation
+    const maxBase = 73031;
+    const contributionBase = Math.min(income, maxBase);
+    return contributionBase * 0.31; // Approximate combined social contribution rate
   }
 
   // Analytics endpoints
