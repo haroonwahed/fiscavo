@@ -451,16 +451,84 @@ export class DatabaseStorage implements IStorage {
 }
 
 export class MemStorage implements IStorage {
+  // User storage
+  private users = new Map<number, User>();
+  private usersByUsername = new Map<string, User>();
+  private usersByEmail = new Map<string, User>();
   private chatMessages: Map<number, ChatMessage> = new Map();
   private taxDeadlines: Map<number, TaxDeadline> = new Map();
   private deductionRules: Map<number, DeductionRule> = new Map();
   private faqItems: Map<number, FaqItem> = new Map();
   private todoLists: Map<number, TodoList> = new Map();
   private userProfiles: Map<number, UserProfile> = new Map();
+  private bankAccounts: Map<number, BankAccount> = new Map();
+  private transactions: Map<number, Transaction> = new Map();
+  private btwReturns: Map<number, BtwReturn> = new Map();
+  private mileageEntries: Map<number, MileageEntry> = new Map();
+  private taxCalculations: Map<number, TaxCalculation> = new Map();
+  private receipts: Map<number, Receipt> = new Map();
   private currentId = 1;
 
   constructor() {
     this.seedData();
+  }
+
+  // User operations (authentication support)
+  async getUser(id: number): Promise<User | undefined> {
+    return this.users.get(id);
+  }
+
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    return this.usersByUsername.get(username);
+  }
+
+  async getUserByEmail(email: string): Promise<User | undefined> {
+    return this.usersByEmail.get(email);
+  }
+
+  async createUser(userData: Omit<User, 'id' | 'createdAt' | 'updatedAt'>): Promise<User> {
+    const id = this.currentId++;
+    const user: User = {
+      ...userData,
+      id,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    
+    this.users.set(id, user);
+    this.usersByUsername.set(user.username, user);
+    this.usersByEmail.set(user.email, user);
+    
+    return user;
+  }
+
+  async upsertUser(userData: UpsertUser): Promise<User> {
+    // For memory storage, this is the same as createUser for new users
+    const existingUser = await this.getUserByEmail(userData.email || '');
+    if (existingUser) {
+      // Update existing user
+      const updatedUser: User = {
+        ...existingUser,
+        ...userData,
+        updatedAt: new Date(),
+      } as User;
+      
+      this.users.set(updatedUser.id, updatedUser);
+      this.usersByUsername.set(updatedUser.username, updatedUser);
+      this.usersByEmail.set(updatedUser.email, updatedUser);
+      
+      return updatedUser;
+    } else {
+      // Create new user - need to provide required fields
+      return this.createUser({
+        username: userData.username || '',
+        email: userData.email || '',
+        password: userData.password || '',
+        firstName: userData.firstName || '',
+        lastName: userData.lastName || '',
+        profileImageUrl: userData.profileImageUrl || null,
+      });
+    }
   }
 
   private seedData() {
@@ -669,6 +737,98 @@ export class MemStorage implements IStorage {
     };
     this.userProfiles.set(id, userProfile);
     return userProfile;
+  }
+
+  // Bank accounts
+  async getBankAccounts(userId: number): Promise<BankAccount[]> {
+    return Array.from(this.bankAccounts.values()).filter(account => account.userId === userId);
+  }
+
+  async createBankAccount(account: InsertBankAccount): Promise<BankAccount> {
+    const id = this.currentId++;
+    const bankAccount: BankAccount = { ...account, id };
+    this.bankAccounts.set(id, bankAccount);
+    return bankAccount;
+  }
+
+  // Transactions
+  async getTransactions(userId: number, filters?: any): Promise<Transaction[]> {
+    return Array.from(this.transactions.values()).filter(t => t.userId === userId);
+  }
+
+  async createTransaction(transaction: InsertTransaction): Promise<Transaction> {
+    const id = this.currentId++;
+    const newTransaction: Transaction = { ...transaction, id };
+    this.transactions.set(id, newTransaction);
+    return newTransaction;
+  }
+
+  async updateTransaction(id: number, updates: Partial<Transaction>): Promise<Transaction> {
+    const transaction = this.transactions.get(id);
+    if (!transaction) throw new Error('Transaction not found');
+    const updated = { ...transaction, ...updates };
+    this.transactions.set(id, updated);
+    return updated;
+  }
+
+  // BTW Returns
+  async getBtwReturns(userId: number): Promise<BtwReturn[]> {
+    return Array.from(this.btwReturns.values()).filter(r => r.userId === userId);
+  }
+
+  async createBtwReturn(returnData: InsertBtwReturn): Promise<BtwReturn> {
+    const id = this.currentId++;
+    const btwReturn: BtwReturn = { ...returnData, id };
+    this.btwReturns.set(id, btwReturn);
+    return btwReturn;
+  }
+
+  // Mileage entries
+  async getMileageEntries(userId: number): Promise<MileageEntry[]> {
+    return Array.from(this.mileageEntries.values()).filter(entry => entry.userId === userId);
+  }
+
+  async createMileageEntry(entry: InsertMileageEntry): Promise<MileageEntry> {
+    const id = this.currentId++;
+    const mileageEntry: MileageEntry = { ...entry, id };
+    this.mileageEntries.set(id, mileageEntry);
+    return mileageEntry;
+  }
+
+  // Tax calculations
+  async getTaxCalculations(userId: number): Promise<TaxCalculation[]> {
+    return Array.from(this.taxCalculations.values()).filter(calc => calc.userId === userId);
+  }
+
+  async createTaxCalculation(calculation: InsertTaxCalculation): Promise<TaxCalculation> {
+    const id = this.currentId++;
+    const taxCalculation: TaxCalculation = { ...calculation, id };
+    this.taxCalculations.set(id, taxCalculation);
+    return taxCalculation;
+  }
+
+  // Receipts
+  async getReceipts(transactionId?: number): Promise<Receipt[]> {
+    const receipts = Array.from(this.receipts.values());
+    if (transactionId) {
+      return receipts.filter(r => r.transactionId === transactionId);
+    }
+    return receipts;
+  }
+
+  async createReceipt(receipt: InsertReceipt): Promise<Receipt> {
+    const id = this.currentId++;
+    const newReceipt: Receipt = { ...receipt, id };
+    this.receipts.set(id, newReceipt);
+    return newReceipt;
+  }
+
+  async updateReceipt(id: number, updates: Partial<Receipt>): Promise<Receipt> {
+    const receipt = this.receipts.get(id);
+    if (!receipt) throw new Error('Receipt not found');
+    const updated = { ...receipt, ...updates };
+    this.receipts.set(id, updated);
+    return updated;
   }
 }
 

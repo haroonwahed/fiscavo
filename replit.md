@@ -1,241 +1,7 @@
 # Fiscavo - Dutch Tax Management Platform
 
-## Project Overview
-A comprehensive web application providing tax advice and management tools for Dutch freelancers and small business owners. The platform delivers simple, secure, and accurate tax solutions to help users save time, reduce stress, and manage their tax obligations effectively.
-
-## Recent Changes
-- **2024-12-27**: Domain Security and SSL Configuration for fiscavo.nl
-  - Added comprehensive HTTPS enforcement and security headers for fiscavo.nl domain
-  - Configured enhanced SSL security with HSTS, CSP, and permission policies
-  - Fixed CORS configuration to properly support fiscavo.nl and www.fiscavo.nl
-  - Enhanced session cookie security with proper domain handling for production
-  - Implemented automatic HTTPS redirect for fiscavo.nl domain access
-  - Fixed authentication type errors that were preventing dashboard analytics
-  - Added production-ready security headers including Content Security Policy
-- **2024-12-26**: Complete Authentication System Overhaul and Design Standardization
-  - Resolved critical authentication registration failures caused by database session index conflicts
-  - Switched from PostgreSQL to memory-based session storage to eliminate index collision errors
-  - Fixed all /api/login references that were triggering unwanted Replit OAuth prompts
-  - Streamlined authentication portal at /auth by removing "Welkom bij Fiscavo" header for cleaner interface
-  - Implemented automatic dashboard redirection after successful login/registration for intuitive user flow
-  - Applied uniform blue tile design across all sections: authentication, pricing, and support areas
-  - Updated feature naming: "BTW-automatisering", "Transactiebeheer", "Aftrekposten-optimizer" with consistent styling
-  - Enhanced hero section with gradient blue stats tile showing "30 dagen gratis proberen" with usage metrics
-  - Fixed pricing section layout to ensure Professional plan full visibility with expanded container width
-  - Added blue gradient support section matching design specifications with chat/email options
-  - Confirmed complete authentication flow working: registration → automatic login → dashboard redirect
-  - Maintained consistent Plus Jakarta Sans typography and #2563EB/#1D4ED8 blue color scheme throughout
-  - **Post-Login Branding Fixes**: Eliminated all remaining "Fiscatax" references in dashboard and components
-  - Updated dashboard footer with proper Fiscavo branding and functional navigation buttons
-  - Fixed all footer links to properly navigate to tools (BTW, transactions, chat assistant, etc.)
-  - Enhanced user experience with clickable support links (email, phone, help center)
-  - Updated FAQ data and storage references to show correct Fiscavo pricing and branding
-- **2024-12-26**: Fixed Design System Consistency and Navigation Issues
-  - Removed duplicate pricing (Tarieven) sections to eliminate redundancy
-  - Fixed purple gradient backgrounds to match consistent blue theme (#2563EB, #1D4ED8)
-  - Updated .bg-gradient-premium CSS class from purple to blue gradient
-  - Resolved JSX syntax errors that were preventing application startup
-  - Fixed CSS @apply group utility error in feature cards
-  - Corrected Logo component import path to maintain proper functionality
-  - Ensured single, clean pricing section with proper navigation
-  - Application now runs smoothly with consistent blue brand colors throughout
-- **2024-12-26**: Implemented Advanced AI and Business Intelligence Features
-  - Enhanced AI capabilities with bulk transaction categorization using Claude 4.0 Sonnet
-  - Added advanced receipt OCR scanning with image analysis and VAT extraction
-  - Built comprehensive Dutch bank integration framework (ING, ABN AMRO, Rabobank)
-  - Created profit/loss analytics dashboard with quarterly planning tools
-  - Implemented compliance scoring system and automated tax recommendations
-  - Added export functionality for CSV, XML, and JSON formats
-  - Enhanced business intelligence with expense breakdown analysis
-  - Built receipt scanner component with confidence scoring and item extraction
-  - Created bulk categorizer for processing multiple transactions with AI
-  - Added profit/loss dashboard with financial health indicators
-- **2024-12-26**: Created About Us and Support Center Pages
-  - Built comprehensive "Over Ons" page with company story, mission, vision, and values
-  - Created detailed Support Center with multiple contact options and help topics
-  - Added proper routing for /about and /support pages accessible to all users
-  - Fixed footer navigation buttons to properly redirect to new pages
-  - Enhanced user experience with professional content and clear navigation paths
-  - Updated all email addresses from info@fiscavo.com to support@fiscavo.nl throughout the application
-  - Installed @sendgrid/mail package for email functionality
-- **2024-12-26**: Created Comprehensive Legal Framework
-  - Built complete Privacy Policy with GDPR compliance and Dutch legal requirements
-  - Created detailed Terms of Service with subscription tiers, liability, and legal protections
-  - Implemented comprehensive Cookie Policy with detailed cookie categorization and consent management
-  - Added GDPR Rights page explaining all user privacy rights with step-by-step procedures
-  - Created Security Policy outlining ISO 27001 compliance, encryption standards, and incident response
-  - All legal pages follow Dutch law, include proper contact information, and meet professional standards
-  - Enhanced navigation system with proper routing and user-friendly back buttons
-  - All legal content is production-ready and suitable for actual business use
-- **2024-12-26**: Implemented Comprehensive Enhancement Package
-  - Added complete Tarieven (Pricing) section with 3-tier structure (€19/€49/€99)
-  - Integrated AI-powered features with Anthropic API (expense categorization, tax advice, receipt analysis)
-  - Built bank integration framework for Dutch banks (ING, ABN AMRO, Rabobank)
-  - Added email notification system with deadline reminders and weekly summaries
-  - Created export functionality for BTW returns and transaction data
-  - Implemented comprehensive error handling and production-ready features
-  - Significantly increased logo sizes across all components for maximum brand visibility (h-52 XL size)
-  - Enhanced header height and landing page logo scaling for premium appearance
-- **2024-12-26**: Premium Design System Implementation
-  - Created new premium logo with gradient background and professional styling
-  - Implemented comprehensive design overhaul inspired by Stripe, Notion, and Taxfix
-  - Added Plus Jakarta Sans typography for modern, professional appearance
-  - Introduced sophisticated color palette with blue primary (#2563EB) and refined neutrals
-  - Built theme provider with light/dark mode support using system preference detection
-  - Enhanced header with backdrop blur, premium logo, and improved navigation
-  - Redesigned hero section with gradient backgrounds, floating elements, and enhanced CTAs
-  - Updated all cards and components with rounded corners, premium shadows, and hover effects
-  - Added smooth animations and transitions throughout the application
-  - Implemented premium button styles with transform effects and professional spacing
-  - Created modular CSS classes for consistent design system application
-- **2024-12-26**: Updated Contact Information and Footer Links
-  - Changed email address from support@taxenzo.nl to info@taxenzo.com
-  - Made all footer links functional with proper navigation and interactions
-  - Added clickable phone numbers with tel: links
-  - Implemented smooth scrolling to FAQ section from footer links
-  - Added informational modals for legal pages (Privacy, Terms, etc.)
-  - Enhanced user experience with hover effects and proper link functionality
-- **2024-12-26**: Added Comprehensive Enhancement Package (Onboarding + Analytics + AI Features)
-  - Implemented interactive onboarding flow with guided tour of all tax management features
-  - Added personalized dashboard analytics with real-time savings tracking and compliance scoring
-  - Built AI-powered expense categorization system with 87% accuracy and bulk processing
-  - Created progress tracking for quarterly obligations (BTW, income tax, deductions)
-  - Added receipt OCR scanner with automatic data extraction and Dutch tax compliance validation
-  - Integrated smart recommendations engine for potential tax savings identification
-  - Enhanced user experience with professional styling and TaxBuddy.com design consistency
-  - Successfully implemented all backend API endpoints for analytics and AI categorization features
-
-- **2024-12-26**: Fixed Critical API and Database Issues + Completed User Personalization
-  - Fixed all API mutation issues preventing tax data from saving properly
-  - Corrected PostgreSQL database schema type mismatches for proper data persistence
-  - Updated all tax management components to use correct apiRequest syntax
-  - Resolved Drizzle ORM query filtering issues for proper data retrieval
-  - Integrated authenticated user system across all tax tools (transactions, BTW, mileage, calculations)
-  - Replaced hardcoded user IDs with actual authenticated user data for full personalization
-  - Added personalized welcome messages using authenticated user information
-  - Successfully pushed corrected database schema to PostgreSQL
-
-- **2024-12-26**: Implemented Replit OpenID Connect Authentication System
-  - Added complete user authentication using Replit's secure OAuth system
-  - Created PostgreSQL user and session tables with proper schema
-  - Implemented protected routing system with authenticated vs. unauthenticated flows
-  - Added user profile display in header with login/logout functionality
-  - Integrated session management with database storage for reliability
-  - All tax tools now require authentication for full access
-  - Landing page updated with proper login flow via /api/login endpoint
-
-- **2024-12-26**: Created comprehensive interactive demo system
-  - Built full-featured demo component with 6 interactive tax tools
-  - Added BTW calculator with real Dutch 21% VAT calculations
-  - Implemented tax calculator using actual Dutch income tax brackets
-  - Created mileage tracker with €0.23/km official rate
-  - Added AI chat assistant demo with realistic tax conversations
-  - Built deduction checker showing potential €500-€1400 annual savings
-  - Implemented transaction manager with automatic categorization
-  - Added modal overlay system with professional styling
-  - Fixed "Bekijk demo" button to open interactive demo instead of scrolling
-  - All calculations use authentic Dutch tax rates and regulations
-
-- **2024-12-26**: Redesigned landing page with professional styling and app insights
-  - Created comprehensive landing page showcasing all 6 core features without login requirement
-  - Added professional header, hero section with gradient background
-  - Implemented statistics section (15 hours saved, 99.8% accuracy, 12,000+ users)
-  - Added detailed features grid with colored icons and descriptions
-  - Created complete footer with contact information and legal details
-  - Fixed color consistency throughout dashboard using blue theme (#368DD9 -> blue-600)
-  - Updated all dashboard components to use consistent blue color scheme
-  - Removed outdated Fiscatax custom color variables in favor of Tailwind classes
-
-- **2024-12-26**: Added complete tax functionality as individual accessible pages
-  - Created separate pages for all 6 core tax management tools
-  - BTW Calculator (/btw-calculator) - Quarterly BTW return generation
-  - Transactions (/transactions) - Bank account and transaction management
-  - Mileage Tracker (/mileage) - Business kilometer registration at €0.23/km
-  - Tax Calculator (/tax-calculator) - Income tax and social contribution calculations
-  - Chat Assistant (/chat) - AI-powered tax advice in Dutch
-  - Deductions Checker (/deductions) - Business expense deduction discovery
-  - Updated header navigation with icon-based links to all functionality
-  - Enhanced routing system to support direct page access
-  - Maintained TaxBuddy.com styling consistency across all pages
-
-- **2024-12-26**: Transformed to TaxBuddy.com-style design with exact styling
-  - Implemented clean, minimal landing page with gradient hero section
-  - Added professional card-based feature layout with proper spacing
-  - Updated color scheme: #368DD9 primary, #2D79B8 dark, #F7FAFC background
-  - Applied Segoe UI font family for Windows-native feel
-  - Created white-on-blue CTA button with subtle hover effects
-  - Established 12px border radius and 24px spacing for consistency
-  - Simplified layout to focus on core value proposition and clear messaging
-
-- **2024-12-26**: Finalized blue color palette implementation
-  - Primary blue: #368DD9 with dark (#2D79B8) and light (#A8D4F2) variants
-  - Professional greyscale: #444B54 text, #7A7F87 muted, #EFF5FB background
-  - Accent colors: #47C390 success, #E57373 error, #FFB74D warning, #4FC3F7 info
-  - Status backgrounds with light tints for better visual hierarchy
-
-- **2024-12-26**: Completed application rebranding to Fiscavo
-  - Updated application name from "BelastingAssistent" to "Fiscatax", then to "Taxenzo", and finally to "Fiscavo"
-  - Removed all remaining "Taxenzo" references throughout the application
-  - Integrated custom Fiscavo logo image throughout the application
-  - Updated to final Fiscavo logo with professional design (fiscavo_1750940880782.png)
-  - Added new positioning: "Simpel | Veilig | Accuraat"
-  - Enhanced FAQ section with comprehensive Dutch tax questions (15 total)
-  - Added application-specific support questions covering all features
-  - Updated footer with professional contact information and compliance details
-  - Improved welcome messages and brand consistency throughout
-  - Final rebranding to "Fiscavo" across all components and documentation with custom logo integration
-
-- **2024-12-26**: Implemented comprehensive tax management platform
-  - Added transaction management with bank account integration
-  - Built automated BTW return generator with quarterly calculations
-  - Implemented mileage tracking with €0.23/km Dutch rate
-  - Created real-time tax calculator with Dutch tax brackets
-  - Added receipt management and expense categorization
-  - All features integrated with PostgreSQL for persistent storage
-
-- **2024-12-25**: Added PostgreSQL database with Drizzle ORM
-  - Migrated from in-memory storage to persistent database
-  - Created database tables for all entities
-  - Implemented automatic data seeding on startup
-  - All tax deadlines, deduction rules, and FAQ items now stored in database
-
-## Project Architecture
-
-### Tech Stack
-- **Frontend**: React + TypeScript + Vite
-- **Backend**: Express.js + TypeScript
-- **Database**: PostgreSQL with Drizzle ORM
-- **Styling**: Tailwind CSS + shadcn/ui components
-- **Routing**: Wouter (frontend)
-- **State Management**: TanStack Query
-
-### Core Features
-1. **Interactive Chat Assistant**: AI-powered tax advice in Dutch
-2. **Transaction Management**: Bank integration, categorization, BTW tracking
-3. **BTW Return Generator**: Automated quarterly BTW calculations and filing
-4. **Mileage Tracking**: GPS-based business travel deduction (€0.23/km)
-5. **Tax Calculator**: Real-time income tax and social contribution calculations
-6. **Receipt Management**: OCR processing and automatic categorization
-7. **Deadline Management**: Tracks upcoming tax obligations with urgency indicators
-8. **Deduction Checker**: Helps identify eligible business expense deductions
-9. **Todo Generator**: Creates personalized tax compliance checklists
-10. **FAQ System**: Comprehensive answers to common tax questions
-
-### Database Schema
-- `chat_messages`: User conversations and responses
-- `tax_deadlines`: Important tax filing deadlines
-- `deduction_rules`: Business expense deduction guidelines
-- `faq_items`: Frequently asked questions and answers
-- `todo_lists`: Generated task lists for tax compliance
-- `user_profiles`: User business type and preferences
-
-### API Endpoints
-- `/api/chat/messages` - Chat functionality
-- `/api/deadlines` - Tax deadline management
-- `/api/deductions` - Deduction rule queries
-- `/api/faq` - FAQ content
-- `/api/todo-lists` - Task list generation
-- `/api/tax-advice` - Intelligent tax advice generation
+## Overview
+Fiscavo is a comprehensive web application designed to provide tax advice and management tools for Dutch freelancers (ZZP'ers) and small business owners (BV owners). The platform aims to deliver simple, secure, and accurate tax solutions, helping users save time, reduce stress, and effectively manage their tax obligations. It provides interactive tools for BTW (VAT) management, transaction categorization, expense deductions, and income tax calculations, along with AI-powered assistance for personalized advice and task management. The business vision is to become the leading digital tax assistant in the Netherlands, simplifying complex tax regulations for entrepreneurs and maximizing their financial efficiency.
 
 ## User Preferences
 - Language: Dutch (primary interface language)
@@ -243,19 +9,50 @@ A comprehensive web application providing tax advice and management tools for Du
 - Communication Style: Friendly but professional, clear and concise
 - Focus: Practical tax advice without overwhelming technical details
 
-## Current Status
-✓ Database integration completed
-✓ Core features implemented and functional
-✓ Enhanced analytics dashboard with real-time savings tracking
-✓ AI-powered expense categorization system (87% accuracy)
-✓ Interactive onboarding flow for new users
-✓ Receipt OCR scanner with automatic data extraction
-✓ Progress tracking for quarterly tax obligations
-✓ Smart recommendations engine for tax savings
-✓ Professional styling with responsive design
-✓ Real-time data persistence with PostgreSQL
-✓ Complete authentication system with Replit OpenID Connect
-✓ Enhanced HTTPS security for fiscavo.nl domain deployment
-✓ Professional logo branding throughout application
-→ Strategic roadmap developed for AI-era competitive positioning
-→ Ready for production deployment and Phase 1 enhancements
+## System Architecture
+Fiscavo is built with a modern web application architecture, focusing on a responsive and intuitive user experience.
+
+### UI/UX Decisions
+The design is inspired by platforms like Stripe, Notion, and Taxfix, prioritizing a clean, minimal, and professional aesthetic.
+- **Color Palette**: Primarily blue (#2563EB) with refined neutrals, using a consistent blue theme (#2563EB, #1D4ED8) for branding.
+- **Typography**: Plus Jakarta Sans for a modern and professional appearance.
+- **Components**: Rounded corners, premium shadows, and hover effects are applied to cards and interactive elements.
+- **Design Elements**: Gradient backgrounds, floating elements in the hero section, and smooth animations/transitions enhance user experience.
+- **Branding**: Prominent Fiscavo logo visibility with a professional design and "Simpel | Veilig | Accuraat" positioning.
+
+### Technical Implementations
+- **Frontend**: React + TypeScript + Vite, utilizing Tailwind CSS and shadcn/ui components for a modular and consistent design system. Wouter is used for client-side routing and TanStack Query for state management.
+- **Backend**: Express.js + TypeScript, providing a robust API layer for data processing and business logic.
+- **Authentication**: Secure user authentication is implemented using Replit's OpenID Connect (OAuth) system, with session management stored in the database.
+- **Security**: Comprehensive HTTPS enforcement, security headers (HSTS, CSP), and secure cookie handling are configured for production readiness.
+- **Email Functionality**: Integrated @sendgrid/mail for email notifications.
+
+### Feature Specifications
+Fiscavo provides a suite of tools accessible as individual pages:
+- **Interactive Chat Assistant**: AI-powered tax advice in Dutch.
+- **Transaction Management**: Bank integration (ING, ABN AMRO, Rabobank), bulk categorization using AI (Claude 4.0 Sonnet), and VAT extraction from receipts.
+- **BTW Return Generator**: Automated quarterly BTW calculations and generation.
+- **Mileage Tracking**: GPS-based business travel deduction with official Dutch rates (€0.23/km).
+- **Tax Calculator**: Real-time income tax and social contribution calculations based on Dutch tax brackets.
+- **Receipt Management**: OCR processing with confidence scoring, automatic data extraction, and Dutch tax compliance validation.
+- **Deadline Management**: Tracks upcoming tax obligations with urgency indicators.
+- **Deduction Checker**: Helps identify eligible business expense deductions.
+- **Todo Generator**: Creates personalized tax compliance checklists.
+- **FAQ System**: Comprehensive answers to common tax questions.
+- **Analytics Dashboard**: Personalized insights with real-time savings tracking and compliance scoring.
+- **Onboarding Flow**: Interactive guided tour for new users.
+- **Legal Framework**: Comprehensive Privacy Policy (GDPR compliant), Terms of Service, Cookie Policy, GDPR Rights page, and Security Policy (ISO 27001 considerations).
+
+### System Design Choices
+- **Database**: PostgreSQL with Drizzle ORM for persistent data storage, replacing prior in-memory solutions.
+- **API Endpoints**: Structured API endpoints for chat, deadlines, deductions, FAQ, todo lists, and intelligent tax advice generation.
+- **Data Persistence**: All tax-related data (transactions, BTW returns, mileage, calculations) and user-specific information are stored and personalized through an authenticated user system.
+- **Modularity**: Core features are built as individual accessible pages with dedicated routing, allowing for direct access and logical separation.
+
+## External Dependencies
+- **Database**: PostgreSQL
+- **ORM**: Drizzle ORM
+- **AI/ML**: Anthropic API (Claude 4.0 Sonnet) for advanced AI features (expense categorization, tax advice, receipt analysis).
+- **Email Service**: SendGrid (via @sendgrid/mail package).
+- **Authentication**: Replit's OpenID Connect (OAuth).
+- **Bank Integrations**: Framework for Dutch banks (ING, ABN AMRO, Rabobank).
