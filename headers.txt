@@ -1,0 +1,20 @@
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-XSS-Protection: 1; mode=block
+Referrer-Policy: strict-origin-when-cross-origin
+Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'
+Permissions-Policy: geolocation=(), microphone=(), camera=()
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Headers: Content-Type, Authorization
+Access-Control-Allow-Credentials: true
+Content-Type: text/plain; charset=utf-8
+Content-Length: 2
+ETag: W/"2-nOO9QiTIwXgNtWtBJezz8kv3SLc"
+Set-Cookie: connect.sid=s%3AAaPUyOhcZfG1ZTLObsVGMhzxWWtFCEV-.vR0lQFDKZwDo3PE2%2FMrV%2BanZI4t%2B5Mnuv0y8GPiijrE; Path=/; Expires=Tue, 12 Aug 2025 20:19:28 GMT; HttpOnly; SameSite=Lax
+Date: Tue, 05 Aug 2025 20:19:28 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+

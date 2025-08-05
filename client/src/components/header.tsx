@@ -7,7 +7,7 @@ import { Logo } from "@/components/ui/logo";
 
 export function Header() {
   const [location] = useLocation();
-  const { user, isAuthenticated, isLoading } = useAuth();
+  const { user, isAuthenticated, isLoading, logoutMutation } = useAuth();
 
   const navigationItems = [
     { href: "/", label: "Dashboard", icon: Home },
@@ -78,7 +78,7 @@ export function Header() {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-48">
-                  <DropdownMenuItem onClick={() => window.location.href = '/api/logout'}>
+                  <DropdownMenuItem onClick={() => logoutMutation.mutate()}>
                     <LogOut className="w-4 h-4 mr-2" />
                     Uitloggen
                   </DropdownMenuItem>

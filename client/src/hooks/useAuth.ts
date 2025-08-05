@@ -105,14 +105,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     },
     onSuccess: () => {
       queryClient.setQueryData(["/api/user"], null);
+      queryClient.invalidateQueries({ queryKey: ["/api/user"] });
       toast({
         title: "Uitgelogd",
         description: "Tot ziens!",
       });
-      // Redirect to home page after successful logout
+      // Force page reload to reset all state and redirect to home
       setTimeout(() => {
-        window.location.href = "/";
-      }, 1000);
+        window.location.replace("/");
+      }, 500);
     },
     onError: (error: Error) => {
       toast({
