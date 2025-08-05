@@ -23,6 +23,8 @@ import GDPR from "@/pages/gdpr";
 import Security from "@/pages/security";
 import About from "@/pages/about";
 import Support from "@/pages/support";
+import Analytics from "@/pages/analytics";
+import AICategorization from "@/pages/ai-categorization";
 import AIFeatures from "@/pages/ai-features";
 
 
@@ -47,6 +49,8 @@ function InnerRouter() {
       <Route path="/tax-calculator" component={TaxCalculatorPage} />
       <Route path="/chat" component={Chat} />
       <Route path="/deductions" component={Deductions} />
+      <Route path="/analytics" component={Analytics} />
+      <Route path="/ai-categorization" component={AICategorization} />
       <Route path="/ai-features" component={AIFeatures} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
