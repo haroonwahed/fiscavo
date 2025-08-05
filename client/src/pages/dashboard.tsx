@@ -339,10 +339,11 @@ export default function Dashboard() {
                 {/* Company Info */}
                 <div className="col-span-1">
                   <div className="flex items-center space-x-2 mb-4">
-                    <div className="w-6 h-6 bg-emerald-500 rounded flex items-center justify-center">
-                      <Calculator className="h-4 w-4 text-white" />
+                    <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                      <div className="w-5 h-5 bg-white rounded-sm flex items-center justify-center">
+                        <div className="w-3 h-3 bg-blue-600 rounded-sm"></div>
+                      </div>
                     </div>
-                    <h3 className="text-lg font-bold text-gray-900">Fiscavo</h3>
                   </div>
                   <p className="text-sm text-gray-600 mb-4">
                     Simpel | Veilig | Accuraat belastingadvies voor Nederlandse ondernemers
