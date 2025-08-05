@@ -8,6 +8,7 @@ import { AuthProvider } from "@/hooks/useAuth";
 import Dashboard from "@/pages/dashboard";
 import Landing from "@/pages/landing";
 import AuthPage from "@/pages/auth-page";
+import SignupPage from "@/pages/signup";
 import NotFound from "@/pages/not-found";
 import BtwCalculator from "@/pages/btw-calculator";
 import Transactions from "@/pages/transactions";
@@ -38,6 +39,7 @@ function InnerRouter() {
     <Switch>
       <Route path="/" component={Landing} />
       <Route path="/auth" component={AuthPage} />
+      <Route path="/signup" component={SignupPage} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/btw-calculator" component={BtwCalculator} />
       <Route path="/transactions" component={Transactions} />

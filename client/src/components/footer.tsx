@@ -1,7 +1,7 @@
 import { Logo } from "@/components/ui/logo";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { MapPin, Phone, Mail, ArrowRight } from "lucide-react";
+import { MapPin, Phone, Mail, ArrowRight, Shield, Award, FileCheck } from "lucide-react";
 
 export function Footer() {
 
@@ -51,6 +51,25 @@ export function Footer() {
                   </div>
                 </div>
               </Card>
+            </div>
+            
+            {/* Trust Badges */}
+            <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+              <h5 className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Vertrouwd door professionals</h5>
+              <div className="flex flex-wrap gap-4">
+                <div className="flex items-center gap-2 bg-white/60 dark:bg-gray-800/60 px-3 py-2 rounded-lg">
+                  <Shield className="w-4 h-4 text-green-600" />
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-200">GDPR Compliant</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white/60 dark:bg-gray-800/60 px-3 py-2 rounded-lg">
+                  <Award className="w-4 h-4 text-blue-600" />
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-200">Gecertificeerd</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white/60 dark:bg-gray-800/60 px-3 py-2 rounded-lg">
+                  <FileCheck className="w-4 h-4 text-purple-600" />
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-200">DigiD Ready</span>
+                </div>
+              </div>
             </div>
           </div>
           

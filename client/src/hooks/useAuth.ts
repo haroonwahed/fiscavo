@@ -104,16 +104,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       await apiRequest("POST", "/api/logout");
     },
     onSuccess: () => {
+      // Clear user data from cache
       queryClient.setQueryData(["/api/user"], null);
       queryClient.invalidateQueries({ queryKey: ["/api/user"] });
+      
+      // Show success message
       toast({
         title: "Uitgelogd",
         description: "Tot ziens!",
       });
-      // Force page reload to reset all state and redirect to home
-      setTimeout(() => {
-        window.location.replace("/");
-      }, 500);
+      
+      // Immediate redirect to root with full page reload
+      window.location.href = "/";
     },
     onError: (error: Error) => {
       toast({

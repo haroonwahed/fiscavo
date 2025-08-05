@@ -7,12 +7,15 @@ import { Logo } from "@/components/ui/logo";
 import { DemoSection } from "@/components/demo-section";
 import { FaqSection } from "@/components/faq-section";
 import { Footer } from "@/components/footer";
+import { TestimonialsCarousel } from "@/components/ui/testimonials-carousel";
+import { ComparisonTable } from "@/components/ui/comparison-table";
+import { InteractiveDemo } from "@/components/ui/interactive-demo";
 
 export default function Landing() {
   const [showDemo, setShowDemo] = useState(false);
 
   const handleGetStarted = () => {
-    window.location.href = '/auth';
+    window.location.href = '/signup';
   };
 
   const features = [
@@ -80,7 +83,11 @@ export default function Landing() {
             </nav>
             
             <div className="flex items-center space-x-3">
-              <Button variant="ghost" onClick={handleGetStarted} className="btn-ghost">
+              <Button 
+                onClick={() => window.location.href = '/auth'} 
+                variant="ghost" 
+                className="btn-ghost"
+              >
                 Inloggen
               </Button>
               <Button onClick={handleGetStarted} className="btn-primary">
@@ -109,8 +116,24 @@ export default function Landing() {
             </h1>
             
             <p className="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed animate-fade-in">
-              Automatiseer je belastingadministratie met AI-powered tools. Bespaar tijd, blijf compliant en maximaliseer je aftrekposten met de meest geavanceerde belastingplatform van Nederland.
+              Automatiseer je belastingadministratie met AI-powered tools. Bespaar tijd, blijf compliant en maximaliseer je aftrekposten met het meest geavanceerde belastingplatform van Nederland.
             </p>
+            
+            {/* Privacy Reassurance */}
+            <div className="flex items-center justify-center gap-6 mb-12 text-sm text-gray-600 dark:text-gray-400">
+              <div className="flex items-center gap-2">
+                <Shield className="w-4 h-4 text-green-600" />
+                <span>100% veilig & GDPR-compliant</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-blue-600" />
+                <span>Gecertificeerd belastingadviseur</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="w-4 h-4 text-purple-600" />
+                <span>30 dagen geld-terug-garantie</span>
+              </div>
+            </div>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16 animate-scale-in">
               <Button 
@@ -186,8 +209,15 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Interactive Demo Section */}
+      <section className="section-padding bg-white dark:bg-gray-800">
+        <div className="container-premium">
+          <InteractiveDemo />
+        </div>
+      </section>
+
       {/* Benefits Section */}
-      <section id="benefits" className="section-padding bg-white dark:bg-gray-800">
+      <section id="benefits" className="section-padding bg-gray-50 dark:bg-gray-900">
         <div className="container-premium">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -223,6 +253,20 @@ export default function Landing() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="section-padding bg-white dark:bg-gray-800">
+        <div className="container-premium">
+          <TestimonialsCarousel />
+        </div>
+      </section>
+
+      {/* Comparison Section */}
+      <section className="section-padding bg-gray-50 dark:bg-gray-900">
+        <div className="container-premium">
+          <ComparisonTable />
         </div>
       </section>
 
