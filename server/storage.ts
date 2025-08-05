@@ -746,19 +746,36 @@ export class MemStorage implements IStorage {
 
   async createBankAccount(account: InsertBankAccount): Promise<BankAccount> {
     const id = this.currentId++;
-    const bankAccount: BankAccount = { ...account, id };
+    const bankAccount: BankAccount = { 
+      ...account, 
+      id,
+      createdAt: new Date(),
+      userId: account.userId ?? null,
+      isActive: account.isActive ?? true
+    };
     this.bankAccounts.set(id, bankAccount);
     return bankAccount;
   }
 
   // Transactions
   async getTransactions(userId: number, filters?: any): Promise<Transaction[]> {
-    return Array.from(this.transactions.values()).filter(t => t.userId === userId);
+    return Array.from(this.transactions.values());
   }
 
   async createTransaction(transaction: InsertTransaction): Promise<Transaction> {
     const id = this.currentId++;
-    const newTransaction: Transaction = { ...transaction, id };
+    const newTransaction: Transaction = { 
+      ...transaction, 
+      id,
+      createdAt: new Date(),
+      category: transaction.category ?? null,
+      bankAccountId: transaction.bankAccountId ?? null,
+      isBusinessExpense: transaction.isBusinessExpense ?? null,
+      btwRate: transaction.btwRate ?? null,
+      btwAmount: transaction.btwAmount ?? null,
+      receiptUrl: transaction.receiptUrl ?? null,
+      isApproved: transaction.isApproved ?? null
+    };
     this.transactions.set(id, newTransaction);
     return newTransaction;
   }
@@ -778,7 +795,14 @@ export class MemStorage implements IStorage {
 
   async createBtwReturn(returnData: InsertBtwReturn): Promise<BtwReturn> {
     const id = this.currentId++;
-    const btwReturn: BtwReturn = { ...returnData, id };
+    const btwReturn: BtwReturn = { 
+      ...returnData, 
+      id,
+      createdAt: new Date(),
+      status: returnData.status ?? 'draft',
+      userId: returnData.userId ?? null,
+      submittedAt: returnData.submittedAt ?? null
+    };
     this.btwReturns.set(id, btwReturn);
     return btwReturn;
   }
@@ -790,7 +814,14 @@ export class MemStorage implements IStorage {
 
   async createMileageEntry(entry: InsertMileageEntry): Promise<MileageEntry> {
     const id = this.currentId++;
-    const mileageEntry: MileageEntry = { ...entry, id };
+    const mileageEntry: MileageEntry = { 
+      ...entry, 
+      id,
+      createdAt: new Date(),
+      userId: entry.userId ?? null,
+      isApproved: entry.isApproved ?? null,
+      rate: entry.rate ?? "0.23"
+    };
     this.mileageEntries.set(id, mileageEntry);
     return mileageEntry;
   }
@@ -802,7 +833,13 @@ export class MemStorage implements IStorage {
 
   async createTaxCalculation(calculation: InsertTaxCalculation): Promise<TaxCalculation> {
     const id = this.currentId++;
-    const taxCalculation: TaxCalculation = { ...calculation, id };
+    const taxCalculation: TaxCalculation = { 
+      ...calculation, 
+      id,
+      userId: calculation.userId ?? null,
+      socialContributions: calculation.socialContributions ?? null,
+      calculatedAt: new Date()
+    };
     this.taxCalculations.set(id, taxCalculation);
     return taxCalculation;
   }
@@ -818,7 +855,17 @@ export class MemStorage implements IStorage {
 
   async createReceipt(receipt: InsertReceipt): Promise<Receipt> {
     const id = this.currentId++;
-    const newReceipt: Receipt = { ...receipt, id };
+    const newReceipt: Receipt = { 
+      ...receipt, 
+      id,
+      createdAt: new Date(),
+      transactionId: receipt.transactionId ?? null,
+      extractedText: receipt.extractedText ?? null,
+      extractedAmount: receipt.extractedAmount ?? null,
+      extractedDate: receipt.extractedDate ?? null,
+      extractedVendor: receipt.extractedVendor ?? null,
+      isProcessed: receipt.isProcessed ?? null
+    };
     this.receipts.set(id, newReceipt);
     return newReceipt;
   }
@@ -828,6 +875,52 @@ export class MemStorage implements IStorage {
     if (!receipt) throw new Error('Receipt not found');
     const updated = { ...receipt, ...updates };
     this.receipts.set(id, updated);
+    return updated;
+  }
+
+  // Missing bank account update method
+  async updateBankAccount(id: number, updates: Partial<BankAccount>): Promise<BankAccount> {
+    const account = this.bankAccounts.get(id);
+    if (!account) throw new Error('Bank account not found');
+    const updated = { ...account, ...updates };
+    this.bankAccounts.set(id, updated);
+    return updated;
+  }
+
+  // Missing BTW return update method
+  async updateBtwReturn(id: number, updates: Partial<BtwReturn>): Promise<BtwReturn> {
+    const btwReturn = this.btwReturns.get(id);
+    if (!btwReturn) throw new Error('BTW return not found');
+    const updated = { ...btwReturn, ...updates };
+    this.btwReturns.set(id, updated);
+    return updated;
+  }
+
+  // Missing mileage entry update method
+  async updateMileageEntry(id: number, updates: Partial<MileageEntry>): Promise<MileageEntry> {
+    const entry = this.mileageEntries.get(id);
+    if (!entry) throw new Error('Mileage entry not found');
+    const updated = { ...entry, ...updates };
+    this.mileageEntries.set(id, updated);
+    return updated;
+  }
+
+  // Missing tax calculation update method
+  async updateTaxCalculation(id: number, updates: Partial<TaxCalculation>): Promise<TaxCalculation> {
+    const calculation = this.taxCalculations.get(id);
+    if (!calculation) throw new Error('Tax calculation not found');
+    const updated = { ...calculation, ...updates };
+    this.taxCalculations.set(id, updated);
+    return updated;
+  }
+
+  // Missing categorizeTransaction method
+  async categorizeTransaction(transactionId: number, category: string): Promise<Transaction> {
+    const transaction = this.transactions.get(transactionId);
+    if (!transaction) throw new Error('Transaction not found');
+    
+    const updated = { ...transaction, category };
+    this.transactions.set(transactionId, updated);
     return updated;
   }
 }
