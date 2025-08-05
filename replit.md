@@ -12,6 +12,12 @@ Fiscavo is a comprehensive web application designed to provide tax advice and ma
 ## System Architecture
 Fiscavo is built with a modern web application architecture, focusing on a responsive and intuitive user experience.
 
+### Recent Critical Fixes (January 2025)
+- **Authentication System**: Fixed critical "body stream already read" error in queryClient.ts that was preventing login/registration
+- **Error Handling**: Improved frontend error handling to prevent double body reading in fetch responses
+- **Session Management**: Verified complete authentication flow: registration → login → logout working seamlessly
+- **API Endpoints**: All core tax functionality endpoints operational and tested
+
 ### UI/UX Decisions
 The design is inspired by platforms like Stripe, Notion, and Taxfix, prioritizing a clean, minimal, and professional aesthetic.
 - **Color Palette**: Primarily blue (#2563EB) with refined neutrals, using a consistent blue theme (#2563EB, #1D4ED8) for branding.
