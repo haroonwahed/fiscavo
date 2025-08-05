@@ -109,6 +109,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         title: "Uitgelogd",
         description: "Tot ziens!",
       });
+      // Redirect to home page after successful logout
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 1000);
     },
     onError: (error: Error) => {
       toast({
