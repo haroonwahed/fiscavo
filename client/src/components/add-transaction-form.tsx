@@ -116,14 +116,14 @@ export function AddTransactionForm({ onSuccess, onCancel }: AddTransactionFormPr
   };
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
-      <CardHeader>
-        <CardTitle>Nieuwe Transactie Toevoegen</CardTitle>
-        <CardDescription>
+    <div className="w-full">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold">Nieuwe Transactie Toevoegen</h2>
+        <p className="text-muted-foreground">
           Voeg een nieuwe transactie handmatig toe aan je administratie
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
+        </p>
+      </div>
+      <div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             {/* Bank Account Selection */}
@@ -361,7 +361,7 @@ export function AddTransactionForm({ onSuccess, onCancel }: AddTransactionFormPr
             </div>
           </form>
         </Form>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }

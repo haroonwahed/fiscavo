@@ -19,6 +19,26 @@ import { z } from "zod";
 export async function registerRoutes(app: Express): Promise<Server> {
   // Setup authentication middleware
   setupAuth(app);
+  
+  // Demo login endpoint for testing
+  app.post("/api/demo-login", async (req, res) => {
+    try {
+      const demoUser = await storage.getUserByUsername("demo");
+      if (demoUser) {
+        // Simple session simulation for demo
+        req.login(demoUser, (err) => {
+          if (err) {
+            return res.status(500).json({ error: "Demo login failed" });
+          }
+          res.json(demoUser);
+        });
+      } else {
+        res.status(404).json({ error: "Demo user not found" });
+      }
+    } catch (error) {
+      res.status(500).json({ error: "Demo login failed" });
+    }
+  });
   // Chat messages
   app.get("/api/chat/messages", async (req, res) => {
     try {

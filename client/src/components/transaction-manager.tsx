@@ -115,11 +115,13 @@ export function TransactionManager() {
                 Transactie Toevoegen
               </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-              <AddTransactionForm 
-                onSuccess={() => setShowAddTransaction(false)}
-                onCancel={() => setShowAddTransaction(false)}
-              />
+            <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-0">
+              <div className="p-6">
+                <AddTransactionForm 
+                  onSuccess={() => setShowAddTransaction(false)}
+                  onCancel={() => setShowAddTransaction(false)}
+                />
+              </div>
             </DialogContent>
           </Dialog>
         </div>
@@ -258,14 +260,16 @@ export function TransactionManager() {
                       CSV Bestand Importeren
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-                    <CSVImportForm 
-                      onSuccess={() => {
-                        setShowCSVImport(false);
-                        queryClient.invalidateQueries({ queryKey: ["/api/transactions"] });
-                      }}
-                      onCancel={() => setShowCSVImport(false)}
-                    />
+                  <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-0">
+                    <div className="p-6">
+                      <CSVImportForm 
+                        onSuccess={() => {
+                          setShowCSVImport(false);
+                          queryClient.invalidateQueries({ queryKey: ["/api/transactions"] });
+                        }}
+                        onCancel={() => setShowCSVImport(false)}
+                      />
+                    </div>
                   </DialogContent>
                 </Dialog>
               </div>
@@ -337,14 +341,16 @@ export function TransactionManager() {
                       Bankrekening Toevoegen
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-                    <AddBankAccountForm 
-                      onSuccess={() => {
-                        setShowAddBankAccount(false);
-                        queryClient.invalidateQueries({ queryKey: ["/api/bank-accounts"] });
-                      }}
-                      onCancel={() => setShowAddBankAccount(false)}
-                    />
+                  <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto p-0">
+                    <div className="p-6">
+                      <AddBankAccountForm 
+                        onSuccess={() => {
+                          setShowAddBankAccount(false);
+                          queryClient.invalidateQueries({ queryKey: ["/api/bank-accounts"] });
+                        }}
+                        onCancel={() => setShowAddBankAccount(false)}
+                      />
+                    </div>
                   </DialogContent>
                 </Dialog>
               </div>

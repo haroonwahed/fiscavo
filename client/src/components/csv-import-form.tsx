@@ -163,17 +163,17 @@ export function CSVImportForm({ onSuccess, onCancel }: CSVImportFormProps) {
 
   if (importResults) {
     return (
-      <Card className="w-full max-w-2xl mx-auto">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <CheckCircle className="h-5 w-5 text-green-600" />
+      <div className="w-full">
+        <div className="mb-6">
+          <h2 className="text-2xl font-bold flex items-center gap-2">
+            <CheckCircle className="h-6 w-6 text-green-600" />
             Import Voltooid
-          </CardTitle>
-          <CardDescription>
+          </h2>
+          <p className="text-muted-foreground">
             Uw transacties zijn succesvol geïmporteerd
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
+          </p>
+        </div>
+        <div className="space-y-4">
           <div className="flex items-center justify-between p-4 bg-green-50 rounded-lg border border-green-200">
             <div>
               <h4 className="font-medium text-green-900">
@@ -205,23 +205,23 @@ export function CSVImportForm({ onSuccess, onCancel }: CSVImportFormProps) {
               Transacties Bekijken
             </Button>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     );
   }
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Upload className="h-5 w-5" />
+    <div className="w-full">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold flex items-center gap-2">
+          <Upload className="h-6 w-6" />
           CSV Transacties Importeren
-        </CardTitle>
-        <CardDescription>
+        </h2>
+        <p className="text-muted-foreground">
           Importeer transacties direct vanuit je bankafschrift
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
+        </p>
+      </div>
+      <div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             {/* Bank Account Selection */}
@@ -378,7 +378,7 @@ export function CSVImportForm({ onSuccess, onCancel }: CSVImportFormProps) {
             </div>
           </form>
         </Form>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }

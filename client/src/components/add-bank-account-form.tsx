@@ -122,17 +122,17 @@ export function AddBankAccountForm({ onSuccess, onCancel }: AddBankAccountFormPr
   };
 
   return (
-    <Card className="w-full max-w-xl mx-auto">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Building2 className="h-5 w-5" />
+    <div className="w-full">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold flex items-center gap-2">
+          <Building2 className="h-6 w-6" />
           Nieuwe Bankrekening Toevoegen
-        </CardTitle>
-        <CardDescription>
+        </h2>
+        <p className="text-muted-foreground">
           Voeg een nieuwe bankrekening toe om transacties te kunnen importeren en beheren
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
+        </p>
+      </div>
+      <div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             {/* Bank Selection */}
@@ -243,7 +243,7 @@ export function AddBankAccountForm({ onSuccess, onCancel }: AddBankAccountFormPr
             </div>
           </form>
         </Form>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
