@@ -26,6 +26,7 @@ import Support from "@/pages/support";
 import Analytics from "@/pages/analytics";
 import AICategorization from "@/pages/ai-categorization";
 import AIFeatures from "@/pages/ai-features";
+import TransactionManagementPage from "@/pages/transaction-management-page";
 
 
 function Router() {
@@ -45,6 +46,7 @@ function InnerRouter() {
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/btw-calculator" component={BtwCalculator} />
       <Route path="/transactions" component={Transactions} />
+      <Route path="/transactiebeheer" component={TransactionManagementPage} />
       <Route path="/mileage" component={Mileage} />
       <Route path="/tax-calculator" component={TaxCalculatorPage} />
       <Route path="/chat" component={Chat} />

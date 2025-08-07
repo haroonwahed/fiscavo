@@ -7,9 +7,13 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Upload, Plus, CheckCircle, AlertCircle } from "lucide-react";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Upload, Plus, CheckCircle, AlertCircle, Building2, Trash2 } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useAuth } from "@/hooks/useAuth";
+import { AddTransactionForm } from "@/components/add-transaction-form";
+import { AddBankAccountForm } from "@/components/add-bank-account-form";
+import { CSVImportForm } from "@/components/csv-import-form";
 
 interface Transaction {
   id: number;
@@ -36,6 +40,8 @@ export function TransactionManager() {
   const { user } = useAuth();
   const [selectedAccount, setSelectedAccount] = useState<number | null>(null);
   const [showAddTransaction, setShowAddTransaction] = useState(false);
+  const [showAddBankAccount, setShowAddBankAccount] = useState(false);
+  const [showCSVImport, setShowCSVImport] = useState(false);
   const queryClient = useQueryClient();
 
   const { data: accounts = [] } = useQuery<BankAccount[]>({
@@ -44,6 +50,13 @@ export function TransactionManager() {
 
   const { data: transactions = [] } = useQuery<Transaction[]>({
     queryKey: ["/api/transactions", selectedAccount],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (selectedAccount) params.append('bankAccountId', selectedAccount.toString());
+      const response = await fetch(`/api/transactions?${params}`);
+      if (!response.ok) throw new Error('Failed to fetch transactions');
+      return response.json();
+    },
     enabled: !!selectedAccount,
   });
 
@@ -94,10 +107,22 @@ export function TransactionManager() {
             Beheer je banktransacties en categoriseer zakelijke uitgaven
           </p>
         </div>
-        <Button onClick={() => setShowAddTransaction(true)}>
-          <Plus className="h-4 w-4 mr-2" />
-          Transactie Toevoegen
-        </Button>
+        <div className="flex gap-2">
+          <Dialog open={showAddTransaction} onOpenChange={setShowAddTransaction}>
+            <DialogTrigger asChild>
+              <Button>
+                <Plus className="h-4 w-4 mr-2" />
+                Transactie Toevoegen
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+              <AddTransactionForm 
+                onSuccess={() => setShowAddTransaction(false)}
+                onCancel={() => setShowAddTransaction(false)}
+              />
+            </DialogContent>
+          </Dialog>
+        </div>
       </div>
 
       <Tabs defaultValue="transactions" className="space-y-4">
@@ -221,27 +246,50 @@ export function TransactionManager() {
             <CardHeader>
               <CardTitle>Bankafschrift Importeren</CardTitle>
               <CardDescription>
-                Upload een CSV-bestand van je bank (ING, Rabobank, ABN AMRO)
+                Upload een CSV-bestand van je bank om transacties automatisch toe te voegen
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="border-2 border-dashed border-muted-foreground/25 rounded-lg p-8 text-center">
-                <Upload className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-                <h3 className="text-lg font-medium mb-2">Sleep bestanden hierheen</h3>
-                <p className="text-muted-foreground mb-4">
-                  of klik om een bestand te selecteren
-                </p>
-                <Button>Bestand Selecteren</Button>
+              <div className="flex justify-center">
+                <Dialog open={showCSVImport} onOpenChange={setShowCSVImport}>
+                  <DialogTrigger asChild>
+                    <Button size="lg" className="w-full max-w-md">
+                      <Upload className="h-5 w-5 mr-2" />
+                      CSV Bestand Importeren
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                    <CSVImportForm 
+                      onSuccess={() => {
+                        setShowCSVImport(false);
+                        queryClient.invalidateQueries({ queryKey: ["/api/transactions"] });
+                      }}
+                      onCancel={() => setShowCSVImport(false)}
+                    />
+                  </DialogContent>
+                </Dialog>
               </div>
               
               <div className="mt-6">
                 <h4 className="font-medium mb-2">Ondersteunde formaten:</h4>
-                <ul className="text-sm text-muted-foreground space-y-1">
-                  <li>• ING CSV exports</li>
-                  <li>• Rabobank CSV exports</li>
-                  <li>• ABN AMRO CSV exports</li>
-                  <li>• Standaard CSV met datum, bedrag, omschrijving</li>
-                </ul>
+                <div className="grid grid-cols-2 gap-4 text-sm text-muted-foreground">
+                  <div>
+                    <h5 className="font-medium text-foreground mb-1">Nederlandse banken:</h5>
+                    <ul className="space-y-1">
+                      <li>• ING Bank CSV exports</li>
+                      <li>• Rabobank CSV exports</li>
+                      <li>• ABN AMRO CSV exports</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="font-medium text-foreground mb-1">Algemeen:</h5>
+                    <ul className="space-y-1">
+                      <li>• Standaard CSV formaten</li>
+                      <li>• Datum, bedrag, omschrijving</li>
+                      <li>• UTF-8 encoding</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -282,10 +330,23 @@ export function TransactionManager() {
                   </div>
                 ))}
                 
-                <Button variant="outline" className="w-full">
-                  <Plus className="h-4 w-4 mr-2" />
-                  Bankrekening Toevoegen
-                </Button>
+                <Dialog open={showAddBankAccount} onOpenChange={setShowAddBankAccount}>
+                  <DialogTrigger asChild>
+                    <Button variant="outline" className="w-full">
+                      <Plus className="h-4 w-4 mr-2" />
+                      Bankrekening Toevoegen
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+                    <AddBankAccountForm 
+                      onSuccess={() => {
+                        setShowAddBankAccount(false);
+                        queryClient.invalidateQueries({ queryKey: ["/api/bank-accounts"] });
+                      }}
+                      onCancel={() => setShowAddBankAccount(false)}
+                    />
+                  </DialogContent>
+                </Dialog>
               </div>
             </CardContent>
           </Card>

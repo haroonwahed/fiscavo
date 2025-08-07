@@ -781,37 +781,336 @@ ${btwReturn.quarter},${btwReturn.year},${btwReturn.totalSales},${btwReturn.total
     }
   });
 
-  app.get('/api/export/transactions', isAuthenticated, async (req, res) => {
-    try {
-      const { year, category } = req.query;
-      let transactions = await storage.getTransactions();
+  app.get('/api/export/transactions', (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
+    const { year, category } = req.query;
+    
+    storage.getTransactions().then(transactions => {
+      let filteredTransactions = transactions;
       
       if (year) {
-        transactions = transactions.filter(t => 
+        filteredTransactions = transactions.filter(t => 
           new Date(t.date).getFullYear() === parseInt(year as string)
         );
       }
       
       if (category) {
-        transactions = transactions.filter(t => t.category === category);
+        filteredTransactions = transactions.filter(t => t.category === category);
       }
 
       const csvHeader = 'Datum,Beschrijving,Bedrag,Categorie,Bankrekening\n';
-      const csvData = transactions.map(t => 
+      const csvData = filteredTransactions.map(t => 
         `${t.date},"${t.description}",${t.amount},${t.category || ''},${t.bankAccountId || ''}`
       ).join('\n');
 
       res.setHeader('Content-Type', 'text/csv');
       res.setHeader('Content-Disposition', `attachment; filename="transacties-${year || 'alle'}.csv"`);
       res.send(csvHeader + csvData);
-    } catch (error) {
+    }).catch(error => {
       console.error("Error exporting transactions:", error);
       res.status(500).json({ error: "Failed to export transactions" });
+    });
+  });
+
+  // Bank account management routes
+  app.get("/api/bank-accounts", (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
+    storage.getBankAccounts().then(accounts => {
+      res.json(accounts);
+    }).catch(error => {
+      console.error('Error fetching bank accounts:', error);
+      res.status(500).json({ error: "Failed to fetch bank accounts" });
+    });
+  });
+
+  app.post("/api/bank-accounts", (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
+    const { bankName, accountNumber, accountType } = req.body;
+    
+    if (!bankName || !accountNumber || !accountType) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    storage.createBankAccount({
+      userId: null, // Will be properly linked when user profiles are implemented
+      bankName,
+      accountNumber,
+      accountType,
+      isActive: true
+    }).then(account => {
+      res.status(201).json(account);
+    }).catch(error => {
+      console.error('Error creating bank account:', error);
+      res.status(500).json({ error: "Failed to create bank account" });
+    });
+  });
+
+  app.patch("/api/bank-accounts/:id", (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
+    const id = parseInt(req.params.id);
+    const updates = req.body;
+
+    storage.updateBankAccount(id, updates).then(account => {
+      res.json(account);
+    }).catch(error => {
+      console.error('Error updating bank account:', error);
+      res.status(500).json({ error: "Failed to update bank account" });
+    });
+  });
+
+  // Transaction management routes
+  app.get("/api/transactions", (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
+    const bankAccountId = req.query.bankAccountId ? parseInt(req.query.bankAccountId as string) : undefined;
+    const businessOnly = req.query.businessOnly === 'true';
+
+    storage.getTransactions(bankAccountId, businessOnly).then(transactions => {
+      res.json(transactions);
+    }).catch(error => {
+      console.error('Error fetching transactions:', error);
+      res.status(500).json({ error: "Failed to fetch transactions" });
+    });
+  });
+
+  app.post("/api/transactions", (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
+    const { bankAccountId, amount, description, date, category, isBusinessExpense, btwRate, btwAmount } = req.body;
+    
+    if (!bankAccountId || !amount || !description || !date) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    storage.createTransaction({
+      bankAccountId: parseInt(bankAccountId),
+      amount,
+      description,
+      date,
+      category,
+      isBusinessExpense: isBusinessExpense || false,
+      btwRate,
+      btwAmount,
+      receiptUrl: null,
+      isApproved: false
+    }).then(transaction => {
+      res.status(201).json(transaction);
+    }).catch(error => {
+      console.error('Error creating transaction:', error);
+      res.status(500).json({ error: "Failed to create transaction" });
+    });
+  });
+
+  app.patch("/api/transactions/:id/categorize", (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
+    const id = parseInt(req.params.id);
+    const { category, isBusinessExpense } = req.body;
+
+    storage.categorizeTransaction(id, category, isBusinessExpense).then(transaction => {
+      res.json(transaction);
+    }).catch(error => {
+      console.error('Error categorizing transaction:', error);
+      res.status(500).json({ error: "Failed to categorize transaction" });
+    });
+  });
+
+  app.patch("/api/transactions/:id", (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
+    const id = parseInt(req.params.id);
+    const updates = req.body;
+
+    storage.updateTransaction(id, updates).then(transaction => {
+      res.json(transaction);
+    }).catch(error => {
+      console.error('Error updating transaction:', error);
+      res.status(500).json({ error: "Failed to update transaction" });
+    });
+  });
+
+  // CSV Import endpoint
+  app.post("/api/transactions/import", (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
+    const { csvData, bankAccountId, bankType } = req.body;
+    
+    if (!csvData || !bankAccountId || !bankType) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    // Parse CSV and create transactions
+    try {
+      const transactions = parseCSVToTransactions(csvData, bankType, parseInt(bankAccountId));
+      
+      Promise.all(transactions.map(transaction => storage.createTransaction(transaction)))
+        .then(createdTransactions => {
+          res.status(201).json({
+            imported: createdTransactions.length,
+            transactions: createdTransactions
+          });
+        })
+        .catch(error => {
+          console.error('Error importing transactions:', error);
+          res.status(500).json({ error: "Failed to import transactions" });
+        });
+    } catch (error) {
+      console.error('Error parsing CSV:', error);
+      res.status(400).json({ error: "Invalid CSV format" });
     }
   });
 
   const httpServer = createServer(app);
   return httpServer;
+}
+
+// CSV parsing function for Dutch bank formats
+function parseCSVToTransactions(csvData: string, bankType: string, bankAccountId: number): any[] {
+  const lines = csvData.trim().split('\n');
+  const transactions: any[] = [];
+
+  // Skip header line
+  for (let i = 1; i < lines.length; i++) {
+    const line = lines[i];
+    if (!line.trim()) continue;
+
+    try {
+      let transaction;
+      
+      if (bankType === 'ing') {
+        // ING CSV format: Date,Name/Description,Account,Counterparty,Code,Debit/Credit,Amount,Currency,Note
+        const fields = parseCSVLine(line);
+        if (fields.length >= 7) {
+          transaction = {
+            bankAccountId,
+            amount: fields[6].replace(',', '.'),
+            description: `${fields[1]} - ${fields[3]}`.trim(),
+            date: formatDate(fields[0]),
+            category: null,
+            isBusinessExpense: false,
+            btwRate: null,
+            btwAmount: null,
+            receiptUrl: null,
+            isApproved: false
+          };
+        }
+      } else if (bankType === 'rabobank') {
+        // Rabobank CSV format: IBAN/BBAN,Currency,Date,Amount,Name,Description,Counterparty,Code
+        const fields = parseCSVLine(line);
+        if (fields.length >= 6) {
+          transaction = {
+            bankAccountId,
+            amount: fields[3].replace(',', '.'),
+            description: `${fields[4]} - ${fields[5]}`.trim(),
+            date: formatDate(fields[2]),
+            category: null,
+            isBusinessExpense: false,
+            btwRate: null,
+            btwAmount: null,
+            receiptUrl: null,
+            isApproved: false
+          };
+        }
+      } else if (bankType === 'abn') {
+        // ABN AMRO CSV format: Date,Amount,Currency,Description,Name,Counterparty,Code
+        const fields = parseCSVLine(line);
+        if (fields.length >= 4) {
+          transaction = {
+            bankAccountId,
+            amount: fields[1].replace(',', '.'),
+            description: fields[3],
+            date: formatDate(fields[0]),
+            category: null,
+            isBusinessExpense: false,
+            btwRate: null,
+            btwAmount: null,
+            receiptUrl: null,
+            isApproved: false
+          };
+        }
+      } else {
+        // Generic CSV format: Date,Amount,Description
+        const fields = parseCSVLine(line);
+        if (fields.length >= 3) {
+          transaction = {
+            bankAccountId,
+            amount: fields[1].replace(',', '.'),
+            description: fields[2],
+            date: formatDate(fields[0]),
+            category: null,
+            isBusinessExpense: false,
+            btwRate: null,
+            btwAmount: null,
+            receiptUrl: null,
+            isApproved: false
+          };
+        }
+      }
+
+      if (transaction) {
+        transactions.push(transaction);
+      }
+    } catch (error) {
+      console.error('Error parsing line:', line, error);
+      // Continue with next line
+    }
+  }
+
+  return transactions;
+}
+
+// Helper function to parse CSV line with proper quote handling
+function parseCSVLine(line: string): string[] {
+  const result: string[] = [];
+  let current = '';
+  let inQuotes = false;
+  
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    
+    if (char === '"') {
+      inQuotes = !inQuotes;
+    } else if (char === ',' && !inQuotes) {
+      result.push(current.trim());
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  
+  result.push(current.trim());
+  return result;
+}
+
+// Helper function to format date consistently
+function formatDate(dateStr: string): string {
+  // Try various date formats
+  const formats = [
+    /(\d{4})-(\d{2})-(\d{2})/, // YYYY-MM-DD
+    /(\d{2})-(\d{2})-(\d{4})/, // DD-MM-YYYY  
+    /(\d{2})\/(\d{2})\/(\d{4})/, // DD/MM/YYYY
+    /(\d{4})\/(\d{2})\/(\d{2})/, // YYYY/MM/DD
+  ];
+
+  for (const format of formats) {
+    const match = dateStr.match(format);
+    if (match) {
+      if (format.source.startsWith('(\\d{4})')) {
+        // YYYY-MM-DD or YYYY/MM/DD
+        return `${match[1]}-${match[2].padStart(2, '0')}-${match[3].padStart(2, '0')}`;
+      } else {
+        // DD-MM-YYYY or DD/MM/YYYY  
+        return `${match[3]}-${match[2].padStart(2, '0')}-${match[1].padStart(2, '0')}`;
+      }
+    }
+  }
+
+  // Fallback: return as-is
+  return dateStr;
 }
 
 async function generateTaxAdvice(question: string, businessType?: string, sector?: string) {
